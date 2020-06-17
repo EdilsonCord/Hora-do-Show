@@ -1,0 +1,41 @@
+{
+  "name": "HoraDoShow",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint .",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "@react-navigation/native": "^5.5.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.18",
+    "react": "16.11.0",
+    "react-native": "0.62.2",
+    "require-dir": "^1.2.0",
+    "sqlite3": "^4.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/runtime": "^7.10.2",
+    "@react-native-community/eslint-config": "^1.1.0",
+    "babel-jest": "^26.0.1",
+    "eslint": "^7.1.0",
+    "jest": "^26.0.1",
+    "metro-react-native-babel-preset": "^0.59.0",
+    "nodemon": "^2.0.4",
+    "react-test-renderer": "16.11.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
