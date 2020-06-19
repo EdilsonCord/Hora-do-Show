@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   SafeAreaView,
   View,
@@ -6,17 +6,16 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-} from "react-native";
+} from 'react-native';
 
-import styles from "./styles";
+import styles from './styles';
 
-export default function SendCodeScreen(props) {
-
+export default function SendCodeScreen({navigation}) {
   return (
     <SafeAreaView style={styles.container}>
       <Image
         style={{marginBottom: 25}}
-        source={require("../../assets/Aviao.png")}
+        source={require('../../assets/Aviao.png')}
       />
 
       <Text style={styles.title}>CÓDIGO DE CONFIRMAÇÃO</Text>
@@ -34,16 +33,16 @@ export default function SendCodeScreen(props) {
       />
 
       <View style={styles.DoubleButtons}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <Text style={styles.link}>Voltar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.action}>
+        <TouchableOpacity style={styles.action} onPress={() => navigation.navigate('GenerateNewPasswdScreen')}>
           <Text style={styles.actionText}>Enviar</Text>
         </TouchableOpacity>
       </View>
 
-      <Image source={require("../../assets/logoOficial.png")} />
+      <Image source={require('../../assets/logoOficial.png')} />
     </SafeAreaView>
   );
 }

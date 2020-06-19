@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import Main from './pages/SendCodeScreens/SendCodeScreen';
+import Main from './pages/GenerateNewPasswd';
 
 const App = () => <Main />;
 
