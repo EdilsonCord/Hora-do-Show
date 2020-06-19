@@ -1,4 +1,7 @@
+/* eslint-disable prettier/prettier */
 import React, { Component } from "react";
+import api from "./services/api" ;
+
 import {
   StyleSheet,
   SafeAreaView,
@@ -8,8 +11,23 @@ import {
 } from "react-native";
 
 export default function App() {
-  const [ value, onChangeText, placeholder ] = React.useState("Email");
+  const [ value, onChangeText, placeholder, email ] = React.useState('');
+  
+  async function handleRegister(e) {
+    e.preventDefault();
+  const data = {
+    email, 
+  }
 
+  try {
+    const response = await api.post('email', data);
+    console.log(email)
+  }
+   catch (err) {
+    alert('Erro no cadastro, tente novamente.');
+  }
+}
+  
   return (
     <SafeAreaView style={styles.container}>
       <Text>Insira seu email abaixo</Text>

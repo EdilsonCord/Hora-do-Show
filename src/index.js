@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import Main from './pages/main';
+import Main from './pages/enviarCd';
 
 const App = () => <Main />;
 
