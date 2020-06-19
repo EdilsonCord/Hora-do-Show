@@ -4,6 +4,7 @@ const authMiddleware = require("../middlewares/auth");
 const crypto = require('crypto')
 const User = mongoose.model("User");
 const mailer = require('../../backend/modules/mail')
+const mailer2 = require('../../backend/modules/mail2')
 const generator = require('generate-password');
 
 router.post('/pre_register', async(req, res ) => {
@@ -37,7 +38,7 @@ router.post('/pre_register', async(req, res ) => {
 
     user.passwordRegister = passwordR;
     
-    mailer.sendMail({
+    mailer2.sendMail({
       to: email, 
       from:'edilson.cordeiro@outlook.com',
       template: 'preregister_password',
@@ -50,7 +51,7 @@ router.post('/pre_register', async(req, res ) => {
         return res.send()
 
       })
-      return res.json({ user });
+      
   
     } catch (err) {
     

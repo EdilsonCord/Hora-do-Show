@@ -14,7 +14,7 @@ transport.use('compile', hbs({
       extName: '.html',
       partialsDir: path.resolve('./resources/mail/auth'),
       layoutsDir: path.resolve('./resources/mail/auth'),
-      defaultLayout: 'forgot_password.html', 
+      defaultLayout: 'preregister_password.html', 
       
   },
   viewPath: path.resolve('./resources/mail/auth'),
