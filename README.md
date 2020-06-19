@@ -23,6 +23,10 @@ npm install
 ```bash
 npm start
 ```
+ou
+```bash
+npx react-native run-android
+```
 
 ## Para contribuir
 
