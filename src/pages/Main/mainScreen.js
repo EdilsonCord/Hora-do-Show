@@ -25,7 +25,7 @@ export default function MainScreen({navigation}) {
       />
 
       <View style={styles.layerLink}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('SendRecoveryCodeScreen')}>
           <Text style={styles.link}>Esqueci minha senha</Text>
         </TouchableOpacity>
       </View>

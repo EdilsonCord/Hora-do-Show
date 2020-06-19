@@ -18,11 +18,11 @@ export default function SendCodeScreen({navigation}) {
         source={require('../../assets/Aviao.png')}
       />
 
-      <Text style={styles.title}>CÓDIGO DE CONFIRMAÇÃO</Text>
+      <Text style={styles.title}>CADASTRAR NOVA SENHA</Text>
 
       <Text style={styles.description}>
         Insira seu e-mail na caixa de seleção abaixo. Enviaremos um código para
-        que você possa prosseguir com o cadastro!
+        que você possa recadrastrar sua senha!
       </Text>
 
       <TextInput
