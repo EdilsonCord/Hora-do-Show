@@ -70,6 +70,10 @@ router.post("/register", async (req, res) => {
         
           const now = new Date();
           
+
+          if(passwordRegister !== user.passwordRegister) 
+          return res.status(400).send({error: 'Senha temporária inválida.'})
+
           if(now > user.passwordRegisterExpires)
             return res.status(400).send ({error: 'Tempo da senha encerrado, envie o email novamente.'})
       
