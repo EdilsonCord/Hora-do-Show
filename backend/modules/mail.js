@@ -1,11 +1,11 @@
 const nodemailer = require('nodemailer');
 const hbs = require('nodemailer-express-handlebars')
-const {host, port, user, pass} = require('../mail.json')
+const {host, service, user, pass} = require('../mail.json')
 const path = require('path')
 const transport = nodemailer.createTransport({
-    host ,
-    port,
-    auth: {user, pass }
+    host,
+    service,
+    auth: {user, pass}
   });
 
 transport.use('compile', hbs({

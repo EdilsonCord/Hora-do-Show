@@ -74,7 +74,7 @@ export default function SendCodeScreen({navigation}) {
         </TouchableOpacity>
       </View>
 
-      <Image source={require('../../assets/logoOficial.png')} />
+      <Image source={require('../../assets/logooficial.png')} />
     </SafeAreaView>
   );
 }

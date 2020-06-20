@@ -31,7 +31,7 @@ export default function ConfirmCodeScreen({navigation}) {
 
         <TextInput
           style={styles.inputcd1}
-          keyboardType="numeric"
+          
           placeholder="Código de Confirmação"
         />
       </View>
