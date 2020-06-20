@@ -42,9 +42,11 @@ router.post('/pre_register', async(req, res ) => {
       to: email, 
       from:'edilson.cordeiro@outlook.com',
       template: 'preregister_password',
+      subject: 'Senha para Pré-Registro: Hora Do Show',
       context: {passwordR},
+    }, 
+    (err) => {
 
-    }, (err) => {
       if (err)
           
         return res.status(400).send ({error: 'Nao foi possivel enviar a senha'})
@@ -134,6 +136,7 @@ router.post('/forgot_password', async(req, res ) => {
       to: email,
       from:'edilson.cordeiro@outlook.com',
       template: 'forgot_password',
+      subject:'Esqueceu sua senha? Use esse token',
       context: {token},
 
     }, (err) => {
