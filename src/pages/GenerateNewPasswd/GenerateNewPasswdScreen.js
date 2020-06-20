@@ -43,8 +43,7 @@ export default function GenerateNewPasswdScreen({navigation, route}) {
         if("error" in response){
           alert(response.error)         
         }else{
-          alert("Senha alterada com sucesso!");
-          navigation.navigate('MainScreen')
+          navigation.navigate('GenerateNewPasswdSuccessScreen')
         }
       }).catch(err => {
         console.log(err)
@@ -67,6 +66,7 @@ export default function GenerateNewPasswdScreen({navigation, route}) {
           placeholder="Token recebido pelo email"
           placeholderTextColor="#404040"
 
+          secureTextEntry={true}
           onChangeText={(text) => onChangeToken(text)}
           token={token}
         />
@@ -74,7 +74,9 @@ export default function GenerateNewPasswdScreen({navigation, route}) {
           style={styles.insertText}
           keyboardType="default"
           placeholder="Senha nova"
+          secureTextEntry={true}
           placeholderTextColor="#404040"
+
           onChangeText={(text) => onChangeSenha(text)}
           senha={senha}
         />
@@ -82,7 +84,9 @@ export default function GenerateNewPasswdScreen({navigation, route}) {
           style={styles.insertText}
           keyboardType="default"
           placeholder="Confirme sua senha"
+          secureTextEntry={true}
           placeholderTextColor="#404040"
+
           onChangeText={(text) => onChangeSenha2(text)}
           senha2={senha2}
         />

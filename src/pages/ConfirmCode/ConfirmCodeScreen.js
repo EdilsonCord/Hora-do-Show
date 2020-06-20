@@ -44,8 +44,7 @@ export default function ConfirmCodeScreen({navigation, route}) {
         if("error" in response){
           alert(response.error)         
         }else{
-          alert("Cadastrado com sucesso!");
-          navigation.navigate('MainScreen')
+          navigation.navigate('ConfirmCodSuccessScreen')
         }
       }).catch(err => {
         console.log(err)
@@ -67,19 +66,31 @@ export default function ConfirmCodeScreen({navigation, route}) {
           style={styles.insertText}
           keyboardType="default"
           placeholder="Senha recebida pelo email"
+          secureTextEntry={true}
           placeholderTextColor="#404040"
+
+          onChangeText={(text) => onChangeToken(text)}
+          token={token}
         />
         <TextInput
           style={styles.insertText}
           keyboardType="default"
           placeholder="Senha nova"
+          secureTextEntry={true}
           placeholderTextColor="#404040"
+
+          onChangeText={(text) => onChangeSenha(text)}
+          senha={senha}
         />
         <TextInput
           style={styles.insertText}
           keyboardType="default"
           placeholder="Confirme sua senha"
+          secureTextEntry={true}
           placeholderTextColor="#404040"
+
+          onChangeText={(text) => onChangeSenha2(text)}
+          senha2={senha2}
         />
       </View>
 

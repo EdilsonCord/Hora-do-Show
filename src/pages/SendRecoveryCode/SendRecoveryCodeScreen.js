@@ -57,6 +57,8 @@ export default function SendCodeScreen({navigation}) {
         keyboardType="email-address"
         placeholder="E-mail"
         placeholderTextColor="#404040"
+
+        textContentType='emailAddress'
         onChangeText={(text) => onChangeText(text)}
         value={value}
       />
