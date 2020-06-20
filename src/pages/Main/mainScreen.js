@@ -31,7 +31,7 @@ export default function MainScreen({navigation}) {
       },
       body:  JSON.stringify({
         email: email,
-        senha: senha
+        password: senha
      })
       }).then(response => response.json())
       .then(response => {
@@ -44,7 +44,6 @@ export default function MainScreen({navigation}) {
         console.log(err)
       });
 
-
 }
 
 
@@ -55,7 +54,7 @@ export default function MainScreen({navigation}) {
       <TextInput 
       style={styles.input} 
       placeholder="E-mail ou login" 
-      onChangeEmail={(text) => onChangeEmail(text)}
+      onChangeText={(text) => onChangeEmail(text)}
       email={email}
       />
 
@@ -63,7 +62,7 @@ export default function MainScreen({navigation}) {
         style={styles.input}
         secureTextEntry={true}
         placeholder="Senha"
-        onChangeSenha={(text) => onChangeSenha(text)}
+        onChangeText={(text) => onChangeSenha(text)}
         senha={senha}
       />
 
