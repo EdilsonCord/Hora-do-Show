@@ -42,7 +42,6 @@ export default function MainScreen({navigation}) {
       });
   }
 
-}
   return (
     <View style={styles.container}>
       <Image source={require('../../assets/logoOficial282x166.png')} />

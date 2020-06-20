@@ -23,7 +23,7 @@ export default function GenerateNewPasswdScreen({navigation}) {
         <TextInput
           style={styles.insertText}
           keyboardType="default"
-          placeholder="Token atual"
+          placeholder="Token recebido pelo email"
           placeholderTextColor="#404040"
         />
         <TextInput

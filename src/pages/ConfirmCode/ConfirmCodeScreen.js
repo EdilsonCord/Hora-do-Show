@@ -1,38 +1,42 @@
 import React, {Component} from 'react';
 import {
-  StyleSheet,
-  Text,
+  SafeAreaView,
   View,
   Image,
-  TouchableOpacity,
+  Text,
   TextInput,
-  StatusBar,
+  TouchableOpacity,
 } from 'react-native';
 
 import styles from './styles';
 
-export default function ConfirmCodeScreen({navigation}) {
+export default function GenerateNewPasswdScreen({navigation}) {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Image
         style={{marginBottom: 10}}
         source={require('../../assets/ShieldCheck.png')}
       />
-      <View style={styles.blockyellow}>
-        <Text style={styles.textoconfirmar}>
-          {' '}
-          Insira o código recebido no seu e-mail
-        </Text>
-
-        {/* <TextInput  */}
-        {/* style={{ height: 40, width:250, borderColor: "black", borderWidth: 1 }} */}
-        {/* onChangeText={(text) => onChangeText(text)} */}
-        {/* value={value}/> */}
+      <View style={styles.yellowBox}>
+        <Text style={styles.description}>Cadastre sua senha</Text>
 
         <TextInput
-          style={styles.inputcd1}
-          
-          placeholder="Código de Confirmação"
+          style={styles.insertText}
+          keyboardType="default"
+          placeholder="Senha recebida pelo email"
+          placeholderTextColor="#404040"
+        />
+        <TextInput
+          style={styles.insertText}
+          keyboardType="default"
+          placeholder="Senha nova"
+          placeholderTextColor="#404040"
+        />
+        <TextInput
+          style={styles.insertText}
+          keyboardType="default"
+          placeholder="Confirme sua senha"
+          placeholderTextColor="#404040"
         />
       </View>
 
@@ -45,7 +49,6 @@ export default function ConfirmCodeScreen({navigation}) {
           <Text style={styles.actionText}>Confirmar</Text>
         </TouchableOpacity>
       </View>
-
-    </View>
+    </SafeAreaView>
   );
 }
