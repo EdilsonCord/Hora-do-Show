@@ -13,15 +13,54 @@ import styles from './styles';
 
 // export default class MainScreen extends Component {
 export default function MainScreen({navigation}) {
+
+
+  const [ email, onChangeEmail] = React.useState('');
+  const [ senha, onChangeSenha] = React.useState('');
+
+
+
+  async function handleRegister(e) {
+    e.preventDefault();
+
+    fetch('http://10.0.2.2:3333/api/authenticate',{
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+         'Content-Type': 'application/json',
+      },
+      body:  JSON.stringify({
+        email: email,
+        senha: senha
+     })
+      }).then(response => {
+        console.log(response)
+      }).catch(err => {
+        console.log(err)
+      });
+
+    navigation.navigate('ConfirmCodeScreen')
+
+}
+
+
   return (
     <View style={styles.container}>
       <Image source={require('../../assets/logoOficial282x166.png')} />
 
-      <TextInput style={styles.input} placeholder="E-mail ou login" />
+      <TextInput 
+      style={styles.input} 
+      placeholder="E-mail ou login" 
+      onChangeEmail={(text) => onChangeEmail(text)}
+      email={email}
+      />
+
       <TextInput
         style={styles.input}
         secureTextEntry={true}
         placeholder="Senha"
+        onChangeSenha={(text) => onChangeSenha(text)}
+        senha={senha}
       />
 
       <View style={styles.layerLink}>
@@ -32,9 +71,7 @@ export default function MainScreen({navigation}) {
 
       <TouchableOpacity
         style={styles.botao}
-        onPress={() => {
-          Alert.alert('Aviso', 'Recurso atualmente indisponível');
-        }}>
+        onPress={handleRegister}>
         <Text style={styles.botaoText}>Entrar</Text>
       </TouchableOpacity>
 
