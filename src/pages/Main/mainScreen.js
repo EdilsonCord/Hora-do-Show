@@ -49,7 +49,8 @@ export default function MainScreen({navigation}) {
   
       <TextInput 
       style={styles.input} 
-      placeholder="E-mail ou login" 
+      defaultValue=''
+      placeholder="E-mail ou login"
       onChangeText={(text) => onChangeEmail(text)}
       email={email}
       />
