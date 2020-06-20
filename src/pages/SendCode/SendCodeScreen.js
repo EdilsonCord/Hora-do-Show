@@ -37,7 +37,7 @@ export default function SendCodeScreen({navigation}) {
         console.log(err)
       });
 
-    navigation.navigate('ConfirmCodeScreen')
+    navigation.navigate('ConfirmCodeScreen', {email: value})
 
 }
 

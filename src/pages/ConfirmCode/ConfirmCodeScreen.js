@@ -10,7 +10,50 @@ import {
 
 import styles from './styles';
 
-export default function GenerateNewPasswdScreen({navigation}) {
+export default function ConfirmCodeScreen({navigation, route}) {
+
+
+  const [ email, onChangeEmail] = React.useState(route.params.email);
+  const [ senha, onChangeSenha] = React.useState('');
+  const [ senha2, onChangeSenha2] = React.useState('');
+  const [ token, onChangeToken] = React.useState('');
+
+  async function handleRegister(e) {
+    e.preventDefault();
+
+    console.log("senha1: " + senha)
+    console.log("senha2 " + senha2)
+    if(!(senha === senha2)){
+      alert("Senhas não coincidem!");
+      return
+    }
+
+    fetch('http://10.0.2.2:3333/api/register',{
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+         'Content-Type': 'application/json',
+      },
+      body:  JSON.stringify({
+        email: email,
+        passwordRegister: token,
+        password: senha
+     })
+      })
+      .then(response => {
+        if("error" in response){
+          alert(response.error)         
+        }else{
+          alert("Cadastrado com sucesso!");
+          navigation.navigate('MainScreen')
+        }
+      }).catch(err => {
+        console.log(err)
+      });
+
+}
+
+
   return (
     <SafeAreaView style={styles.container}>
       <Image
@@ -45,7 +88,7 @@ export default function GenerateNewPasswdScreen({navigation}) {
           <Text style={styles.link}>Voltar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.action} onPress={() => navigation.navigate('ConfirmCodSuccessScreen')}>
+        <TouchableOpacity style={styles.action} onPress={handleRegister}>
           <Text style={styles.actionText}>Confirmar</Text>
         </TouchableOpacity>
       </View>

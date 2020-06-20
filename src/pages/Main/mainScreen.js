@@ -34,7 +34,7 @@ export default function MainScreen({navigation}) {
         if("error" in response){
           alert(response.error)         
         }else{
-          navigation.navigate('ConfirmCodeScreen')
+          navigation.navigate('MainSuccessScreen')
         }
       })
       .catch((err) => {
@@ -71,10 +71,7 @@ export default function MainScreen({navigation}) {
 
       <TouchableOpacity
         style={styles.botao}
-        onPress={[
-          handleRegister,
-          () => navigation.navigate('MainSuccessScreen')
-        ]}>
+        onPress={handleRegister}>
         <Text style={styles.botaoText}>Entrar</Text>
       </TouchableOpacity>
 
