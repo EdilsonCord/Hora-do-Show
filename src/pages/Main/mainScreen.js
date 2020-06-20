@@ -27,37 +27,39 @@ export default function MainScreen({navigation}) {
       },
       body: JSON.stringify({
         email: email,
-        senha: senha,
-      }),
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        if ('error' in response) {
-          alert(response.error);
-        } else {
-          navigation.navigate('ConfirmCodeScreen');
+        password: senha
+     })
+      }).then(response => response.json())
+      .then(response => {
+        if("error" in response){
+          alert(response.error)         
+        }else{
+          navigation.navigate('ConfirmCodeScreen')
         }
       })
       .catch((err) => {
         console.log(err);
       });
   }
+
+}
   return (
     <View style={styles.container}>
       <Image source={require('../../assets/logoOficial282x166.png')} />
 
-      <TextInput
-        style={styles.input}
-        placeholder="E-mail ou login"
-        onChangeEmail={(text) => onChangeEmail(text)}
-        email={email}
+  
+      <TextInput 
+      style={styles.input} 
+      placeholder="E-mail ou login" 
+      onChangeText={(text) => onChangeEmail(text)}
+      email={email}
       />
 
       <TextInput
         style={styles.input}
         secureTextEntry={true}
         placeholder="Senha"
-        onChangeSenha={(text) => onChangeSenha(text)}
+        onChangeText={(text) => onChangeSenha(text)}
         senha={senha}
       />
 
