@@ -9,8 +9,35 @@ import {
 } from 'react-native';
 
 import styles from './styles';
+import api from "../../services/api" ;
 
 export default function SendCodeScreen({navigation}) {
+
+  const [ value, onChangeText ] = React.useState('');
+
+
+  async function handleRegister(e) {
+    e.preventDefault();
+
+    fetch('http://10.0.2.2:3333/api/pre_register',{
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+         'Content-Type': 'application/json',
+      },
+      body:  JSON.stringify({
+        email: value,
+     })
+      }).then(response => {
+        console.log(response)
+      }).catch(err => {
+        console.log(err)
+      });
+
+    navigation.navigate('GenerateNewPasswdScreen')
+
+}
+
   return (
     <SafeAreaView style={styles.container}>
       <Image
@@ -30,6 +57,8 @@ export default function SendCodeScreen({navigation}) {
         keyboardType="email-address"
         placeholder="E-mail"
         placeholderTextColor="#404040"
+        onChangeText={(text) => onChangeText(text)}
+        value={value}
       />
 
       <View style={styles.DoubleButtons}>
@@ -37,12 +66,12 @@ export default function SendCodeScreen({navigation}) {
           <Text style={styles.link}>Voltar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.action} onPress={() => navigation.navigate('GenerateNewPasswdScreen')}>
+        <TouchableOpacity style={styles.action} onPress={handleRegister}>
           <Text style={styles.actionText}>Enviar</Text>
         </TouchableOpacity>
       </View>
 
-      <Image source={require('../../assets/logoOficial.png')} />
+      <Image source={require('../../assets/logooficial.png')} />
     </SafeAreaView>
   );
 }
