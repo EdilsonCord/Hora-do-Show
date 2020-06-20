@@ -33,13 +33,17 @@ export default function MainScreen({navigation}) {
         email: email,
         senha: senha
      })
-      }).then(response => {
-        console.log(response)
+      }).then(response => response.json())
+      .then(response => {
+        if("error" in response){
+          alert(response.error)         
+        }else{
+          navigation.navigate('ConfirmCodeScreen')
+        }
       }).catch(err => {
         console.log(err)
       });
 
-    navigation.navigate('ConfirmCodeScreen')
 
 }
 
