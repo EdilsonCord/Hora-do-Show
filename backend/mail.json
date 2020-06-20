@@ -1,6 +1,6 @@
 {
     "service":"gmail",
     "host": "smtp.gmail.com",
-    "user": "",
-    "pass": ""
+    "user": "horadoshowdev@gmail.com",
+    "pass": "horadoshow123"
 }
