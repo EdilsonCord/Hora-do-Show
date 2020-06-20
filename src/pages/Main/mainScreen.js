@@ -13,50 +13,44 @@ import styles from './styles';
 
 // export default class MainScreen extends Component {
 export default function MainScreen({navigation}) {
-
-
-  const [ email, onChangeEmail] = React.useState('');
-  const [ senha, onChangeSenha] = React.useState('');
-
-
+  const [email, onChangeEmail] = React.useState('');
+  const [senha, onChangeSenha] = React.useState('');
 
   async function handleRegister(e) {
     e.preventDefault();
 
-    fetch('http://10.0.2.2:3333/api/authenticate',{
+    fetch('http://10.0.2.2:3333/api/authenticate', {
       method: 'post',
       headers: {
-        'Accept': 'application/json',
-         'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
-      body:  JSON.stringify({
+      body: JSON.stringify({
         email: email,
-        senha: senha
-     })
-      }).then(response => response.json())
-      .then(response => {
-        if("error" in response){
-          alert(response.error)         
-        }else{
-          navigation.navigate('ConfirmCodeScreen')
+        senha: senha,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if ('error' in response) {
+          alert(response.error);
+        } else {
+          navigation.navigate('ConfirmCodeScreen');
         }
-      }).catch(err => {
-        console.log(err)
+      })
+      .catch((err) => {
+        console.log(err);
       });
-
-
-}
-
-
+  }
   return (
     <View style={styles.container}>
       <Image source={require('../../assets/logoOficial282x166.png')} />
 
-      <TextInput 
-      style={styles.input} 
-      placeholder="E-mail ou login" 
-      onChangeEmail={(text) => onChangeEmail(text)}
-      email={email}
+      <TextInput
+        style={styles.input}
+        placeholder="E-mail ou login"
+        onChangeEmail={(text) => onChangeEmail(text)}
+        email={email}
       />
 
       <TextInput
@@ -68,14 +62,18 @@ export default function MainScreen({navigation}) {
       />
 
       <View style={styles.layerLink}>
-        <TouchableOpacity onPress={() => navigation.navigate('SendRecoveryCodeScreen')}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('SendRecoveryCodeScreen')}>
           <Text style={styles.link}>Esqueci minha senha</Text>
         </TouchableOpacity>
       </View>
 
       <TouchableOpacity
         style={styles.botao}
-        onPress={handleRegister}>
+        onPress={[
+          handleRegister,
+          () => navigation.navigate('MainSuccessScreen')
+        ]}>
         <Text style={styles.botaoText}>Entrar</Text>
       </TouchableOpacity>
 

@@ -23,7 +23,7 @@ export default function GenerateNewPasswdScreen({navigation}) {
         <TextInput
           style={styles.insertText}
           keyboardType="default"
-          placeholder="Senha atual"
+          placeholder="Token atual"
           placeholderTextColor="#404040"
         />
         <TextInput
@@ -45,7 +45,7 @@ export default function GenerateNewPasswdScreen({navigation}) {
           <Text style={styles.link}>Voltar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.action}>
+        <TouchableOpacity style={styles.action} onPress={() => navigation.navigate('GenerateNewPasswdSuccessScreen')}>
           <Text style={styles.actionText}>Confirmar</Text>
         </TouchableOpacity>
       </View>

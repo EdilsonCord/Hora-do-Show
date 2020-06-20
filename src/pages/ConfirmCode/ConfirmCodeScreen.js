@@ -41,7 +41,7 @@ export default function ConfirmCodeScreen({navigation}) {
           <Text style={styles.link}>Voltar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.action} onPress={() => navigation.navigate('ConfirmCodeScreen')}>
+        <TouchableOpacity style={styles.action} onPress={() => navigation.navigate('ConfirmCodSuccessScreen')}>
           <Text style={styles.actionText}>Confirmar</Text>
         </TouchableOpacity>
       </View>
