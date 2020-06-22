@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema({
     lowercase: true
   },
   password: {
-    type: String
+    type: String,
   },
 
   passwordRegister: {
@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema({
   },
 
   passwordRegisterExpires: {
-    type: String,
+    type: Date,
     select: false
   },
 
@@ -33,7 +33,7 @@ const UserSchema = new mongoose.Schema({
   },
   
   passwordResetExpires: {
-    type: String,
+    type: Date,
     select: false 
   },
 

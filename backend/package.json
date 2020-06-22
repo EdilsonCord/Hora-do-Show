@@ -17,6 +17,8 @@
     "express-validator": "^6.5.0",
     "fs": "^0.0.1-security",
     "generate-password": "^1.5.1",
+    "joi": "^14.3.1",
+    "joi-password-complexity": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.19",
     "nodemailer": "^6.4.10",

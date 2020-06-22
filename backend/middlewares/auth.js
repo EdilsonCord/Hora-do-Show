@@ -20,3 +20,4 @@ module.exports = async (req, res, next) => {
     return res.status(401).send({ error: "Token invalido" });
   }
 };
+

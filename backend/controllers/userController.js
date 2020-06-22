@@ -6,6 +6,7 @@ const User = mongoose.model("User");
 const mailer = require('../../backend/modules/mail')
 const mailer2 = require('../../backend/modules/mail2')
 const generator = require('generate-password');
+const PasswordComplexity = require("joi-password-complexity");
 
 router.post('/pre_register', async(req, res ) => {
 
@@ -38,6 +39,7 @@ router.post('/pre_register', async(req, res ) => {
 
     user.passwordRegister = passwordR;
     
+
     mailer2.sendMail({
       to: email, 
       from:'edilson.cordeiro@outlook.com',
@@ -72,13 +74,14 @@ router.post("/register", async (req, res) => {
           
 
           if(passwordRegister !== user.passwordRegister) 
-          return res.status(400).send({error: 'Senha temporária inválida.'})
+           return res.status(400).send({error: 'Senha temporária inválida.'})
 
           if(now > user.passwordRegisterExpires)
             return res.status(400).send ({error: 'Tempo da senha encerrado, envie o email novamente.'})
-      
-          user.password = password 
+
           
+          user.password = password 
+        
           
           await user.save()
 
