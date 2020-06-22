@@ -122,7 +122,7 @@ router.post('/forgot_password', async(req, res ) => {
     if (!user) 
       return res.status(400).send({error: 'Usuario nao encotrado'})
     
-    const token = crypto.randomBytes(20).toString('hex');
+    const token = crypto.randomBytes(5).toString('hex');
 
     const now = new Date();
     now.setHours(now.getHours() + 1)
@@ -159,27 +159,29 @@ router.post('/reset_password', async (req, res) => {
   const {email, token, password} = req.body; 
 
   try {
+    console.log("Test 1 " + email + "  " + token + " "  +password)
     const user = await User.findOne({ email })
       .select('+passwordResetToken passwordResetExpires');
       if (!user) 
         return res.status(400).send({error: 'Usuario nao encotrado'})
-
-        if(token !== user.passwordResetToken) 
-          return res.status(400).send({error: 'Token invalido.'})
-        
-          const now = new Date();
-          
-          if(now > user.passwordResetExpires)
-            return res.status(400).send ({error: 'Token expirado, gere um novo.'})
-      
-          user.password = password; 
-
-          await user.save()
-
-          res.send()
+    console.log("Test 2 " + email + "  " + token + " "  +password)
+      if(token !== user.passwordResetToken) 
+        return res.status(400).send({error: 'Token invalido.'})
+    console.log("Test 3 " + email + "  " + token + " "  +password)    
+      const now = new Date();
+    console.log("Test 4 " + email + "  " + token + " "  +password)         
+      if(now > user.passwordResetExpires)
+        return res.status(400).send ({error: 'Token expirado, gere um novo.'})
+    console.log("Test 5 " + email + "  " + token + " "  +password)    
+      user.password = password; 
+    console.log("Test 6 " + email + "  " + token + " "  +password)  
+      await user.save()
+    console.log("Test 7 " + email + "  " + token + " "  +password)  
+      res.send()
+    console.log("Test 8 " + email + "  " + token + " "  +password)  
 
   } catch (err) {
-    res.send(400).send({error: 'Nao foi possivel resetar a senha, tente novamente.'})
+    res.status(400).send({error: 'Nao foi possivel resetar a senha, tente novamente.'})
   }
 })
 

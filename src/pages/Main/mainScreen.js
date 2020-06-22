@@ -13,23 +13,19 @@ import styles from './styles';
 
 // export default class MainScreen extends Component {
 export default function MainScreen({navigation}) {
-
-
-  const [ email, onChangeEmail] = React.useState('');
-  const [ senha, onChangeSenha] = React.useState('');
-
-
+  const [email, onChangeEmail] = React.useState('');
+  const [senha, onChangeSenha] = React.useState('');
 
   async function handleRegister(e) {
     e.preventDefault();
 
-    fetch('http://10.0.2.2:3333/api/authenticate',{
+    fetch('http://10.0.2.2:3333/api/authenticate', {
       method: 'post',
       headers: {
-        'Accept': 'application/json',
-         'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
-      body:  JSON.stringify({
+      body: JSON.stringify({
         email: email,
         password: senha
      })
@@ -38,22 +34,23 @@ export default function MainScreen({navigation}) {
         if("error" in response){
           alert(response.error)         
         }else{
-          navigation.navigate('ConfirmCodeScreen')
+          navigation.navigate('MainSuccessScreen')
         }
-      }).catch(err => {
-        console.log(err)
+      })
+      .catch((err) => {
+        console.log(err);
       });
-
-}
-
+  }
 
   return (
     <View style={styles.container}>
       <Image source={require('../../assets/logoOficial282x166.png')} />
 
+  
       <TextInput 
       style={styles.input} 
-      placeholder="E-mail ou login" 
+      defaultValue=''
+      placeholder="E-mail ou login"
       onChangeText={(text) => onChangeEmail(text)}
       email={email}
       />
@@ -67,7 +64,8 @@ export default function MainScreen({navigation}) {
       />
 
       <View style={styles.layerLink}>
-        <TouchableOpacity onPress={() => navigation.navigate('SendRecoveryCodeScreen')}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('SendRecoveryCodeScreen')}>
           <Text style={styles.link}>Esqueci minha senha</Text>
         </TouchableOpacity>
       </View>

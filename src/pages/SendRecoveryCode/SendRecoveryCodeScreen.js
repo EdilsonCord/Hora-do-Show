@@ -19,7 +19,7 @@ export default function SendCodeScreen({navigation}) {
   async function handleRegister(e) {
     e.preventDefault();
 
-    fetch('http://10.0.2.2:3333/api/pre_register',{
+    fetch('http://10.0.2.2:3333/api/forgot_password',{
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -33,8 +33,8 @@ export default function SendCodeScreen({navigation}) {
       }).catch(err => {
         console.log(err)
       });
-
-    navigation.navigate('GenerateNewPasswdScreen')
+ 
+    navigation.navigate('GenerateNewPasswdScreen', {email: value})
 
 }
 
@@ -57,6 +57,8 @@ export default function SendCodeScreen({navigation}) {
         keyboardType="email-address"
         placeholder="E-mail"
         placeholderTextColor="#404040"
+
+        textContentType='emailAddress'
         onChangeText={(text) => onChangeText(text)}
         value={value}
       />

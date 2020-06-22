@@ -36,8 +36,8 @@ export default function SendCodeScreen({navigation}) {
       }).catch(err => {
         console.log(err)
       });
-
-    navigation.navigate('ConfirmCodeScreen')
+      
+      navigation.navigate('ConfirmCodeScreen', {email: value})
 
 }
 
@@ -60,6 +60,8 @@ export default function SendCodeScreen({navigation}) {
         keyboardType="email-address"
         placeholder="E-mail"
         placeholderTextColor="#404040"
+
+        textContentType='emailAddress'
         onChangeText={(text) => onChangeText(text)}
         value={value}
       />

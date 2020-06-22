@@ -1,38 +1,96 @@
 import React, {Component} from 'react';
 import {
-  StyleSheet,
-  Text,
+  SafeAreaView,
   View,
   Image,
-  TouchableOpacity,
+  Text,
   TextInput,
-  StatusBar,
+  TouchableOpacity,
 } from 'react-native';
 
 import styles from './styles';
 
-export default function ConfirmCodeScreen({navigation}) {
+export default function ConfirmCodeScreen({navigation, route}) {
+
+
+  const [ email, onChangeEmail] = React.useState(route.params.email);
+  const [ senha, onChangeSenha] = React.useState('');
+  const [ senha2, onChangeSenha2] = React.useState('');
+  const [ token, onChangeToken] = React.useState('');
+
+  async function handleRegister(e) {
+    e.preventDefault();
+
+    console.log("senha1: " + senha)
+    console.log("senha2 " + senha2)
+    if(!(senha === senha2)){
+      alert("Senhas não coincidem!");
+      return
+    }
+
+    fetch('http://10.0.2.2:3333/api/register',{
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+         'Content-Type': 'application/json',
+      },
+      body:  JSON.stringify({
+        email: email,
+        passwordRegister: token,
+        password: senha
+     })
+      })
+      .then(response => {
+        if("error" in response){
+          alert(response.error)         
+        }else{
+          navigation.navigate('ConfirmCodSuccessScreen')
+        }
+      }).catch(err => {
+        console.log(err)
+      });
+
+}
+
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Image
         style={{marginBottom: 10}}
         source={require('../../assets/ShieldCheck.png')}
       />
-      <View style={styles.blockyellow}>
-        <Text style={styles.textoconfirmar}>
-          {' '}
-          Insira o código recebido no seu e-mail
-        </Text>
-
-        {/* <TextInput  */}
-        {/* style={{ height: 40, width:250, borderColor: "black", borderWidth: 1 }} */}
-        {/* onChangeText={(text) => onChangeText(text)} */}
-        {/* value={value}/> */}
+      <View style={styles.yellowBox}>
+        <Text style={styles.description}>Cadastre sua senha</Text>
 
         <TextInput
-          style={styles.inputcd1}
-          
-          placeholder="Código de Confirmação"
+          style={styles.insertText}
+          keyboardType="default"
+          placeholder="Senha recebida pelo email"
+          secureTextEntry={true}
+          placeholderTextColor="#404040"
+
+          onChangeText={(text) => onChangeToken(text)}
+          token={token}
+        />
+        <TextInput
+          style={styles.insertText}
+          keyboardType="default"
+          placeholder="Senha nova"
+          secureTextEntry={true}
+          placeholderTextColor="#404040"
+
+          onChangeText={(text) => onChangeSenha(text)}
+          senha={senha}
+        />
+        <TextInput
+          style={styles.insertText}
+          keyboardType="default"
+          placeholder="Confirme sua senha"
+          secureTextEntry={true}
+          placeholderTextColor="#404040"
+
+          onChangeText={(text) => onChangeSenha2(text)}
+          senha2={senha2}
         />
       </View>
 
@@ -41,11 +99,10 @@ export default function ConfirmCodeScreen({navigation}) {
           <Text style={styles.link}>Voltar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.action} onPress={() => navigation.navigate('ConfirmCodeScreen')}>
+        <TouchableOpacity style={styles.action} onPress={handleRegister}>
           <Text style={styles.actionText}>Confirmar</Text>
         </TouchableOpacity>
       </View>
-
-    </View>
+    </SafeAreaView>
   );
 }
