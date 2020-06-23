@@ -79,6 +79,8 @@ router.post("/register", async (req, res) => {
           if(now > user.passwordRegisterExpires)
             return res.status(400).send ({error: 'Tempo da senha encerrado, envie o email novamente.'})
 
+          if(passwordRegister === password)
+          return res.status(400).send ({error: 'Digite uma senha diferente da anterior.'})
           
           user.password = password 
         
@@ -167,21 +169,17 @@ router.post('/reset_password', async (req, res) => {
       .select('+passwordResetToken passwordResetExpires');
       if (!user) 
         return res.status(400).send({error: 'Usuario nao encotrado'})
-    console.log("Test 2 " + email + "  " + token + " "  +password)
       if(token !== user.passwordResetToken) 
         return res.status(400).send({error: 'Token invalido.'})
-    console.log("Test 3 " + email + "  " + token + " "  +password)    
       const now = new Date();
-    console.log("Test 4 " + email + "  " + token + " "  +password)         
       if(now > user.passwordResetExpires)
         return res.status(400).send ({error: 'Token expirado, gere um novo.'})
-    console.log("Test 5 " + email + "  " + token + " "  +password)    
+
       user.password = password; 
-    console.log("Test 6 " + email + "  " + token + " "  +password)  
       await user.save()
-    console.log("Test 7 " + email + "  " + token + " "  +password)  
+ 
       res.send()
-    console.log("Test 8 " + email + "  " + token + " "  +password)  
+
 
   } catch (err) {
     res.status(400).send({error: 'Nao foi possivel resetar a senha, tente novamente.'})
