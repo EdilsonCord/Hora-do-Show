@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -25,5 +26,8 @@
     "nodemailer-express-handlebars": "^4.0.0",
     "path": "^0.12.7",
     "require-dir": "^1.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
