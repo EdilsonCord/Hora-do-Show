@@ -38,7 +38,7 @@ export default function GenerateNewPasswdScreen({navigation, route}) {
         token: token,
         password: senha
      })
-      })
+      }).then((response) => response.json())
       .then(response => {
         if("error" in response){
           alert(response.error)         

@@ -39,11 +39,12 @@ export default function ConfirmCodeScreen({navigation, route}) {
         passwordRegister: token,
         password: senha
      })
-      })
+      }).then((response) => response.json())
       .then(response => {
         if("error" in response){
           alert(response.error)         
         }else{
+          console.log(response)
           navigation.navigate('ConfirmCodSuccessScreen')
         }
       }).catch(err => {
