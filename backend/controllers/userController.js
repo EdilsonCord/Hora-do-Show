@@ -6,7 +6,29 @@ const User = mongoose.model("User");
 const mailer = require('../../backend/modules/mail')
 const mailer2 = require('../../backend/modules/mail2')
 const generator = require('generate-password');
-const PasswordComplexity = require("joi-password-complexity");
+const Joi = require('@hapi/joi');
+const passwordComplexity = require('joi-password-complexity');
+
+const complexityOptions = {
+  min: 5,
+  max: 250,
+  lowerCase: 1,
+  upperCase: 1,
+  numeric: 1,
+  symbol: 1,
+  requirementCount: 2,
+};
+
+function validateUser(user) {
+  // change is: wrapped everything in Joi.object
+  const schema = Joi.object({
+    password: passwordComplexity(complexityOptions) // This is not working
+  });
+  // note that we call schema.validate instead of Joi.validate
+  // (which doesn't seem to exist anymore)
+  return schema.validate(user);
+}
+
 
 router.post('/pre_register', async(req, res ) => {
 
@@ -65,6 +87,13 @@ router.post('/pre_register', async(req, res ) => {
 
 router.post("/register", async (req, res) => {
   const { email, passwordRegister, password } = req.body;
+
+  const testPassword = validateUser({
+    password: password
+  })
+
+  if("error" in testPassword)
+      return res.status(400).send({error: 'Senha muito fraca.'})
 
   try {
     const user = await User.findOne({ email })
