@@ -13,7 +13,11 @@ mongoose.connect(
 // Carrega o model de Usuário
 require("./models/user");
 require("./modules/mail");
-require("./modules/mail2.js")
+require("./modules/mail2")
+require("./models/treino")
+require("./models/exercicios")
+require("./models/dieta")
+require("./models/alimento")
 /* require("./controllers/index")(app); */
 
 
