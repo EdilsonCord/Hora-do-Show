@@ -20,12 +20,9 @@ const complexityOptions = {
 };
 
 function validateUser(user) {
-  // change is: wrapped everything in Joi.object
   const schema = Joi.object({
-    password: passwordComplexity(complexityOptions) // This is not working
+    password: passwordComplexity(complexityOptions)
   });
-  // note that we call schema.validate instead of Joi.validate
-  // (which doesn't seem to exist anymore)
   return schema.validate(user);
 }
 
@@ -60,7 +57,6 @@ router.post('/pre_register', async(req, res ) => {
     )
 
     user.passwordRegister = passwordR;
-    
 
     mailer2.sendMail({
       to: email, 
