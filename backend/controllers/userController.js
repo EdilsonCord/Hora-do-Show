@@ -34,7 +34,7 @@ router.post('/pre_register', async(req, res ) => {
   try {
     
     if (await User.findOne({ email })) {
-      return res.status(400).json({ error: "Usuário já existe" });
+      return res.status(400).send({ error: "Usuário já existe" });
     }
 
     const passwordR = generator.generate({
@@ -126,11 +126,11 @@ router.post("/authenticate", async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(400).json({ error: "Usuario nao encontrado" });
+      return res.status(400).send({ error: "Usuario nao encontrado" });
     }
 
     if (!(await user.compareHash(password))) {
-      return res.status(400).json({ error: "Senha errada" });
+      return res.status(400).send({ error: "Senha errada" });
     }
 
     return res.json({
@@ -138,7 +138,7 @@ router.post("/authenticate", async (req, res) => {
       token: user.generateToken()
     });
   } catch (err) {
-    return res.status(400).json({ error: "Falha na autenticação do usuário" });
+    return res.status(400).send({ error: "Falha na autenticação do usuário" });
   }
 });
 
@@ -188,10 +188,27 @@ router.post('/forgot_password', async(req, res ) => {
 router.post('/reset_password', async (req, res) => {
   const {email, token, password} = req.body; 
 
+  const testPassword = validateUser({
+    password: password
+  })
+
+  if("error" in testPassword)
+      return res.status(400).send({error: 'Senha muito fraca.'})
+  
+
   try {
     console.log("Test 1 " + email + "  " + token + " "  +password)
-    const user = await User.findOne({ email })
+
+    const user = await User.findOne({ email });
+
+    if (await user.compareHash(password)) {
+      return res.status(400).send({ error: 'Senha igual  a anterior. Digite uma nova senha' });
+    }
+
+
+    user = await User.findOne({ email })
       .select('+passwordResetToken passwordResetExpires');
+
       if (!user) 
         return res.status(400).send({error: 'Usuario nao encotrado'})
       if(token !== user.passwordResetToken) 
@@ -199,6 +216,10 @@ router.post('/reset_password', async (req, res) => {
       const now = new Date();
       if(now > user.passwordResetExpires)
         return res.status(400).send ({error: 'Token expirado, gere um novo.'})
+
+      if (await user.compareHash(password)) {
+          return res.status(400).send({ error: 'Senha igual  a anterior. Digite uma nova senha' });
+        }
 
       user.password = password; 
       await user.save()
@@ -221,7 +242,7 @@ router.get("/me", async (req, res) => {
 
     return res.json({ user });
   } catch (err) {
-    return res.status(400).json({ error: "Can't get user information" });
+    return res.status(400).send({ error: "Can't get user information" });
   }
 });
 
