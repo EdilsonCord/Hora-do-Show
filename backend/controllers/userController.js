@@ -10,8 +10,8 @@ const Joi = require('@hapi/joi');
 const passwordComplexity = require('joi-password-complexity');
 
 const complexityOptions = {
-  min: 5,
-  max: 250,
+  min: 8,
+  max: 15,
   lowerCase: 1,
   upperCase: 1,
   numeric: 1,
