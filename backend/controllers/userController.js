@@ -58,6 +58,8 @@ router.post('/pre_register', async(req, res ) => {
 
     user.passwordRegister = passwordR;
 
+    await user.save()
+
     mailer2.sendMail({
       to: email, 
       from:'edilson.cordeiro@outlook.com',
@@ -98,8 +100,9 @@ router.post("/register", async (req, res) => {
           const now = new Date();
           
 
-          if(passwordRegister !== user.passwordRegister) 
-           return res.status(400).send({error: 'Senha temporária inválida.'})
+          if (!(await user.compareHashPassRegister(passwordRegister))) {
+            return res.status(400).send({ error: "Senha temporária inválida." });
+          }
 
           if(now > user.passwordRegisterExpires)
             return res.status(400).send ({error: 'Tempo da senha encerrado, envie o email novamente.'})

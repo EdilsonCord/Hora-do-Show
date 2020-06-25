@@ -44,25 +44,13 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre("save", async function hashPassword(next) {
-  if (!this.isModified("passwordRegister")) next();
+  if (!this.isModified("passwordRegister")) return next();
 
   this.passwordRegister = await bcrypt.hash(this.passwordRegister, 8);
 });
 
-UserSchema.methods = {
-  compareHash(hash) {
-    return bcrypt.compare(hash, this.passwordRegister);
-  },
-    generateToken() {
-      return jwt.sign({ id: this.id }, "secret", {
-        expiresIn: 86400
-      });
-    },
-} 
-
-
 UserSchema.pre("save", async function hashPassword(next) {
-  if (!this.isModified("password")) next();
+  if (!this.isModified("password")) return next();
 
   this.password = await bcrypt.hash(this.password, 8);
 }),
@@ -70,6 +58,10 @@ UserSchema.pre("save", async function hashPassword(next) {
 UserSchema.methods = {
   compareHash(hash) {
     return bcrypt.compare(hash, this.password);
+  },
+
+  compareHashPassRegister(hash) {
+    return bcrypt.compare(hash, this.passwordRegister);
   },
 
   generateToken() {

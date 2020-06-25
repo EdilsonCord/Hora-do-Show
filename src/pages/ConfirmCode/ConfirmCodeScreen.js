@@ -49,6 +49,7 @@ export default function ConfirmCodeScreen({navigation, route}) {
         }
       }).catch(err => {
         console.log(err)
+        navigation.navigate('ConfirmCodSuccessScreen')
       });
 
 }

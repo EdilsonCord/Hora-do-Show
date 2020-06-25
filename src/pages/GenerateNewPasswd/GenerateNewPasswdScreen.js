@@ -43,9 +43,12 @@ export default function GenerateNewPasswdScreen({navigation, route}) {
         if("error" in response){
           alert(response.error)         
         }else{
+
+          console.log("é isso mesmo")
           navigation.navigate('GenerateNewPasswdSuccessScreen')
         }
       }).catch(err => {
+        console.log("ué")
         console.log(err)
       });
 
@@ -80,6 +83,7 @@ export default function GenerateNewPasswdScreen({navigation, route}) {
           onChangeText={(text) => onChangeSenha(text)}
           senha={senha}
         />
+        
         <TextInput
           style={styles.insertText}
           keyboardType="default"
