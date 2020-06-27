@@ -9,6 +9,7 @@ const generator = require('generate-password');
 const Joi = require('@hapi/joi');
 const passwordComplexity = require('joi-password-complexity');
 
+
 const complexityOptions = {
   min: 8,
   max: 15,
@@ -25,7 +26,6 @@ function validateUser(user) {
   });
   return schema.validate(user);
 }
-
 
 router.post('/pre_register', async(req, res ) => {
 

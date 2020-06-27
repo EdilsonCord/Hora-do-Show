@@ -1,8 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");;
-
+const mongoose = require("mongoose");
 
 // Conecta no MongoDB
 mongoose.connect(
@@ -28,6 +27,11 @@ app.use(cors())
 
 
 // Inicia as rotas da API
-app.use("/api", require("./controllers/userController"));
+app.use("/api", require("./controllers/dietaController"));
+app.use("/dieta", require("./controllers/dietaController"));
+app.use("/alimento", require("./controllers/alimentoController"));
+
+app.use("/treino", require("./controllers/treinoController"));
+app.use("/exercicio", require("./controllers/exercicioController"));
 
 app.listen(3333);
