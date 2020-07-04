@@ -202,14 +202,14 @@ router.post('/reset_password', async (req, res) => {
   try {
     console.log("Test 1 " + email + "  " + token + " "  +password)
 
-    const user = await User.findOne({ email });
+    const user1 = await User.findOne({ email });
 
-    if (await user.compareHash(password)) {
+    if (await user1.compareHash(password)) {
       return res.status(400).send({ error: 'Senha igual  a anterior. Digite uma nova senha' });
     }
 
 
-    user = await User.findOne({ email })
+    const user = await User.findOne({ email })
       .select('+passwordResetToken passwordResetExpires');
 
       if (!user) 
@@ -220,10 +220,6 @@ router.post('/reset_password', async (req, res) => {
       if(now > user.passwordResetExpires)
         return res.status(400).send ({error: 'Token expirado, gere um novo.'})
 
-      if (await user.compareHash(password)) {
-          return res.status(400).send({ error: 'Senha igual  a anterior. Digite uma nova senha' });
-        }
-
       user.password = password; 
       await user.save()
  
@@ -231,6 +227,7 @@ router.post('/reset_password', async (req, res) => {
 
 
   } catch (err) {
+    console.log(err);
     res.status(400).send({error: 'Nao foi possivel resetar a senha, tente novamente.'})
   }
 })
