@@ -3,7 +3,6 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 // import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Feather from 'react-native-vector-icons/Feather';
 
 import Home from '../pages/Logado/Home';
 import exercicio from '../pages/Logado/Exercicio';
@@ -12,10 +11,8 @@ import perfil from '../pages/Logado/Perfil';
 
 const size = 25;
 
-const IconeFeather = <Feather name="fe" size={size} color="#000" />;
 const IconeHome = <MCIcons name="home" size={size} color="#000" />;
 const IconeExercicio = <MCIcons name="dumbbell" size={size} color="#000" />;
-// const IconeExercicio = <MCIcons name="run" size={size} color="#000" />;
 const IconeDieta = <MCIcons name="food-apple" size={size} color="#000" />;
 const IconePerfil = <MCIcons name="account" size={size} color="#000" />;
 
