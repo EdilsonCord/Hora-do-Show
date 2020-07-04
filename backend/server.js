@@ -27,7 +27,7 @@ app.use(cors())
 
 
 // Inicia as rotas da API
-app.use("/api", require("./controllers/dietaController"));
+app.use("/api", require("./controllers/userController"));
 app.use("/dieta", require("./controllers/dietaController"));
 app.use("/alimento", require("./controllers/alimentoController"));
 

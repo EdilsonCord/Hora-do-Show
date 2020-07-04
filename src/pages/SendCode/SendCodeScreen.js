@@ -31,14 +31,20 @@ export default function SendCodeScreen({navigation}) {
       body:  JSON.stringify({
         email: value,
      })
-      }).then(response => {
-        console.log(response)
+      }).then((response) => response.json())
+      .then(response => {
+        if("error" in response){
+          alert(response.error)         
+        }else{
+          console.log(response)
+          navigation.navigate('ConfirmCodeScreen', {email: value})
+        }
       }).catch(err => {
         console.log(err)
+        navigation.navigate('ConfirmCodeScreen', {email: value})
       });
       
-      navigation.navigate('ConfirmCodeScreen', {email: value})
-
+      
 }
 
   return (

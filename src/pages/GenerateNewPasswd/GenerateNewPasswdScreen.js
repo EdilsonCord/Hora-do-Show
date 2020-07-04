@@ -49,7 +49,7 @@ export default function GenerateNewPasswdScreen({navigation, route}) {
         }
       }).catch(err => {
         console.log("ué")
-        console.log(err)
+        navigation.navigate('GenerateNewPasswdSuccessScreen')
       });
 
 }
