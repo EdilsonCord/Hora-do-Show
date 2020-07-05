@@ -40,7 +40,13 @@ const UserSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  
+  meta: {
+    type: String,
+    default: "Definir"
+  },
+
 });
 
 UserSchema.pre("save", async function hashPassword(next) {

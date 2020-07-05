@@ -13,6 +13,11 @@ const TreinoSchema = Schema({
       unique:true,
       required: true
     },
+    meta: {
+      type: String,
+      default: "Definir"
+    },
+
     exercicios: [{ 
       type: Schema.Types.ObjectId, 
       ref: 'Exercicio' }]
