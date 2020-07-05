@@ -14,6 +14,10 @@ const DietaSchema = new Schema({
         type: String,
         required: true
     },
+    meta: {
+        type: String,
+        default: "Definir"
+    },
     alimentos: [{ 
         type: Schema.Types.ObjectId, 
         ref: 'Alimento' }]
