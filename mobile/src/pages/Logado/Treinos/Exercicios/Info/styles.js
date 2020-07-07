@@ -16,11 +16,17 @@ export default StyleSheet.create({
   },
   introducao: {
     width: '100%',
-    // backgroundColor: 'white',
+    height: '50%',
+    backgroundColor: 'white',
 
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
+  },
+  video: {
+    width: '100%',
+    height: '100%',
+
   },
   textoIntroducao: {
     color: 'white',

@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
+import Video from 'react-native-video';
 
 import styles from './styles';
 import FIcons from 'react-native-vector-icons/Feather';
@@ -31,10 +32,15 @@ export default function Exercicio({navigation}) {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <View style={styles.introducao}>
-          <Text style={styles.textoIntroducao}>Olá, Diego!</Text>
-          <Text style={styles.textoIntroducao}>
-            Aqui estão os exercícios do seu treino de hoje
-          </Text>
+          <Video
+            source={{uri: 'https://youtu.be/iSqJwuNJHBI'}} // Can be a URL or a local file.
+            ref={(ref) => {
+              this.player = ref;
+            }} // Store reference
+            onBuffer={this.onBuffer} // Callback when remote video is buffering
+            onError={this.videoError} // Callback when video cannot be loaded
+            style={styles.video}
+          />
         </View>
 
         <View style={styles.faixa}>

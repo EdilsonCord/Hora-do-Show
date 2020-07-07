@@ -59,6 +59,9 @@ export default function Exercicio({navigation}) {
           <Text style={styles.textoIntroducao}>
             Aqui estão os exercícios do seu treino de hoje
           </Text>
+          <Text style={styles.textoIntroducao}>
+            Você completou x exercícios	de x
+          </Text>
 
         </View>
 
