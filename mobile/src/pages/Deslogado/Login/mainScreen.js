@@ -49,7 +49,7 @@ export default function MainScreen({navigation}) {
   
       <TextInput 
       style={styles.input} 
-      defaultValue=''
+      defaultValue='diego.cstbraga@gmail.comm'
       placeholder="E-mail ou login"
       onChangeText={(text) => onChangeEmail(text)}
       email={email}
@@ -57,6 +57,7 @@ export default function MainScreen({navigation}) {
 
       <TextInput
         style={styles.input}
+        defaultValue='Senha@1233'
         secureTextEntry={true}
         placeholder="Senha"
         onChangeText={(text) => onChangeSenha(text)}
