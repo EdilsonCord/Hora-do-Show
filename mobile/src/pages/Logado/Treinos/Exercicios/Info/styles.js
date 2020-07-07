@@ -9,40 +9,35 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
   },
-  header: {
+  headerTotal: {
     width: '100%',
     height: '50%',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    backgroundColor: 'gray'
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    // backgroundColor: 'gray'
+  },
+  headerInicio:{
+
   },
   inicio: {
     width: '100%',
     
     backgroundColor: 'white',
 
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
   video: {
-    width: '100%',
-    height: '80%',
-
-  },
-  textoIntroducao: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: 5,
+    // width: '100%',
+    // height: '80%',
+    width: 100, 
+    height: 100,
+    resizeMode: 'cover'
   },
   headerFaixa:{
-    marginHorizontal: -10,
-
+    width: '120%',
   },
   faixa: {
-    marginTop: 16,
-
     width: '100%',
     height: 30,
     backgroundColor: '#373737',
@@ -57,32 +52,33 @@ export default StyleSheet.create({
     width: '80%',
     textAlign: 'center',
   },
-  campoExercicio: {
-    marginTop: 16,
-
-    height: 90,
-
-    // backgroundColor: 'white',
+  scrollView:{
+    marginTop: 10,
+  },
+  campoInfoExercicio: {
 
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
-  tituloInfoTreino: {
+  textoInfoTitulo: {
     color: '#F2FDFF',
     fontSize: 18,
     fontWeight: 'bold',
+    marginBottom:16
   },
-  descricaoInfoTreino: {
-    color: '#F2FDFF',
+  textoInfoDescAbaixo: {
+    color: '#000',
     fontSize: 16,
-    fontWeight: 'normal',
+    paddingLeft: 10,
+    textAlign: 'justify',
+    marginTop: -16,
+    marginBottom: 16
   },
-  maisInfoTreino: {
-    color: '#F2FDFF',
-    fontSize: 14,
-    fontWeight: 'normal',
-    textDecorationLine: 'underline',
+  textoInfoDescLado: {
+    color: '#F9EE92',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 
 });
