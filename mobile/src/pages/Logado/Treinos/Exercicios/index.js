@@ -9,11 +9,6 @@ import {
 } from 'react-native';
 
 import styles from './styles';
-import FIcons from 'react-native-vector-icons/Feather';
-
-const size = 25;
-
-const IconSetaEsquerta = <FIcons name="arrow-left" size={size} color="#fff" />;
 
 export default function Exercicio({navigation}) {
   const dados = [
