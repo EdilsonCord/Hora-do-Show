@@ -6,26 +6,28 @@ export default StyleSheet.create({
     backgroundColor: '#E55F54',
     padding: 20,
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
   },
   header: {
     width: '100%',
+    height: '50%',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
+    backgroundColor: 'gray'
   },
-  introducao: {
+  inicio: {
     width: '100%',
-    height: '50%',
+    
     backgroundColor: 'white',
 
     flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   video: {
     width: '100%',
-    height: '100%',
+    height: '80%',
 
   },
   textoIntroducao: {
@@ -33,6 +35,10 @@ export default StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginTop: 5,
+  },
+  headerFaixa:{
+    marginHorizontal: -10,
+
   },
   faixa: {
     marginTop: 16,
@@ -51,9 +57,6 @@ export default StyleSheet.create({
     width: '80%',
     textAlign: 'center',
   },
-  listarExercicios: {
-    width: '100%',
-  },
   campoExercicio: {
     marginTop: 16,
 
@@ -61,19 +64,9 @@ export default StyleSheet.create({
 
     // backgroundColor: 'white',
 
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
-  },
-  imgExercicio: {
-    width: 120,
-    height: 90,
-    borderRadius: 6,
-    backgroundColor: 'gray',
-  },
-  miniInfoExercicio: {
-    marginHorizontal: 5,
-    // backgroundColor: 'black',
   },
   tituloInfoTreino: {
     color: '#F2FDFF',
@@ -91,29 +84,5 @@ export default StyleSheet.create({
     fontWeight: 'normal',
     textDecorationLine: 'underline',
   },
-  botaoConcluido: {
-    height: 30,
-    width: 80,
-    borderRadius: 6,
 
-    backgroundColor: '#373737',
-
-    justifyContent: 'center',
-    alignItems: 'center',
-
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-
-    elevation: 6,
-  },
-  textoBotao: {
-    color: '#F2FDFF',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
 });
