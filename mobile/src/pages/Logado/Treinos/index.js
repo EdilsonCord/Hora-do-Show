@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Image,
@@ -11,7 +11,7 @@ import {
 import styles from './styles';
 
 export default function Exercicio({navigation}) {
-  const dados = [
+  const dados1 = [
     {
       id: '1',
       title: 'Treino A',
@@ -42,6 +42,26 @@ export default function Exercicio({navigation}) {
     },
   ];
 
+  const [dados, setDados] = useState([]);
+  
+//Define your componentDidMount lifecycle hook that will retrieve data.
+//Also have the async keyword to indicate that it is asynchronous. 
+async function loadTreinos() {
+    //Have a try and catch block for catching errors.
+    try {
+        //Assign the promise unresolved first then get the data using the json method. 
+        const pokemonApiCall = await fetch('http://10.0.2.2:3333/treino/get');
+        const pokemon = await pokemonApiCall.json();
+        setDados(pokemon);
+    } catch(err) {
+        console.log("Error fetching data-----------", err);
+    }
+}
+
+useEffect(() => {
+  loadTreinos();
+}, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -69,7 +89,8 @@ export default function Exercicio({navigation}) {
           <TouchableOpacity
             style={styles.campoTreino}
             onPress={() => navigation.navigate('Exercicios')}>
-            <Text style={styles.textoCampoTreino}>{item.title}</Text>
+            <Text style={styles.textoCampoTreino}>Treino {item.tipo_treino}</Text>
+            <Text style={styles.textoCampoTreino}>Treino {item.desc_treino}</Text>
           </TouchableOpacity>
         )}
       />
