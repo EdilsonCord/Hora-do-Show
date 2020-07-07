@@ -15,10 +15,10 @@ import perfil from '../pages/Logado/Perfil';
 
 const size = 25;
 
-const IconeHome = <MCIcons name="home" size={size} color="#fff" />;
-const IconeTreino = <MCIcons name="dumbbell" size={size} color="#fff" />;
-const IconeDieta = <MCIcons name="food-apple" size={size} color="#fff" />;
-const IconePerfil = <MCIcons name="account" size={size} color="#fff" />;
+const IconeHome = <MCIcons name="home" size={size} color="#E55F54" />;
+const IconeTreino = <MCIcons name="dumbbell" size={size} color="#E55F54" />;
+const IconeDieta = <MCIcons name="food-apple" size={size} color="#E55F54" />;
+const IconePerfil = <MCIcons name="account" size={size} color="#E55F54" />;
 
 const Stack = createStackNavigator();
 
@@ -58,8 +58,10 @@ export default function logadoRoutes() {
       screenOptions={{}}
       tabBarOptions={{
         showLabel: false,
-        inactiveBackgroundColor: '#0B6285',
-        activeBackgroundColor: '#0B5080',
+        inactiveBackgroundColor: '#373737',
+        activeBackgroundColor: '#F9EE92',
+        // inactiveBackgroundColor: '#0B6285',
+        // activeBackgroundColor: '#0B5080',
         // activeTintColor: '#fff',
         // inactiveTintColor: '#000',
         tabStyle: {

@@ -16,9 +16,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     // backgroundColor: 'gray'
   },
-  headerInicio:{
-
-  },
   inicio: {
     width: '100%',
     
