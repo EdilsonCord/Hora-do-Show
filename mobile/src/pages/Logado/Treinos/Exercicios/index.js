@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Image,
@@ -10,41 +10,31 @@ import {
 
 import styles from './styles';
 
-export default function Exercicio({navigation}) {
-  const dados = [
-    {
-      id: '1',
-      title: 'Flexão',
-    },
-    {
-      id: '2',
-      title: 'Abdominal',
-    },
-    {
-      id: '3',
-      title: 'Flexão',
-    },
-    {
-      id: '4',
-      title: 'Abdominal',
-    },
-    {
-      id: '5',
-      title: 'Flexão',
-    },
-    {
-      id: '6',
-      title: 'Abdominal',
-    },
-    {
-      id: '7',
-      title: 'Flexão',
-    },
-    {
-      id: '8',
-      title: 'Abdominal',
-    },
-  ];
+export default function Exercicio({navigation, route}) {
+
+  const [dados, setDados] = useState([]);
+  const [treino, setTreino] = useState([route.params.treino]);
+  
+  //Define your componentDidMount lifecycle hook that will retrieve data.
+  //Also have the async keyword to indicate that it is asynchronous. 
+  async function loadExercicios() {
+      //Have a try and catch block for catching errors.
+      try {
+          //Assign the promise unresolved first then get the data using the json method.
+          console.log(treino);
+          const dadosAPICall = await fetch('http://10.0.2.2:3333/treino/get/id/' + treino);
+          const dadosJson = await dadosAPICall.json();
+          console.log(dadosJson);
+          setDados(dadosJson.exercicios);
+      } catch(err) {
+          console.log("Error fetching data-----------", err);
+      }
+  }
+  
+  useEffect(() => {
+    loadExercicios();
+  }, []);
+  
 
   return (
     <SafeAreaView style={styles.container}>
@@ -72,12 +62,12 @@ export default function Exercicio({navigation}) {
         showsVerticalScrollIndicator={false}
         renderItem={({item}) => (
           <View style={styles.campoExercicio}>
-            <View style={styles.imgExercicio} />
+            <View style={styles.imgExercicio}/>
 
             <View style={styles.miniInfoExercicio}>
-              <Text style={styles.tituloInfoTreino}>{item.title}</Text>
-              <Text style={styles.descricaoInfoTreino}>nº Séries: xxx</Text>
-              <Text style={styles.descricaoInfoTreino}>nº Repetições: xx</Text>
+              <Text style={styles.tituloInfoTreino}>{item.nome_exercicio}</Text>
+              <Text style={styles.descricaoInfoTreino}>nº Séries: {item.qtd_series}</Text>
+              <Text style={styles.descricaoInfoTreino}>nº Repetições: {item.qtd_repeticoes}</Text>
               <TouchableOpacity onPress={()=>navigation.navigate('Informacoes')}>
                 <Text style={styles.maisInfoTreino}>mais info</Text>
               </TouchableOpacity>
