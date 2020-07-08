@@ -9,10 +9,14 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  header: {
+  headerTotal: {
     width: '100%',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    height: '25%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16
+
+    // backgroundColor: 'gray'
   },
   introducao: {
     width: '100%',
@@ -26,34 +30,36 @@ export default StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
-    marginTop: 5,
+    marginBottom: 5,
+  },
+  headerFaixa: {
+    width: '120%',
   },
   faixa: {
-    marginTop: 16,
-
+    // marginTop: 10,
     width: '100%',
     height: 30,
-    backgroundColor: '#373737',
+    backgroundColor: '#F9EE92',
+    // opacity: 0.5,
 
     justifyContent: 'center',
     alignItems: 'center',
   },
   textoFaixa: {
-    color: 'white',
+    color: '#000',
     fontSize: 20,
     fontWeight: 'bold',
-    width: '80%',
     textAlign: 'center',
   },
   listarExercicios: {
     width: '100%',
   },
   campoExercicio: {
-    marginTop: 16,
+    marginBottom: 16,
 
-    height: 90,
+    height: 120,
 
-    // backgroundColor: 'white',
+    // backgroundColor: 'green',
 
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -61,23 +67,30 @@ export default StyleSheet.create({
   },
   imgExercicio: {
     width: 120,
-    height: 90,
+    height: '100%',
     borderRadius: 6,
-    backgroundColor: 'gray',
   },
   miniInfoExercicio: {
-    marginHorizontal: 5,
+    height: '100%',
+    width: 150,
+    paddingVertical: 5,
+
     // backgroundColor: 'black',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start'
+
   },
   tituloInfoTreino: {
     color: '#F2FDFF',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
+    width: '100%',
   },
   descricaoInfoTreino: {
     color: '#F2FDFF',
     fontSize: 16,
     fontWeight: 'normal',
+    
   },
   maisInfoTreino: {
     color: '#F2FDFF',
@@ -87,8 +100,9 @@ export default StyleSheet.create({
   },
   botaoConcluido: {
     height: 30,
-    width: 80,
     borderRadius: 6,
+
+    paddingHorizontal: 10,
 
     backgroundColor: '#373737',
 
