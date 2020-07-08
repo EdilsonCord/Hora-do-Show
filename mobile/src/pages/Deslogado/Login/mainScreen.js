@@ -27,14 +27,15 @@ export default function MainScreen({navigation}) {
       },
       body: JSON.stringify({
         email: email,
-        password: senha
-     })
-      }).then(response => response.json())
-      .then(response => {
-        if("error" in response){
-          alert(response.error)         
-        }else{
-          navigation.navigate('MainSuccessScreen')
+        password: senha,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if ('error' in response) {
+          alert(response.error);
+        } else {
+          navigation.navigate('MainSuccessScreen');
         }
       })
       .catch((err) => {
@@ -46,18 +47,17 @@ export default function MainScreen({navigation}) {
     <View style={styles.container}>
       <Image source={require('../../../assets/logoOficial282x166.png')} />
 
-  
-      <TextInput 
-      style={styles.input} 
-      defaultValue='diego.cstbraga@gmail.comm'
-      placeholder="E-mail ou login"
-      onChangeText={(text) => onChangeEmail(text)}
-      email={email}
+      <TextInput
+        style={styles.input}
+        defaultValue="diego.cstbraga@gmail.comm"
+        placeholder="E-mail ou login"
+        onChangeText={(text) => onChangeEmail(text)}
+        email={email}
       />
 
       <TextInput
         style={styles.input}
-        defaultValue='Senha@1233'
+        defaultValue="Senha@1233"
         secureTextEntry={true}
         placeholder="Senha"
         onChangeText={(text) => onChangeSenha(text)}
@@ -71,9 +71,7 @@ export default function MainScreen({navigation}) {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity
-        style={styles.botao}
-        onPress={handleRegister}>
+      <TouchableOpacity style={styles.botao} onPress={handleRegister}>
         <Text style={styles.botaoText}>Entrar</Text>
       </TouchableOpacity>
 
@@ -94,7 +92,8 @@ export default function MainScreen({navigation}) {
       <TouchableOpacity
         style={styles.botaoFacebook}
         onPress={() => {
-          Alert.alert('Aviso', 'Recurso atualmente indisponível');
+          // Alert.alert('Aviso', 'Recurso atualmente indisponível');
+          navigation.navigate('CadastrarInformacoes');
         }}>
         <Image source={require('../../../assets/FacebookIcon.png')} />
         <Text style={{color: 'white', fontSize: 18, fontWeight: '500'}}>

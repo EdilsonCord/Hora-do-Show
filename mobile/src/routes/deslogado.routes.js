@@ -7,12 +7,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from '../pages/Deslogado/Login/mainScreen';
 
 import EnviarCodigo from '../pages/Deslogado/EnviarCodigo/SendCodeScreen';
-import ConfirmarCodigo from '../pages/Deslogado/ConfirmarCodigo/ConfirmCodeScreen';
-import CadastrarInfo from '../pages/Deslogado/Cadastro/Cadastro';
+import ConfirmarCodigo from '../pages/Deslogado/EnviarCodigo/ConfirmarCodigo/ConfirmCodeScreen';
+import CadastrarInfo from '../pages/Deslogado/EnviarCodigo/ConfirmarCodigo/Cadastro/Cadastro';
+import ContaCriada from '../pages/Deslogado/EnviarCodigo/ConfirmarCodigo/Cadastro/ContaCriada';
 
 import EnviarCodigoRecuperacao from '../pages/Deslogado/EnviarCodigoRecuperacao/SendRecoveryCodeScreen';
-import GerarNovaSenha from '../pages/Deslogado/GerarNovaSenha/GenerateNewPasswdScreen';
-import NovaSenhaGerada from '../pages/Deslogado/NovaSenhaGerada/index';
+import GerarNovaSenha from '../pages/Deslogado/EnviarCodigoRecuperacao/GerarNovaSenha/GenerateNewPasswdScreen';
+import NovaSenhaGerada from '../pages/Deslogado/EnviarCodigoRecuperacao/GerarNovaSenha/NovaSenhaGerada/index';
 
 import logadoRoutes from './logado.routes';
 
@@ -27,7 +28,8 @@ export default function deslogadoRoutes() {
         
         <Stack.Screen name="SendCodeScreen" component={EnviarCodigo} />
         <Stack.Screen name="ConfirmCodeScreen" component={ConfirmarCodigo} />
-        <Stack.Screen name="ConfirmCodSuccessScreen" component={CadastrarInfo} />
+        <Stack.Screen name="CadastrarInformacoes" component={CadastrarInfo} />
+        <Stack.Screen name="ContaCriada" component={ContaCriada} />
 
         <Stack.Screen name="SendRecoveryCodeScreen" component={EnviarCodigoRecuperacao} />
         <Stack.Screen name="GenerateNewPasswdScreen" component={GerarNovaSenha} />

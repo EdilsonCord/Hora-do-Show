@@ -57,7 +57,7 @@ export default StyleSheet.create({
   campoExercicio: {
     marginBottom: 16,
 
-    height: 120,
+    height: 140,
 
     padding: 5,
     // backgroundColor: '#E55F54',
@@ -70,10 +70,10 @@ export default StyleSheet.create({
   campoExercicioConcluido: {
     marginBottom: 16,
 
-    height: 120,
+    height: 140,
 
     padding: 5,
-    backgroundColor: '#187835',
+    backgroundColor: '#4d9078',
     borderRadius: 6,
 
     flexDirection: 'row',
@@ -82,7 +82,7 @@ export default StyleSheet.create({
   },
   imgExercicio: {
     width: 120,
-    height: '100%',
+    height: 120,
     // resizeMode: 'center',
     borderRadius: 6,
     borderWidth: 2,
@@ -99,7 +99,7 @@ export default StyleSheet.create({
 
   },
   tituloInfoTreino: {
-    color: '#F2FDFF',
+    color: '#f2c14e',
     fontSize: 16,
     fontWeight: 'bold',
     width: '100%',
@@ -107,8 +107,12 @@ export default StyleSheet.create({
   descricaoInfoTreino: {
     color: '#F2FDFF',
     fontSize: 16,
-    fontWeight: 'normal',
-    
+    fontWeight: 'bold',    
+  },
+  descricaoNumeroInfoTreino: {
+    color: '#000',
+    fontSize: 16,
+    fontWeight: 'bold',    
   },
   maisInfoTreino: {
     color: '#F2FDFF',
