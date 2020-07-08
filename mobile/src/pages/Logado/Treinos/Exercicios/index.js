@@ -13,7 +13,8 @@ import styles from './styles';
 export default function Exercicio({navigation, route}) {
 
   const [dados, setDados] = useState([]);
-  const [treino, setTreino] = useState([route.params.treino]);
+  const [treino, setTreino]= useState([route.params.treino]);
+  const [nomeTreino, setNomeTreino] = useState([route.params.nomeTreino]);
   
   //Define your componentDidMount lifecycle hook that will retrieve data.
   //Also have the async keyword to indicate that it is asynchronous. 
@@ -45,13 +46,13 @@ export default function Exercicio({navigation, route}) {
             Aqui estão os exercícios do seu treino de hoje
           </Text>
           <Text style={styles.textoIntroducao}>
-            Você completou x exercícios	de x
+            Você completou x exercícios	de {dados.length}
           </Text>
 
         </View>
 
         <View style={styles.faixa}>
-          <Text style={styles.textoFaixa}>Treino X</Text>
+          <Text style={styles.textoFaixa}>Treino {nomeTreino} </Text>
         </View>
 
       </View>
@@ -68,7 +69,7 @@ export default function Exercicio({navigation, route}) {
               <Text style={styles.tituloInfoTreino}>{item.nome_exercicio}</Text>
               <Text style={styles.descricaoInfoTreino}>nº Séries: {item.qtd_series}</Text>
               <Text style={styles.descricaoInfoTreino}>nº Repetições: {item.qtd_repeticoes}</Text>
-              <TouchableOpacity onPress={()=>navigation.navigate('Informacoes')}>
+              <TouchableOpacity onPress={()=>navigation.navigate('Informacoes', {exercicio : item})}>
                 <Text style={styles.maisInfoTreino}>mais info</Text>
               </TouchableOpacity>
             </View>
