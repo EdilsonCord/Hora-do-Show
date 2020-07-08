@@ -11,35 +11,36 @@ import {
 import styles from './styles';
 
 export default function Exercicio({navigation, route}) {
-
   const [dados, setDados] = useState([]);
   const [treino, setTreino]= useState([route.params.treino]);
   const [nomeTreino, setNomeTreino] = useState([route.params.nomeTreino]);
   
   //Define your componentDidMount lifecycle hook that will retrieve data.
-  //Also have the async keyword to indicate that it is asynchronous. 
+  //Also have the async keyword to indicate that it is asynchronous.
   async function loadExercicios() {
-      //Have a try and catch block for catching errors.
-      try {
-          //Assign the promise unresolved first then get the data using the json method.
-          console.log(treino);
-          const dadosAPICall = await fetch('http://10.0.2.2:3333/treino/get/id/' + treino);
-          const dadosJson = await dadosAPICall.json();
-          console.log(dadosJson);
-          setDados(dadosJson.exercicios);
-      } catch(err) {
-          console.log("Error fetching data-----------", err);
-      }
+    //Have a try and catch block for catching errors.
+    try {
+      //Assign the promise unresolved first then get the data using the json method.
+      console.log(treino);
+      const dadosAPICall = await fetch(
+        'http://10.0.2.2:3333/treino/get/id/' + treino,
+      );
+      const dadosJson = await dadosAPICall.json();
+      console.log(dadosJson);
+      setDados(dadosJson.exercicios);
+    } catch (err) {
+      console.log('Error fetching data-----------', err);
+    }
   }
-  
+
   useEffect(() => {
     loadExercicios();
   }, []);
-  
+
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
+      <View style={styles.headerTotal}>
         <View style={styles.introducao}>
           <Text style={styles.textoIntroducao}>Olá, Diego!</Text>
           <Text style={styles.textoIntroducao}>
@@ -48,13 +49,11 @@ export default function Exercicio({navigation, route}) {
           <Text style={styles.textoIntroducao}>
             Você completou x exercícios	de {dados.length}
           </Text>
-
         </View>
 
         <View style={styles.faixa}>
           <Text style={styles.textoFaixa}>Treino {nomeTreino} </Text>
         </View>
-
       </View>
 
       <FlatList
@@ -63,7 +62,10 @@ export default function Exercicio({navigation, route}) {
         showsVerticalScrollIndicator={false}
         renderItem={({item}) => (
           <View style={styles.campoExercicio}>
-            <View style={styles.imgExercicio}/>
+            <Image
+              source={{uri: 'https://picsum.photos/120/90?grayscale'}}
+              style={styles.imgExercicio}
+            />
 
             <View style={styles.miniInfoExercicio}>
               <Text style={styles.tituloInfoTreino}>{item.nome_exercicio}</Text>
@@ -74,8 +76,8 @@ export default function Exercicio({navigation, route}) {
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity style={styles.botaoConcluido} >
-              <Text style={styles.textoBotao}>Concluído</Text>
+            <TouchableOpacity style={styles.botaoConcluido}>
+              <Text style={styles.textoBotao}>Concluir</Text>
             </TouchableOpacity>
           </View>
         )}

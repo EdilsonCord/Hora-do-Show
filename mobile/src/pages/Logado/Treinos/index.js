@@ -59,7 +59,7 @@ export default function Exercicio({navigation}) {
             <TouchableOpacity
               style={styles.campoTreino}
               onPress={() =>
-                navigation.navigate('Exercicios', {treino: item._id})
+                navigation.navigate('Exercicios', {treino: item._id, nomeTreino: item.tipo_treino})
               }>
               <Text style={styles.textoCampoTreino}>
                 Treino {item.tipo_treino}
