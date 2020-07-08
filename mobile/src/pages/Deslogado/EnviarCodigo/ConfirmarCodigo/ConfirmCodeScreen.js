@@ -10,7 +10,8 @@ import {
 
 import styles from './styles';
 
-export default function GenerateNewPasswdScreen({navigation, route}) {
+export default function ConfirmCodeScreen({navigation, route}) {
+
 
   const [ email, onChangeEmail] = React.useState(route.params.email);
   const [ senha, onChangeSenha] = React.useState('');
@@ -27,7 +28,7 @@ export default function GenerateNewPasswdScreen({navigation, route}) {
       return
     }
 
-    fetch('http://10.0.2.2:3333/api/reset_password',{
+    fetch('http://10.0.2.2:3333/api/register',{
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -35,7 +36,7 @@ export default function GenerateNewPasswdScreen({navigation, route}) {
       },
       body:  JSON.stringify({
         email: email,
-        token: token,
+        passwordRegister: token,
         password: senha
      })
       }).then((response) => response.json())
@@ -43,33 +44,33 @@ export default function GenerateNewPasswdScreen({navigation, route}) {
         if("error" in response){
           alert(response.error)         
         }else{
-
-          console.log("é isso mesmo")
-          navigation.navigate('GenerateNewPasswdSuccessScreen')
+          console.log(response)
+          navigation.navigate('CadastrarInformacoes', {email: email, senha : senha})
         }
       }).catch(err => {
-        console.log("ué")
-        navigation.navigate('GenerateNewPasswdSuccessScreen')
+        console.log(err)
+        navigation.navigate('CadastrarInformacoes', {email: email, senha : senha})
       });
 
 }
+
 
   return (
     <SafeAreaView style={styles.container}>
       <Image
         style={{marginBottom: 10}}
-        source={require('../../../assets/ShieldCheck.png')}
+        source={require('../../../../assets/ShieldCheck.png')}
       />
       <View style={styles.yellowBox}>
-        <Text style={styles.description}>Registre sua nova senha</Text>
+        <Text style={styles.description}>Cadastre sua senha</Text>
 
         <TextInput
           style={styles.insertText}
           keyboardType="default"
-          placeholder="Token recebido pelo email"
+          placeholder="Senha recebida pelo email"
+          secureTextEntry={true}
           placeholderTextColor="#404040"
 
-          secureTextEntry={true}
           onChangeText={(text) => onChangeToken(text)}
           token={token}
         />
@@ -83,7 +84,6 @@ export default function GenerateNewPasswdScreen({navigation, route}) {
           onChangeText={(text) => onChangeSenha(text)}
           senha={senha}
         />
-        
         <TextInput
           style={styles.insertText}
           keyboardType="default"

@@ -18,7 +18,7 @@ export default function Exercicio({navigation, route}) {
   const [selected, setSelected] = React.useState(new Map());
 
   const onSelect = React.useCallback(
-    id => {
+    (id) => {
       const newSelected = new Map(selected);
       newSelected.set(id, !selected.get(id));
 
@@ -26,7 +26,7 @@ export default function Exercicio({navigation, route}) {
     },
     [selected],
   );
-  
+
   //Define your componentDidMount lifecycle hook that will retrieve data.
   //Also have the async keyword to indicate that it is asynchronous.
   async function loadExercicios() {
@@ -53,7 +53,7 @@ export default function Exercicio({navigation, route}) {
     <SafeAreaView style={styles.container}>
       <View style={styles.headerTotal}>
         <View style={styles.introducao}>
-          <Text style={styles.textoIntroducao}>Olá, Diego!</Text>
+          <Text style={styles.textoIntroducao}>Olá, {global.user.name}!</Text>
           <Text style={styles.textoIntroducao}>
             Aqui estão os exercícios do seu treino de hoje
           </Text>
@@ -71,12 +71,17 @@ export default function Exercicio({navigation, route}) {
 
       <FlatList
         data={dados}
-        keyExtractor={item => item._id}
+        keyExtractor={(item) => item._id}
         extraData={selected}
         style={styles.listarExercicios}
         showsVerticalScrollIndicator={false}
         renderItem={({item}) => (
-          <View style={selected.get(item._id) ? styles.campoExercicio : styles.campoExercicioConcluido}>
+          <View
+            style={
+              selected.get(item._id)
+                ? styles.campoExercicioConcluido
+                : styles.campoExercicio
+            }>
             <Image
               source={{
                 uri:
@@ -88,10 +93,16 @@ export default function Exercicio({navigation, route}) {
             <View style={styles.miniInfoExercicio}>
               <Text style={styles.tituloInfoTreino}>{item.nome_exercicio}</Text>
               <Text style={styles.descricaoInfoTreino}>
-                nº Séries: {item.qtd_series}
+                nº Séries:{' '}
+                <Text style={styles.descricaoNumeroInfoTreino}>
+                  {item.qtd_series}
+                </Text>
               </Text>
               <Text style={styles.descricaoInfoTreino}>
-                nº Repetições: {item.qtd_repeticoes}
+                nº Repetições:{' '}
+                <Text style={styles.descricaoNumeroInfoTreino}>
+                  {item.qtd_repeticoes}
+                </Text>
               </Text>
               <TouchableOpacity
                 onPress={() =>
@@ -101,7 +112,9 @@ export default function Exercicio({navigation, route}) {
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity style={styles.botaoConcluido} onPress={() => onSelect(item._id)}>
+            <TouchableOpacity
+              style={styles.botaoConcluido}
+              onPress={() => onSelect(item._id)}>
               <Text style={styles.textoBotao}>Concluir</Text>
             </TouchableOpacity>
           </View>
