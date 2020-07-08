@@ -50,7 +50,7 @@ export default function MainScreen({navigation}) {
 
       <TextInput
         style={styles.input}
-        defaultValue="pepespim06@gmail.com"
+        // defaultValue="diego.cstbraga@gmail.comm"
         placeholder="E-mail ou login"
         onChangeText={(text) => onChangeEmail(text)}
         email={email}
@@ -58,7 +58,7 @@ export default function MainScreen({navigation}) {
 
       <TextInput
         style={styles.input}
-        defaultValue="Amendoim05@"
+        // defaultValue="Senha@1233"
         secureTextEntry={true}
         placeholder="Senha"
         onChangeText={(text) => onChangeSenha(text)}
@@ -93,8 +93,8 @@ export default function MainScreen({navigation}) {
       <TouchableOpacity
         style={styles.botaoFacebook}
         onPress={() => {
-          // Alert.alert('Aviso', 'Recurso atualmente indisponível');
-          navigation.navigate('CadastrarInformacoes');
+          Alert.alert('Aviso', 'Recurso atualmente indisponível');
+          // navigation.navigate('CadastrarInformacoesTeste');
         }}>
         <Image source={require('../../../assets/FacebookIcon.png')} />
         <Text style={{color: 'white', fontSize: 18, fontWeight: '500'}}>

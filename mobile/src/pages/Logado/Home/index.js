@@ -17,12 +17,12 @@ export default function Home({navigation}) {
               source={require('../../../assets/laVidaFit.png')}
             />
           </View>
-          <View style={styles.patrocinio}>
+          {/* <View style={styles.patrocinio}>
             <Image
               style={styles.imgpatrocinio}
               source={require('../../../assets/laVidaFit.png')}
             />
-          </View>
+          </View> */}
         </View>
     </View>
   );

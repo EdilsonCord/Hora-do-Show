@@ -79,8 +79,8 @@ export default function Exercicio({navigation, route}) {
           <View
             style={
               selected.get(item._id)
-                ? styles.campoExercicio
-                : styles.campoExercicioConcluido
+                ? styles.campoExercicioConcluido
+                : styles.campoExercicio
             }>
             <Image
               source={{

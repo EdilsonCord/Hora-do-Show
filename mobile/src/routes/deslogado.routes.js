@@ -10,6 +10,7 @@ import EnviarCodigo from '../pages/Deslogado/EnviarCodigo/SendCodeScreen';
 import ConfirmarCodigo from '../pages/Deslogado/EnviarCodigo/ConfirmarCodigo/ConfirmCodeScreen';
 import CadastrarInfo from '../pages/Deslogado/EnviarCodigo/ConfirmarCodigo/Cadastro/Cadastro';
 import ContaCriada from '../pages/Deslogado/EnviarCodigo/ConfirmarCodigo/Cadastro/ContaCriada';
+import CadastrarInformacoesTeste from '../pages/Teste/Cadastro/Cadastro';
 
 import EnviarCodigoRecuperacao from '../pages/Deslogado/EnviarCodigoRecuperacao/SendRecoveryCodeScreen';
 import GerarNovaSenha from '../pages/Deslogado/EnviarCodigoRecuperacao/GerarNovaSenha/GenerateNewPasswdScreen';
@@ -30,6 +31,7 @@ export default function deslogadoRoutes() {
         <Stack.Screen name="ConfirmCodeScreen" component={ConfirmarCodigo} />
         <Stack.Screen name="CadastrarInformacoes" component={CadastrarInfo} />
         <Stack.Screen name="ContaCriada" component={ContaCriada} />
+        <Stack.Screen name="CadastrarInformacoesTeste" component={CadastrarInformacoesTeste} />
 
         <Stack.Screen name="SendRecoveryCodeScreen" component={EnviarCodigoRecuperacao} />
         <Stack.Screen name="GenerateNewPasswdScreen" component={GerarNovaSenha} />

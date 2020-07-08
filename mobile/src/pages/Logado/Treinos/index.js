@@ -35,7 +35,7 @@ export default function Exercicio({navigation}) {
     <SafeAreaView style={styles.container}>
       <View style={styles.headerTotal}>
         <View style={styles.introducao}>
-          <Text style={styles.textoIntroducao}>Bem vindo, {global.user.name}!</Text>
+          <Text style={styles.textoIntroducao}>Bem vindo(a), {global.user.name}!</Text>
           <Text style={styles.textoIntroducao}>
             Escolha qual treino deseja fazer hoje
           </Text>

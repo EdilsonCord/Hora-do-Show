@@ -12,57 +12,59 @@ import {
 import {RadioButton} from 'react-native-paper';
 import TextInputMask from 'react-native-text-input-mask';
 import {Picker} from '@react-native-community/picker';
+import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+const DownArrow = <MCIcons name="chevron-down" size={25} color="#000" />;
 
 import styles from './styles';
 
-export default function CadastrarInformacoes({navigation, route}) {
+export default function CadastrarInformacoes({navigation}) {
   const [value, setValue] = React.useState('Definir'); //GENERO
   const [selectedValue, setSelectedValue] = useState(''); //META
-  const [email, onChangeEmail] = React.useState(route.params.email);
-  const [senha, onChangeSenha] = React.useState(route.params.senha);
+  // const [ email, onChangeEmail] = React.useState(route.params.email);
+  // const [ senha, onChangeSenha] = React.useState(route.params.senha);
   const [name, setName] = React.useState('');
 
-  async function handleCompleteRegister(e) {
-    e.preventDefault();
+  //   async function handleCompleteRegister(e) {
+  //     e.preventDefault();
 
-    //CRIAR OUTRA FUNÇÃO NÃO-ASYNC PARA VERIFICAR CAMPOS INVES DE POR AQUI
-    if (name === '') {
-      return alert('Você esqueceu de por seu nome');
-    }
+  //     //CRIAR OUTRA FUNÇÃO NÃO-ASYNC PARA VERIFICAR CAMPOS INVES DE POR AQUI
+  //     if(name === ''){
+  //       return alert("Você esqueceu de por seu nome");
+  //     }
 
-    fetch('http://10.0.2.2:3333/api/completeRegister', {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: email,
-        password: senha,
-        name: name,
-        meta: selectedValue,
-      }),
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        if ('error' in response) {
-          alert(response.error);
-        } else {
-          console.log(response);
-          navigation.navigate('ContaCriada');
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        navigation.navigate('ContaCriada');
-      });
-  }
+  //     fetch('http://10.0.2.2:3333/api/completeRegister',{
+  //       method: 'post',
+  //       headers: {
+  //         'Accept': 'application/json',
+  //          'Content-Type': 'application/json',
+  //       },
+  //       body:  JSON.stringify({
+  //         email: email,
+  //         password: senha,
+  //         name: name,
+  //         meta: selectedValue
+  //      })
+  //       }).then((response) => response.json())
+  //       .then(response => {
+  //         if("error" in response){
+  //           alert(response.error)
+  //         }else{
+  //           console.log(response)
+  //           navigation.navigate('ContaCriada')
+  //         }
+  //       }).catch(err => {
+  //         console.log(err)
+  //         navigation.navigate('ContaCriada')
+  //       });
+
+  // }
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Image
-          source={require('../../../../../assets/logooficial.png')}
+          source={require('../../../assets/logooficial.png')}
           resizeMode="contain"
           style={styles.logo}
         />
@@ -144,7 +146,8 @@ export default function CadastrarInformacoes({navigation, route}) {
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.fatButton}
-          onPress={handleCompleteRegister}>
+          // onPress={handleCompleteRegister}
+        >
           <Text style={styles.textoFatButton}>FINALIZAR CADASTRO</Text>
         </TouchableOpacity>
 
