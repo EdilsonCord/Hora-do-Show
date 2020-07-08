@@ -42,10 +42,16 @@ export default function Exercicio({navigation}) {
       data: ['Pão na chapa', 'Achocolatado'],
     },
   ];
-
+  const Item = ({titulo}) => (
+    <View style={styles.item}>
+      <Text style={styles.titulo}>{titulo}</Text>
+    </View>
+  )
   return (
     <SafeAreaView style={styles.container}>
+
       <View style={styles.introducao}>
+        
         <Text style={styles.textoIntroducao}>Bem vindo, Diego</Text>
         <Text style={styles.textoIntroducao}>
           Esta é sua dieta de hoje
@@ -70,14 +76,29 @@ export default function Exercicio({navigation}) {
         )}
       />
 
-      {/* <SectionList
+      <SectionList
         sections={slDados}
         keyExtractor={(item, index) => item + index}
-        renderItem={({item}) => <Item title={item} />}
-        renderSectionHeader={({section: {title}}) => (
-          <Text >{title}</Text>
+        
+        renderSectionHeader={({section: {titulo}}) => (
+          <View style={styles.headersl}>
+          <Text style ={styles.titulo}>{titulo}</Text>
+          
+          </View>
+       
         )}
-      /> */}
+        renderItem={({item}) => (
+          <View style={styles.item}>
+          <Item titulo={item} />
+          </View>
+          )}
+        // ItemSeparatorComponent={({section: {titulo}})=>(
+          // <View style={styles.item}>
+            // <Item titulo={item}/>
+          // </View>
+        // )}
+      />
+        
     </SafeAreaView>
   );
 }

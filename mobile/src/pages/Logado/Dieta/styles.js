@@ -6,7 +6,7 @@ export default StyleSheet.create ({
         backgroundColor: '#E55F54',
         padding: 20,
         flexDirection: 'column',
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center",
     },
     introducao: {
@@ -44,18 +44,44 @@ export default StyleSheet.create ({
     },
     campoIndiceRefeicoes:{
         marginHorizontal: 10,
-        height: '7%',
+        //height: '7%',
 
         justifyContent: 'flex-start',
         alignItems: 'center',
 
-        backgroundColor:'white'
+        
         
     },
     textoIndiceRefeicoes:{
         color: 'black',
         fontSize: 18,
         fontWeight: 'bold',
-    }
-    
+    },
+
+    item: {
+      
+      backgroundColor: "white",
+       
+      marginVertical: 7,
+      fontSize: 10,
+      height: 30
+      },
+      titulo: {
+        
+        fontSize: 20,
+        alignItems: 'center', 
+        flexDirection: 'column',
+        
+      },
+
+      headersl: {
+        marginTop: 40,
+     
+        backgroundColor: '#F9EE92',
+
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
+      
+      
 })
