@@ -1,4 +1,8 @@
 import {StyleSheet} from 'react-native';
+import { Dimensions } from 'react-native';
+
+const win = Dimensions.get('window');
+const ratio = win.width/541;
 
 export default StyleSheet.create({
   container: {
@@ -27,9 +31,9 @@ export default StyleSheet.create({
   video: {
     // width: '100%',
     // height: '80%',
-    width: 100, 
-    height: 100,
-    resizeMode: 'cover'
+    width: win.width,
+    height: 300 * ratio,
+    // resizeMode: 'stretch'
   },
   headerFaixa:{
     width: '120%',
