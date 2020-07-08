@@ -35,6 +35,7 @@ export default function MainScreen({navigation}) {
         if ('error' in response) {
           alert(response.error);
         } else {
+          global.user = response.user;
           navigation.navigate('MainSuccessScreen');
         }
       })
@@ -49,7 +50,7 @@ export default function MainScreen({navigation}) {
 
       <TextInput
         style={styles.input}
-        defaultValue="diego.cstbraga@gmail.comm"
+        defaultValue="pepespim06@gmail.com"
         placeholder="E-mail ou login"
         onChangeText={(text) => onChangeEmail(text)}
         email={email}
@@ -57,7 +58,7 @@ export default function MainScreen({navigation}) {
 
       <TextInput
         style={styles.input}
-        defaultValue="Senha@1233"
+        defaultValue="Amendoim05@"
         secureTextEntry={true}
         placeholder="Senha"
         onChangeText={(text) => onChangeSenha(text)}
