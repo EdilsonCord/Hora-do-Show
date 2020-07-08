@@ -45,11 +45,11 @@ export default function ConfirmCodeScreen({navigation, route}) {
           alert(response.error)         
         }else{
           console.log(response)
-          navigation.navigate('ConfirmCodSuccessScreen')
+          navigation.navigate('CadastrarInformacoes', {email: email, senha : senha})
         }
       }).catch(err => {
         console.log(err)
-        navigation.navigate('ConfirmCodSuccessScreen')
+        navigation.navigate('CadastrarInformacoes', {email: email, senha : senha})
       });
 
 }

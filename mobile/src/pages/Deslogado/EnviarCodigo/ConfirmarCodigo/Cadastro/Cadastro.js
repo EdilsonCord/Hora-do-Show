@@ -15,10 +15,49 @@ import {Picker} from '@react-native-community/picker';
 
 import styles from './styles';
 
-export default function Cadastro({navigation}) {
-  const [value, setValue] = React.useState('');
+export default function CadastrarInformacoes({navigation, route}) {
 
-  const [selectedValue, setSelectedValue] = useState('');
+  const [value, setValue] = React.useState('Definir'); //GENERO
+  const [selectedValue, setSelectedValue] = useState(''); //META
+  const [ email, onChangeEmail] = React.useState(route.params.email);
+  const [ senha, onChangeSenha] = React.useState(route.params.senha);
+  const [ name, setName] = React.useState('');
+
+  async function handleCompleteRegister(e) {
+    e.preventDefault();
+
+
+    //CRIAR OUTRA FUNÇÃO NÃO-ASYNC PARA VERIFICAR CAMPOS INVES DE POR AQUI
+    if(name === ''){
+      return alert("Você esqueceu de por seu nome");
+    }
+
+    fetch('http://10.0.2.2:3333/api/completeRegister',{
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+         'Content-Type': 'application/json',
+      },
+      body:  JSON.stringify({
+        email: email,
+        password: senha,
+        name: name,
+        meta: selectedValue
+     })
+      }).then((response) => response.json())
+      .then(response => {
+        if("error" in response){
+          alert(response.error)         
+        }else{
+          console.log(response)
+          navigation.navigate('ContaCriada')
+        }
+      }).catch(err => {
+        console.log(err)
+        navigation.navigate('ContaCriada')
+      });
+
+}
 
   return (
     <SafeAreaView style={styles.container}>
@@ -33,7 +72,12 @@ export default function Cadastro({navigation}) {
       </View>
 
       <View style={styles.forms}>
-        <TextInput placeholder="Nome" style={styles.insertText} />
+        <TextInput 
+          placeholder="Nome" 
+          style={styles.insertText} 
+          onChangeText={(text) => {setName(text)}}  
+          name={name}/>
+
         <TextInput placeholder="Sobrenome" style={styles.insertText} />
 
         <View style={styles.campoSexo}>
@@ -85,8 +129,9 @@ export default function Cadastro({navigation}) {
             onValueChange={(itemValue, itemIndex) =>
               setSelectedValue(itemValue)
             }>
-            <Picker.Item label="JavaScript" value="js" />
-            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="Definir" value="Definir" />
+            <Picker.Item label="Emagrecer" value="Emagrecer" />
+            <Picker.Item label="Crescer" value="Crescer" />
           </Picker>
         </View>
       </View>
@@ -94,7 +139,7 @@ export default function Cadastro({navigation}) {
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.fatButton}
-          onPress={() => navigation.navigate('ContaCriada')}>
+          onPress={handleCompleteRegister}>
           <Text style={styles.textoFatButton}>FINALIZAR CADASTRO</Text>
         </TouchableOpacity>
 
