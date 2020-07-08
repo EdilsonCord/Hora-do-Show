@@ -6,11 +6,9 @@ export default StyleSheet.create({
     backgroundColor: '#E55F54',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
     padding: 20,
   },
   header: {
-
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -87,7 +85,7 @@ export default StyleSheet.create({
   },
   footer:{
     width: '100%',
-    // backgroundColor:'gray',
+    // backgroundColor:'green',
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'flex-start',

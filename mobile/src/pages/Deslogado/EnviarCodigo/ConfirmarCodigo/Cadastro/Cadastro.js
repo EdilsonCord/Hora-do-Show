@@ -16,9 +16,9 @@ import {Picker} from '@react-native-community/picker';
 import styles from './styles';
 
 export default function Cadastro({navigation}) {
-  const [value, setValue] = React.useState('Masc');
+  const [value, setValue] = React.useState('');
 
-  const [selectedValue, setSelectedValue] = useState('Meta');
+  const [selectedValue, setSelectedValue] = useState('');
 
   return (
     <SafeAreaView style={styles.container}>
@@ -46,33 +46,35 @@ export default function Cadastro({navigation}) {
               <RadioButton value="Masc" />
 
               <Text style={styles.textoRB}>Masculino</Text>
-
             </View>
             <View style={styles.radioButton}>
               <RadioButton value="Fem" />
 
               <Text style={styles.textoRB}>Feminino</Text>
-
             </View>
           </RadioButton.Group>
         </View>
 
         <View style={styles.campoDuplo}>
-          <TextInput
+          <TextInputMask
+            mask={'[000]'}
             placeholder="Altura (cm)"
-            keyboardType={'numeric'}
+            keyboardType={'number-pad'}
             style={styles.insertValuePequeno}
           />
-          <TextInput
+          <TextInputMask
+            mask={'[990],[000]'}
             placeholder="Peso (kg)"
-            keyboardType={'numeric'}
+            keyboardType={'decimal-pad'}
             style={styles.insertValuePequeno}
           />
         </View>
 
         <View style={styles.campoDuplo}>
-          <TextInput
+          <TextInputMask
+            mask={'[00]/[00]/[0000]'}
             placeholder="Data de Nasc."
+            keyboardType={'number-pad'}
             style={styles.insertValuePequeno}
           />
 
@@ -87,12 +89,12 @@ export default function Cadastro({navigation}) {
             <Picker.Item label="Java" value="java" />
           </Picker>
         </View>
-
       </View>
 
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.fatButton}
-        onPress={() => navigation.navigate('ContaCriada')}>
+        <TouchableOpacity
+          style={styles.fatButton}
+          onPress={() => navigation.navigate('ContaCriada')}>
           <Text style={styles.textoFatButton}>FINALIZAR CADASTRO</Text>
         </TouchableOpacity>
 
@@ -100,6 +102,7 @@ export default function Cadastro({navigation}) {
           <Text style={styles.link}>Voltar</Text>
         </TouchableOpacity>
       </View>
+
     </SafeAreaView>
   );
 }
