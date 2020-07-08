@@ -12,9 +12,9 @@ import styles from './styles';
 
 export default function Exercicio({navigation, route}) {
   const [dados, setDados] = useState([]);
-  const [treino, setTreino]= useState([route.params.treino]);
+  const [treino, setTreino] = useState([route.params.treino]);
   const [nomeTreino, setNomeTreino] = useState([route.params.nomeTreino]);
-  
+
   //Define your componentDidMount lifecycle hook that will retrieve data.
   //Also have the async keyword to indicate that it is asynchronous.
   async function loadExercicios() {
@@ -37,7 +37,6 @@ export default function Exercicio({navigation, route}) {
     loadExercicios();
   }, []);
 
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerTotal}>
@@ -47,12 +46,14 @@ export default function Exercicio({navigation, route}) {
             Aqui estão os exercícios do seu treino de hoje
           </Text>
           <Text style={styles.textoIntroducao}>
-            Você completou x exercícios	de {dados.length}
+            Você completou x exercícios de {dados.length}
           </Text>
         </View>
 
-        <View style={styles.faixa}>
-          <Text style={styles.textoFaixa}>Treino {nomeTreino} </Text>
+        <View style={styles.headerFaixa}>
+          <View style={styles.faixa}>
+            <Text style={styles.textoFaixa}>Treino {nomeTreino} </Text>
+          </View>
         </View>
       </View>
 
@@ -63,15 +64,25 @@ export default function Exercicio({navigation, route}) {
         renderItem={({item}) => (
           <View style={styles.campoExercicio}>
             <Image
-              source={{uri: 'https://picsum.photos/120/90?grayscale'}}
+              source={{
+                uri:
+                  'https://images.unsplash.com/photo-1562771242-a02d9090c90c?ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80',
+              }}
               style={styles.imgExercicio}
             />
 
             <View style={styles.miniInfoExercicio}>
               <Text style={styles.tituloInfoTreino}>{item.nome_exercicio}</Text>
-              <Text style={styles.descricaoInfoTreino}>nº Séries: {item.qtd_series}</Text>
-              <Text style={styles.descricaoInfoTreino}>nº Repetições: {item.qtd_repeticoes}</Text>
-              <TouchableOpacity onPress={()=>navigation.navigate('Informacoes', {exercicio : item})}>
+              <Text style={styles.descricaoInfoTreino}>
+                nº Séries: {item.qtd_series}
+              </Text>
+              <Text style={styles.descricaoInfoTreino}>
+                nº Repetições: {item.qtd_repeticoes}
+              </Text>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('Informacoes', {exercicio: item})
+                }>
                 <Text style={styles.maisInfoTreino}>mais info</Text>
               </TouchableOpacity>
             </View>

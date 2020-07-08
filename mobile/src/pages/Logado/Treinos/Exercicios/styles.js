@@ -59,7 +59,9 @@ export default StyleSheet.create({
 
     height: 120,
 
-    // backgroundColor: 'green',
+    padding: 5,
+    backgroundColor: '#0B7285',
+    borderRadius: 6,
 
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -68,11 +70,14 @@ export default StyleSheet.create({
   imgExercicio: {
     width: 120,
     height: '100%',
+    // resizeMode: 'center',
     borderRadius: 6,
+    borderWidth: 2,
+    borderColor: '#373737'
   },
   miniInfoExercicio: {
     height: '100%',
-    width: 150,
+    width: 145,
     paddingVertical: 5,
 
     // backgroundColor: 'black',

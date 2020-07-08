@@ -30,7 +30,7 @@ export default function Exercicio({navigation, route}) {
       <View style={styles.headerTotal}>
         <View style={styles.headerInicio}>
           <View style={styles.inicio}>
-            <Image style={styles.video} source={{uri: 'https://media.giphy.com/media/wPlefbJWKMBDq/giphy.gif',}}/>
+            <Image style={styles.video} source={require('../../../../../assets/DiegoFit.gif')}/>
 
             {/* <Text>Video deve estar acima de mim</Text> */}
           </View>
