@@ -14,6 +14,18 @@ export default function Exercicio({navigation, route}) {
   const [dados, setDados] = useState([]);
   const [treino, setTreino]= useState([route.params.treino]);
   const [nomeTreino, setNomeTreino] = useState([route.params.nomeTreino]);
+
+  const [selected, setSelected] = React.useState(new Map());
+
+  const onSelect = React.useCallback(
+    id => {
+      const newSelected = new Map(selected);
+      newSelected.set(id, !selected.get(id));
+
+      setSelected(newSelected);
+    },
+    [selected],
+  );
   
   //Define your componentDidMount lifecycle hook that will retrieve data.
   //Also have the async keyword to indicate that it is asynchronous.
@@ -58,10 +70,12 @@ export default function Exercicio({navigation, route}) {
 
       <FlatList
         data={dados}
+        keyExtractor={item => item._id}
+        extraData={selected}
         style={styles.listarExercicios}
         showsVerticalScrollIndicator={false}
         renderItem={({item}) => (
-          <View style={styles.campoExercicio}>
+          <View style={selected.get(item._id) ? styles.campoExercicio : styles.campoExercicioConcluido}>
             <Image
               source={{uri: 'https://picsum.photos/120/90?grayscale'}}
               style={styles.imgExercicio}
@@ -76,7 +90,7 @@ export default function Exercicio({navigation, route}) {
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity style={styles.botaoConcluido}>
+            <TouchableOpacity style={styles.botaoConcluido} onPress={() => onSelect(item._id)}>
               <Text style={styles.textoBotao}>Concluir</Text>
             </TouchableOpacity>
           </View>
