@@ -67,6 +67,19 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  campoExercicioConcluido: {
+    marginBottom: 16,
+
+    height: 120,
+
+    padding: 5,
+    backgroundColor: '#EEEEEE',
+    borderRadius: 6,
+
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   imgExercicio: {
     width: 120,
     height: '100%',
