@@ -60,8 +60,8 @@ export default StyleSheet.create({
     height: 120,
 
     padding: 5,
-    backgroundColor: '#0B7285',
-    borderRadius: 6,
+    // backgroundColor: '#E55F54',
+    // borderRadius: 6,
 
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -73,7 +73,7 @@ export default StyleSheet.create({
     height: 120,
 
     padding: 5,
-    backgroundColor: '#EEEEEE',
+    backgroundColor: '#187835',
     borderRadius: 6,
 
     flexDirection: 'row',
