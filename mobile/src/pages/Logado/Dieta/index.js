@@ -52,7 +52,7 @@ export default function Exercicio({navigation}) {
 
       <View style={styles.introducao}>
         
-        <Text style={styles.textoIntroducao}>Bem vindo, Diego</Text>
+        <Text style={styles.textoIntroducao}>Bem vindo, {global.user.name}</Text>
         <Text style={styles.textoIntroducao}>
           Esta é sua dieta de hoje
         </Text>
