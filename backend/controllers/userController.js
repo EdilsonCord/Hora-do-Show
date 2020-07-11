@@ -122,6 +122,28 @@ router.post("/register", async (req, res) => {
           }
 });
 
+router.post("/completeRegister", async (req, res) => {
+  const { email, password, name, meta } = req.body;
+
+  try {
+    const user = await User.findOne({ email })
+
+          if (!(await user.compareHash(password))) {
+            return res.status(400).send({ error: "Falha na conexão!" });
+          }
+
+          user.name = name;
+          user.meta = meta;         
+          await user.save()
+
+          res.send()
+          
+        } catch (err) {
+            console.log(err)
+            res.status(400).send({error: 'Não foi possivel se registrar, tente novamente.'})
+          }
+});
+
 router.post("/authenticate", async (req, res) => {
   try {
     const { email, password } = req.body;

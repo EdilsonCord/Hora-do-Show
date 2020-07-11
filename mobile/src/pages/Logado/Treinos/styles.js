@@ -9,6 +9,14 @@ export default StyleSheet.create ({
         justifyContent: "center",
         alignItems: "center",
     },
+    headerTotal: {
+        width: '100%',
+        height: '21%',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+
+        // backgroundColor: 'gray'
+      },
     introducao: {
         width: '100%',
         // backgroundColor: 'white',
@@ -23,31 +31,41 @@ export default StyleSheet.create ({
         fontWeight: 'bold',
         marginBottom: 5
     },
-    faixa:{
-        marginTop: 25,
+    headerFaixa:{
         width: '120%',
-        height: '10%',
+      },
+    faixa:{
+        // marginTop: 10,
+        width: '100%',
+        height: 60,
         backgroundColor: '#373737',
+        // opacity: 0.5,
 
         justifyContent: 'center',
         alignItems: 'center'
     },
     textoFaixa:{
         color: 'white',
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: 'bold',
+        width: '80%',
+        textAlign: "center"
     },
     listarTreinos:{
-        marginTop: 40,
         width: '100%',
+    },
+    organizarlistaTreinos:{
+        alignItems: 'center',
+        // backgroundColor: 'gray',
+        marginTop: 20,
+
     },
     campoTreino:{
         borderRadius: 8,
-        marginVertical: 10,
-        
+        width: '100%',
         height: 60,
         backgroundColor: '#F9EE92',
-
+        
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -55,6 +73,20 @@ export default StyleSheet.create ({
         color: 'black',
         fontSize: 30,
         fontWeight: 'bold',
+    },
+    campoDesc:{
+        width: '90%',
+        backgroundColor: '#373737',
+        borderBottomStartRadius: 8,
+        borderBottomEndRadius: 8,
+
+    },
+    textCampoDesc:{
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold',
+        textAlign: 'center'
+
     }
     
 })

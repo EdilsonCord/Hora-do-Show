@@ -15,12 +15,12 @@ const ExercicioSchema = Schema({
         required: true
     },
     qtd_series: {
-        type: Number,
+        type: String,
         unique: true,
         required: true
     },
     qtd_repeticoes: {
-        type: Number,
+        type: String,
         unique: true,
         required: true
     },

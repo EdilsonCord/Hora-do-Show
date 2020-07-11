@@ -10,8 +10,7 @@ import {
 
 import styles from './styles';
 
-export default function ConfirmCodeScreen({navigation, route}) {
-
+export default function GenerateNewPasswdScreen({navigation, route}) {
 
   const [ email, onChangeEmail] = React.useState(route.params.email);
   const [ senha, onChangeSenha] = React.useState('');
@@ -28,7 +27,7 @@ export default function ConfirmCodeScreen({navigation, route}) {
       return
     }
 
-    fetch('http://10.0.2.2:3333/api/register',{
+    fetch('http://10.0.2.2:3333/api/reset_password',{
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -36,7 +35,7 @@ export default function ConfirmCodeScreen({navigation, route}) {
       },
       body:  JSON.stringify({
         email: email,
-        passwordRegister: token,
+        token: token,
         password: senha
      })
       }).then((response) => response.json())
@@ -44,33 +43,33 @@ export default function ConfirmCodeScreen({navigation, route}) {
         if("error" in response){
           alert(response.error)         
         }else{
-          console.log(response)
-          navigation.navigate('ConfirmCodSuccessScreen')
+
+          console.log("é isso mesmo")
+          navigation.navigate('GenerateNewPasswdSuccessScreen')
         }
       }).catch(err => {
-        console.log(err)
-        navigation.navigate('ConfirmCodSuccessScreen')
+        console.log("ué")
+        navigation.navigate('GenerateNewPasswdSuccessScreen')
       });
 
 }
-
 
   return (
     <SafeAreaView style={styles.container}>
       <Image
         style={{marginBottom: 10}}
-        source={require('../../../assets/ShieldCheck.png')}
+        source={require('../../../../assets/ShieldCheck.png')}
       />
       <View style={styles.yellowBox}>
-        <Text style={styles.description}>Cadastre sua senha</Text>
+        <Text style={styles.description}>Registre sua nova senha</Text>
 
         <TextInput
           style={styles.insertText}
           keyboardType="default"
-          placeholder="Senha recebida pelo email"
-          secureTextEntry={true}
+          placeholder="Token recebido pelo email"
           placeholderTextColor="#404040"
 
+          secureTextEntry={true}
           onChangeText={(text) => onChangeToken(text)}
           token={token}
         />
@@ -84,6 +83,7 @@ export default function ConfirmCodeScreen({navigation, route}) {
           onChangeText={(text) => onChangeSenha(text)}
           senha={senha}
         />
+        
         <TextInput
           style={styles.insertText}
           keyboardType="default"
