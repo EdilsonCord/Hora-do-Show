@@ -162,8 +162,10 @@ const AlimentosLancheManha = [
             showsVerticalScrollIndicator={false}
             renderItem={({item}) => (
               <View style={styles.containerRefeicoes}>
-                
-              < Text style={styles.textoIndiceRefeicoes}>{item.titulo}</Text>
+              <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+              <Text style={styles.textoIndiceRefeicoes}>{item.titulo}</Text>
+              <Text note>1200 kcal</Text>
+              </View>
 
               <FlatList
                 data={item.alimentos}
@@ -174,7 +176,7 @@ const AlimentosLancheManha = [
                 renderItem={({item}) => (<Card transparent style={{height: 150}}>
                                             <Body >
                                             <Image
-                                              style={{width: 100, height: 100, resizeMode: "contain", marginBottom: 10}}
+                                              style={{width: 100, height: 100, resizeMode: "contain", marginBottom: 15}}
                                               source={food[item.idAlimento].imagem}/>
                                             <Text note>{food[item.idAlimento].titulo}</Text>
                                             </Body>
@@ -182,49 +184,6 @@ const AlimentosLancheManha = [
 
                 )}
                 />
-
-              {/* <ScrollView horizontal={true}>
-                
-              <View style={{flex:1, flexDirection: "row"}}>
-              
-                <Card transparent style={{height: 150}}>
-                    <Body >
-                    <Image
-                      style={{width: 100, height: 100, marginBottom: 10}}
-                      source={require('../../../assets/pao.png')}/>
-                    <Text>Maçã</Text>
-                    </Body>
-                </Card>
-
-                <Card transparent style={{height: 150}}>
-                    <Body >
-                    <Image
-                      style={{width: 100, height: 100, marginBottom: 10}}
-                      source={require('../../../assets/maca.png')}/>
-                    <Text>Maçã</Text>
-                    </Body>
-                </Card>
-
-                <Card transparent style={{height: 150}}>
-                    <Body >
-                    <Image
-                      style={{width: 100, height: 100, marginBottom: 10}}
-                      source={require('../../../assets/maca.png')}/>
-                    <Text>Maçã</Text>
-                    </Body>
-                </Card>
-
-                <Card transparent style={{height: 150}}>
-                    <Body >
-                    <Image
-                      style={{width: 100, height: 100, marginBottom: 10}}
-                      source={require('../../../assets/maca.png')}/>
-                    <Text>Maçã</Text>
-                    </Body>
-                </Card> 
-
-              </View>
-              </ScrollView> */}
               </View> 
               
             )}

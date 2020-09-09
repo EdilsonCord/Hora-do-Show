@@ -18,8 +18,9 @@ export default StyleSheet.create ({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.5,
         shadowRadius: 2,
-        elevation: 3,
+        elevation: 5,
     },
+    
     introducao: {
         width: '100%',
         // backgroundColor: 'white',
@@ -65,8 +66,7 @@ export default StyleSheet.create ({
     },
     textoIndiceRefeicoes:{
         color: '#fafafa',
-        fontSize: 18,
-        fontWeight: 'bold',
+        fontSize: 20,
     },
 
     item: {
