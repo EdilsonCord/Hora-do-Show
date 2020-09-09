@@ -2,13 +2,17 @@ import React, {useEffect, useState} from 'react';
 import {
   View,
   Image,
-  Text,
   FlatList,
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
 
+import { Container, Title, Content, H1, H2, H3, getTheme, StyleProvider, Icon, Form, Item, Input, Label, Button, Text } from 'native-base';
+
+import material from '../../../../native-base-theme/variables/material'
 import styles from './styles';
+import GymIcon from '../../../assets/GymIcon.js'
+
 
 export default function Exercicio({navigation}) {
   const [dados, setDados] = useState([]);
@@ -19,7 +23,7 @@ export default function Exercicio({navigation}) {
     //Have a try and catch block for catching errors.
     try {
       //Assign the promise unresolved first then get the data using the json method.
-      const pokemonApiCall = await fetch('http://10.0.2.2:3333/treino/get');
+      const pokemonApiCall = await fetch('http://192.168.0.27:3333/treino/get');
       const pokemon = await pokemonApiCall.json();
       setDados(pokemon);
     } catch (err) {
@@ -32,45 +36,47 @@ export default function Exercicio({navigation}) {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.headerTotal}>
-        <View style={styles.introducao}>
-          <Text style={styles.textoIntroducao}>Bem vindo(a), {global.user.name}!</Text>
-          <Text style={styles.textoIntroducao}>
-            Escolha qual treino deseja fazer hoje
-          </Text>
-        </View>
 
-        <View style={styles.headerFaixa}>
+    <StyleProvider style={getTheme(material)}>
+        <Container style={styles.container}>
+          
+          <GymIcon fill={material.brandInfo}/>
+
+         <Text style={styles.textoCabecalho}>Treinos</Text>
+
+        {/* <Icon type="MaterialCommunityIcons" name="weight-lifter" style={{marginVertical: 15, color: "#ffe42e", fontSize: 75}} /> */}
+
           <View style={styles.faixa}>
-            <Text style={styles.textoFaixa}>
+            <Text note style={styles.textoFaixa}>
               Escolha um dos treinos abaixo para alcançar sua meta
             </Text>
           </View>
-        </View>
-      </View>
 
-      <FlatList
-        data={dados}
-        style={styles.listarTreinos}
-        showsVerticalScrollIndicator={false}
-        renderItem={({item}) => (
-          <View style={styles.organizarlistaTreinos}>
-            <TouchableOpacity
-              style={styles.campoTreino}
-              onPress={() =>
-                navigation.navigate('Exercicios', {treino: item._id, nomeTreino: item.tipo_treino})
-              }>
-              <Text style={styles.textoCampoTreino}>
-                Treino {item.tipo_treino}
-              </Text>
-            </TouchableOpacity>
-            <View style={styles.campoDesc}>
-              <Text style={styles.textCampoDesc}>{item.desc_treino}</Text>
-            </View>
-          </View>
-        )}
-      />
-    </SafeAreaView>
+            <FlatList
+              data={dados}
+              style={styles.listarTreinos}
+              keyExtractor={item => item._id}
+              showsVerticalScrollIndicator={false}
+              renderItem={({item}) => (
+                <View style={styles.containerShadow}>
+
+                  <Image source={ item.tipo_treino == 'A' ? require('../../../assets/pushup.jpg') : item.tipo_treino == 'B' ? require('../../../assets/levantamento.jpg') : require('../../../assets/agachamento.jpg')} style={{marginLeft: "-13%", marginVertical: -10, width: 100, height: 100, borderRadius: 50, backgroundColor: "#fafafa"}}/>
+
+
+                  <View style={{marginLeft: 20, width: 225}}>
+                    <Text style={{marginBottom: 10, fontSize: 20,fontWeight: "700"}}>Treino {item.tipo_treino}</Text>
+                    <Text note>{item.desc_treino}</Text>
+                    <Text  style={{color: material.brandInfo,marginTop: 5,textAlign: 'right'}}> 0 de 5 <Icon style={{color: material.brandInfo, fontSize: 15}} name="weight-lifter" type="MaterialCommunityIcons"></Icon></Text>
+                  </View>
+
+                </View>
+              )}
+            />
+
+        </Container>
+
+    </StyleProvider>
+
+  
   );
 }

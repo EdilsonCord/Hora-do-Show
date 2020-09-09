@@ -189,6 +189,8 @@ android {
 }
 
 dependencies {
+    compile ("com.facebook.react:react-native:0.63.2") { force = true }
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules

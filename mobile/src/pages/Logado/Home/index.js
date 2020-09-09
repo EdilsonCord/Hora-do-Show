@@ -1,29 +1,73 @@
 import React from 'react';
-import {View, Text, Image, ScrollView} from 'react-native';
+import {View, Image, ScrollView} from 'react-native';
+import Tabbar from '../../../assets/Tabbar/Tabbar'
+import { Container, Header, Content, H1, H2, H3, getTheme, StyleProvider, Left, Right, Card, CardItem, Body, Icon, Form, Item, Input, Label, Button, Text } from 'native-base';
 
-import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
-const IconeHome = <MCIcons name="home" size={25} color="#fff" />;
+import material from '../../../../native-base-theme/variables/material'
 import styles from './styles';
 
 export default function Home({navigation}) {
   return (
-    <View style={styles.container}>
-        <Text style={styles.textoCabecalho}>Patrocinadores</Text>
-        <View style={styles.campoPatrocinios}>
-          <View style={styles.patrocinio}>
-            <Image
-              style={styles.imgpatrocinio}
-              source={require('../../../assets/laVidaFit.png')}
-            />
-          </View>
-          {/* <View style={styles.patrocinio}>
-            <Image
-              style={styles.imgpatrocinio}
-              source={require('../../../assets/laVidaFit.png')}
-            />
-          </View> */}
-        </View>
-    </View>
+    <StyleProvider style={getTheme(material)}>
+      <Container style={styles.container}>
+        
+
+        <Image
+        style={{tintColor: material.brandSuccess ,width: 100, height: 100, marginBottom: 10}}
+        source={require('../../../assets/marketing.png')}/>
+
+        <Text style={styles.textoCabecalho}>PATROCINADORES</Text>
+        <Content showsVerticalScrollIndicator={false}>
+        <Body >
+          <Card style={{marginBottom: 25}}>
+            <CardItem cardBody>
+            <Image style={styles.image} source={require('../../../assets/laVidaFit.png')} />
+            </CardItem>
+            <CardItem cardBody>
+
+              <Body style={{alignContent: "center"}}>
+                <Button rounded full success>
+                  <Text>Visitar Site</Text>
+                </Button>
+              </Body>
+
+            </CardItem>
+          </Card>
+
+          <Card style={{marginBottom: 25}}>
+            <CardItem cardBody>
+            <Image style={styles.image} source={require('../../../assets/laVidaFit.png')} />
+            </CardItem>
+            <CardItem cardBody>
+
+              <Body style={{alignContent: "center"}}>
+                <Button rounded full success>
+                  <Text>Visitar Site</Text>
+                </Button>
+              </Body>
+
+            </CardItem>
+          </Card>
+
+          <Card>
+            <CardItem cardBody>
+            <Image style={styles.image} source={require('../../../assets/laVidaFit.png')} />
+            </CardItem>
+            <CardItem cardBody>
+
+              <Body style={{alignContent: "center"}}>
+                <Button rounded full success>
+                  <Text>Visitar Site</Text>
+                </Button>
+              </Body>
+
+            </CardItem>
+          </Card>
+          </Body>
+        </Content>
+      </Container>
+
+    </StyleProvider>
+    
   );
 }

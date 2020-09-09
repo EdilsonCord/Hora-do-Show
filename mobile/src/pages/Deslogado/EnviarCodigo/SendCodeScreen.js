@@ -3,10 +3,12 @@ import {
   SafeAreaView,
   View,
   Image,
-  Text,
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+
+import { Container, Separator, Content, getTheme, StyleProvider, Icon, Form, Item, List, ListItem, Input, Label, Button, Text } from 'native-base';
+import material from '../../../../native-base-theme/variables/material'
 
 import styles from './styles';
 import api from "../../../services/api" ;
@@ -44,11 +46,13 @@ export default function SendCodeScreen({navigation}) {
         navigation.navigate('ConfirmCodeScreen', {email: value})
       });
       
-      
+      navigation.navigate('ConfirmCodeScreen', {email: value})
 }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <StyleProvider style={getTheme(material)}>
+    <Content>
+    <Container style={styles.container}> 
       <Image
         style={{marginBottom: 25}}
         source={require('../../../assets/Aviao.png')}
@@ -61,28 +65,26 @@ export default function SendCodeScreen({navigation}) {
         que você possa prosseguir com o cadastro!
       </Text>
 
-      <TextInput
-        style={styles.insertText}
-        keyboardType="email-address"
-        placeholder="E-mail"
-        placeholderTextColor="#404040"
-
-        textContentType='emailAddress'
-        onChangeText={(text) => onChangeText(text)}
-        value={value}
-      />
+      <Item>
+      <Input onChangeText={(text) => onChangeText(text)}
+        value={value} placeholder='E-mail' />
+      </Item>
 
       <View style={styles.DoubleButtons}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text style={styles.link}>Voltar</Text>
-        </TouchableOpacity>
+        <Button transparent light onPress={() => navigation.goBack()}>
+              <Text>Voltar</Text>
+        </Button>
 
-        <TouchableOpacity style={styles.action} onPress={handleRegister}>
-          <Text style={styles.actionText}>Enviar</Text>
-        </TouchableOpacity>
+        <Button block primary onPress={handleRegister}>
+              <Text>Enviar</Text>
+        </Button>
+
       </View>
 
       <Image source={require('../../../assets/logooficial.png')} />
-    </SafeAreaView>
+      
+    </Container>
+    </Content>
+    </StyleProvider>
   );
 }

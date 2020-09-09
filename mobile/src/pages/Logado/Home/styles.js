@@ -1,17 +1,19 @@
 import {StyleSheet} from 'react-native';
+import material from '../../../../native-base-theme/variables/material'
 
 export default StyleSheet.create ({
     container: {
         flex:1,
-        backgroundColor: '#E55F54',
         padding: 20,
         justifyContent: "flex-start",
         alignItems: "center",
     },
     textoCabecalho:{
         fontSize: 24,
-        color: '#fff',
-        fontWeight: 'bold',   
+        color: material.brandSuccess,  
+        marginBottom: 15,
+        fontWeight: "700",
+        textAlign: "center"
     },
     campoPatrocinios:{
         width: '100%',
@@ -28,5 +30,12 @@ export default StyleSheet.create ({
         borderRadius: 6,
         resizeMode: 'contain',
         // backgroundColor: 'gray'
+    },
+    image: {
+
+        width: '100%',
+        height: undefined,
+        aspectRatio: 851/351,
+        resizeMode: 'contain'
     }
 })

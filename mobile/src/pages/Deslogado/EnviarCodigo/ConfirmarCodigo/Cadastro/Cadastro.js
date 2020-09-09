@@ -3,11 +3,15 @@ import {
   View,
   SafeAreaView,
   Image,
-  Text,
   TextInput,
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+
+import { Col, Row, Grid } from 'react-native-easy-grid';
+import { Container, Content, H1, H2, H3, ListItem, List, Left, Right, Radio, getTheme, StyleProvider, Icon, Form, Item, Input, Label, Button, Text } from 'native-base';
+
+import material from '../../../../../../native-base-theme/variables/materialDark'
 
 import {RadioButton} from 'react-native-paper';
 import TextInputMask from 'react-native-text-input-mask';
@@ -18,8 +22,8 @@ import styles from './styles';
 export default function CadastrarInformacoes({navigation, route}) {
   const [value, setValue] = React.useState('Definir'); //GENERO
   const [selectedValue, setSelectedValue] = useState(''); //META
-  const [email, onChangeEmail] = React.useState(route.params.email);
-  const [senha, onChangeSenha] = React.useState(route.params.senha);
+  //const [email, onChangeEmail] = React.useState(route.params.email);
+  //const [senha, onChangeSenha] = React.useState(route.params.senha);
   const [name, setName] = React.useState('');
 
   async function handleCompleteRegister(e) {
@@ -59,99 +63,72 @@ export default function CadastrarInformacoes({navigation, route}) {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
+    <StyleProvider style={getTheme(material)}>
+      <Container style={{padding: 20}}>
+      <Content>
         <Image
-          source={require('../../../../../assets/logooficial.png')}
-          resizeMode="contain"
-          style={styles.logo}
+        style={{ width: 125, height: 125, margin: 20, alignSelf: "center", tintColor: "#ffe42e"}}
+        source={require('../../../../../assets/perfil.png')}
         />
 
-        <Text style={styles.textoImportante}>CADASTRO</Text>
-      </View>
+        <H1 style={{alignSelf: "center", color: "#fafafa", textTransform: "uppercase"}}>Completar Perfil</H1>
+        
+        
+          <View style={{backgroundColor: "#fafafa",
+                        borderWidth: 1,
+                        borderRadius: 18, 
+                        paddingHorizontal: 20,
+                        paddingVertical: 24,
+                        marginVertical: 15}}>
 
-      <View style={styles.forms}>
-        <TextInput
-          placeholder="Nome"
-          style={styles.insertText}
-          onChangeText={(text) => {
-            setName(text);
-          }}
-          name={name}
-        />
+            <Item floatingLabel>
+              <Label>Nome</Label>
+              <Input ></Input>
+            </Item>
+            <Item floatingLabel>
+              <Label>Sobrenome</Label>
+              <Input ></Input>
+            </Item>
 
-        <TextInput placeholder="Sobrenome" style={styles.insertText} />
+            <Text style={{color: "#575757", marginTop: 15}}>Sexo</Text>
+            <ListItem style={{borderColor: "#fafafa", alignSelf: "center", marginTop: -10}}>
+                <Text>Masculino   </Text>
+                <Radio color={"#212121"} />
+                <Text>  Feminino   </Text>
+                <Radio color={"#212121"} selected={true}/>
+            </ListItem>
 
-        <View style={styles.campoSexo}>
-          <Text style={styles.textoImportante}>Sexo</Text>
+            
 
-          <RadioButton.Group
-            onValueChange={(value) => setValue(value)}
-            value={value}>
-            <View style={styles.radioButton}>
-              <RadioButton value="Masc" />
+            <Grid>
+              <Col size={4}>
+                <Item floatingLabel>
+                  <Label>Altura</Label>
+                  <Input ></Input>
+                </Item>
+              </Col>
+              <Col size={1}></Col>
+              <Col size={4}>
+                <Item floatingLabel>
+                  <Label>Peso</Label>
+                  <Input ></Input>
+                </Item>
+              </Col>
+            </Grid>
 
-              <Text style={styles.textoRB}>Masculino</Text>
-            </View>
-            <View style={styles.radioButton}>
-              <RadioButton value="Fem" />
-
-              <Text style={styles.textoRB}>Feminino</Text>
-            </View>
-          </RadioButton.Group>
-        </View>
-
-        <View style={styles.campoDuplo}>
-          <TextInputMask
-            mask={'[000]'}
-            placeholder="Altura (cm)"
-            keyboardType={'number-pad'}
-            style={styles.insertValuePequeno}
-          />
-          <TextInputMask
-            mask={'[990],[000]'}
-            placeholder="Peso (kg)"
-            keyboardType={'decimal-pad'}
-            style={styles.insertValuePequeno}
-          />
-        </View>
-
-        <View style={styles.campoDuplo}>
-          <TextInputMask
-            mask={'[00]/[00]/[0000]'}
-            placeholder="Data de Nasc."
-            keyboardType={'number-pad'}
-            style={styles.insertValuePequeno}
-          />
-
-          <View style={styles.campoPicker}>
-            <Picker
-              selectedValue={selectedValue}
-              style={styles.picker}
-              onValueChange={(itemValue, itemIndex) =>
-                setSelectedValue(itemValue)
-              }>
-              <Picker.name label="Meta" />
-              <Picker.Item label="Definir" value="Definir" />
-              <Picker.Item label="Emagrecer" value="Emagrecer" />
-              <Picker.Item label="Crescer" value="Crescer" />
-            </Picker>
-            {/* {DownArrow} */}
           </View>
-        </View>
-      </View>
+          <Item style={{borderColor: "#212121"}}>
+            <Left>
+              <Button transparent><Text style={{color: "#fafafa"}}>Voltar</Text></Button>
+            </Left>
+            <Right>
+              <Button primary><Text style={{color: "#212121"}}>Confirmar</Text></Button>
+            </Right>
+          </Item>
+        </Content>
 
-      <View style={styles.footer}>
-        <TouchableOpacity
-          style={styles.fatButton}
-          onPress={handleCompleteRegister}>
-          <Text style={styles.textoFatButton}>FINALIZAR CADASTRO</Text>
-        </TouchableOpacity>
+      </Container>
 
-        <TouchableOpacity onPress={() => navigation.pop()}>
-          <Text style={styles.link}>Voltar</Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+    </StyleProvider>
   );
 }

@@ -2,7 +2,9 @@ import React from 'react';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
-import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Home from '../pages/Logado/Home';
 
@@ -12,13 +14,13 @@ import info from '../pages/Logado/Treinos/Exercicios/Info';
 
 import dieta from '../pages/Logado/Dieta';
 import perfil from '../pages/Logado/Perfil';
+import material from '../../native-base-theme/variables/material'
 
-const size = 25;
+import {Icon} from 'native-base';
 
-const IconeHome = <MCIcons name="home" size={size} color="#E55F54" />;
-const IconeTreino = <MCIcons name="dumbbell" size={size} color="#E55F54" />;
-const IconeDieta = <MCIcons name="food-apple" size={size} color="#E55F54" />;
-const IconePerfil = <MCIcons name="account" size={size} color="#E55F54" />;
+
+const size = 30;
+
 
 const Stack = createStackNavigator();
 
@@ -49,32 +51,25 @@ function StackTelaTreinos() {
   );
 }
 
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 export default function logadoRoutes() {
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      screenOptions={{}}
-      tabBarOptions={{
-        showLabel: false,
-        inactiveBackgroundColor: '#373737',
-        activeBackgroundColor: '#F9EE92',
-        // inactiveBackgroundColor: '#0B6285',
-        // activeBackgroundColor: '#0B5080',
-        // activeTintColor: '#fff',
-        // inactiveTintColor: '#000',
-        tabStyle: {
-          
-        },
-        style: {
-        },
-      }}>
+      activeColor="#fafafa"
+      inactiveColor="#757575"
+      barStyle={{ backgroundColor: '#273645' }}
+      >
       <Tab.Screen
         name="Home"
         component={Home}
-        options={{
-          tabBarIcon: () => IconeHome,
+        
+        
+        options={{       
+          tabBarIcon: ({ focused }) => (
+            <MaterialCommunityIcons name="home" color={focused ? material.brandSuccess : "#757575"} size={26} />
+          ),
         }}
       />
 
@@ -82,7 +77,9 @@ export default function logadoRoutes() {
         name="Treino"
         component={StackTelaTreinos}
         options={{
-          tabBarIcon: () => IconeTreino,
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="weight-lifter" color={color} size={26} />
+          ),
         }}
       />
 
@@ -90,15 +87,18 @@ export default function logadoRoutes() {
         name="Dieta"
         component={dieta}
         options={{
-          tabBarIcon: () => IconeDieta,
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="food-apple-outline" color={color} size={26} />
+          ),
         }}
       />
-
       <Tab.Screen
         name="Perfil"
         component={perfil}
         options={{
-          tabBarIcon: () => IconePerfil,
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="account" color={color} size={26} />
+          ),
         }}
       />
     </Tab.Navigator>

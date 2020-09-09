@@ -3,10 +3,8 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create ({
     container: {
         flex:1,
-        backgroundColor: '#E55F54',
         padding: 20,
         flexDirection: 'column',
-        justifyContent: "center",
         alignItems: "center",
     },
     headerTotal: {
@@ -34,26 +32,19 @@ export default StyleSheet.create ({
     headerFaixa:{
         width: '120%',
       },
-    faixa:{
-        // marginTop: 10,
-        width: '100%',
-        height: 60,
-        backgroundColor: '#373737',
-        // opacity: 0.5,
 
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    textoFaixa:{
-        color: 'white',
-        fontSize: 20,
-        fontWeight: 'bold',
-        width: '80%',
+    textoCabecalho:{
+        fontSize: 24,
+        color: '#62B1F6',  
+        textTransform: "uppercase",
+        marginBottom: 15,
+        fontWeight: "700",
         textAlign: "center"
     },
     listarTreinos:{
         width: '100%',
     },
+
     organizarlistaTreinos:{
         alignItems: 'center',
         // backgroundColor: 'gray',
@@ -66,6 +57,7 @@ export default StyleSheet.create ({
         height: 60,
         backgroundColor: '#F9EE92',
         
+        
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -74,16 +66,39 @@ export default StyleSheet.create ({
         fontSize: 30,
         fontWeight: 'bold',
     },
+    containerShadow: {
+        flex: 1, flexDirection: 'row',
+        marginLeft: "12%",
+        backgroundColor: "#273645", 
+        marginBottom: 15, 
+        paddingTop: 20,
+        paddingBottom: 15,
+        borderRadius: 15,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.5,
+        shadowRadius: 2,
+        elevation: 5,
+    },
     campoDesc:{
         width: '90%',
         backgroundColor: '#373737',
         borderBottomStartRadius: 8,
         borderBottomEndRadius: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.5,
+        shadowRadius: 2,
+        elevation: 3,
+
+    },
+    textoFaixa:{
+        margin: 10,
+        textAlign: "center",
+        fontWeight: "700"
 
     },
     textCampoDesc:{
-        color: 'white',
-        fontSize: 16,
         fontWeight: 'bold',
         textAlign: 'center'
 

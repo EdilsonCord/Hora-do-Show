@@ -3,11 +3,22 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create ({
     container: {
         flex:1,
-        backgroundColor: '#E55F54',
         padding: 20,
         flexDirection: 'column',
         justifyContent: "flex-start",
         alignItems: "center",
+    },
+    containerRefeicoes: {
+        backgroundColor: "#273645", 
+        paddingTop: 20, 
+        paddingHorizontal: 20, 
+        marginBottom: 20, 
+        borderRadius: 15,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.5,
+        shadowRadius: 2,
+        elevation: 3,
     },
     introducao: {
         width: '100%',
@@ -25,15 +36,15 @@ export default StyleSheet.create ({
     },
     faixa:{
         marginTop: 25,
-        width: '120%',
-        height: '10%',
-        backgroundColor: '#F9EE92',
+        width: '35%',
+        height: '60%',
+        borderRadius: 20,
+        backgroundColor: '#d9534f',
 
         justifyContent: 'center',
         alignItems: 'center'
     },
     textoFaixa:{
-        color: '#000',
         fontSize: 20,
         fontWeight: 'bold',
     },
@@ -53,7 +64,7 @@ export default StyleSheet.create ({
         
     },
     textoIndiceRefeicoes:{
-        color: 'black',
+        color: '#fafafa',
         fontSize: 18,
         fontWeight: 'bold',
     },
