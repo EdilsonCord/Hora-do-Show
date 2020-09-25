@@ -3,11 +3,13 @@ const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-// Conecta no MongoDB
-mongoose.connect(
-  "mongodb://localhost:27017/auth", 
+ //Conecta no MongoDB*
+ mongoose.connect(
+  "mongodb+srv://dev:Amendoim123@horadoshow.mk5cc.gcp.mongodb.net/testedb?retryWrites=true&w=majority", 
   {useNewUrlParser: true , useUnifiedTopology: true, useCreateIndex: true, }
 ).then(console.log("mongo conectou parece"));
+
+
 
 // Carrega o model de Usuário
 require("./models/user");
@@ -33,5 +35,7 @@ app.use("/alimento", require("./controllers/alimentoController"));
 
 app.use("/treino", require("./controllers/treinoController"));
 app.use("/exercicio", require("./controllers/exercicioController"));
+
+app.use("/admin", require("./admin"))
 
 app.listen(3333);

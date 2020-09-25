@@ -6,22 +6,18 @@ var Schema = mongoose.Schema;
 const ExercicioSchema = Schema({
     nome_exercicio: {
         type: String,
-        unique: true,
         required: true
     },
     descricao_exercicio: {
         type: String,
-        unique:true,
         required: true
     },
     qtd_series: {
         type: String,
-        unique: true,
         required: true
     },
     qtd_repeticoes: {
         type: String,
-        unique: true,
         required: true
     },
     treinos: [{ 

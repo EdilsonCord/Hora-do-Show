@@ -17,6 +17,10 @@ const TreinoSchema = Schema({
       type: String,
       default: "Definir"
     },
+    imagem: {
+      type: String,
+      default: "https://cfl.dropboxstatic.com/static/images/illustration_catalog/403_error-illo.png"
+    },
 
     exercicios: [{ 
       type: Schema.Types.ObjectId, 
