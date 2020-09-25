@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
+  Animated,
   View,
   Image,
   FlatList,
@@ -17,13 +18,26 @@ import GymIcon from '../../../assets/GymIcon.js'
 export default function Exercicio({navigation}) {
   const [dados, setDados] = useState([]);
 
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  React.useEffect(() => {
+    Animated.timing(
+      fadeAnim,
+      {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: false,
+      }
+    ).start();
+  }, [fadeAnim])
+
   //Define your componentDidMount lifecycle hook that will retrieve data.
   //Also have the async keyword to indicate that it is asynchronous.
   async function loadTreinos() {
     //Have a try and catch block for catching errors.
     try {
       //Assign the promise unresolved first then get the data using the json method.
-      const pokemonApiCall = await fetch('http://192.168.0.27:3333/treino/get');
+      const pokemonApiCall = await fetch('http://10.0.2.2:3333/treino/get');
       const pokemon = await pokemonApiCall.json();
       setDados(pokemon);
     } catch (err) {
@@ -40,7 +54,7 @@ export default function Exercicio({navigation}) {
     <StyleProvider style={getTheme(material)}>
         <Container style={styles.container}>
           
-          <GymIcon fill={material.brandInfo}/>
+          <GymIcon fill={material.brandWarning}/>
 
          <Text style={styles.textoCabecalho}>Treinos</Text>
 
@@ -58,18 +72,18 @@ export default function Exercicio({navigation}) {
               keyExtractor={item => item._id}
               showsVerticalScrollIndicator={false}
               renderItem={({item}) => (
-                <View style={styles.containerShadow}>
+                <Animated.View style={[styles.containerShadow, {opacity: fadeAnim}]}>
 
-                  <Image source={ item.tipo_treino == 'A' ? require('../../../assets/pushup.jpg') : item.tipo_treino == 'B' ? require('../../../assets/levantamento.jpg') : require('../../../assets/agachamento.jpg')} style={{marginLeft: "-13%", marginVertical: -10, width: 100, height: 100, borderRadius: 50, backgroundColor: "#fafafa"}}/>
+                  <Image source={{uri: item.imagem}} style={{marginLeft: "-13%", marginVertical: -10, width: 100, height: 100, borderRadius: 50, backgroundColor: "#fafafa"}}/>
 
 
                   <View style={{marginLeft: 20, width: 225}}>
                     <Text style={{marginBottom: 10, fontSize: 20,fontWeight: "700"}}>Treino {item.tipo_treino}</Text>
                     <Text note>{item.desc_treino}</Text>
-                    <Text  style={{color: material.brandInfo,marginTop: 5,textAlign: 'right'}}> 0 de 5 <Icon style={{color: material.brandInfo, fontSize: 15}} name="weight-lifter" type="MaterialCommunityIcons"></Icon></Text>
+                    <Text  style={{color: material.brandWarning,marginTop: 5,textAlign: 'right'}}> 0 de 5 <Icon style={{color: material.brandWarning, fontSize: 15}} name="weight-lifter" type="MaterialCommunityIcons"></Icon></Text>
                   </View>
 
-                </View>
+                </Animated.View>
               )}
             />
 

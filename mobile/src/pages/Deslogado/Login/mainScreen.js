@@ -10,21 +10,21 @@ import {
 
 import { Container, Content, H1, H2, H3, getTheme, StyleProvider, Icon, Form, Item, Input, Label, Button, Text } from 'native-base';
 
-import styles2 from './styles';
+import styles from './styles';
 import LinearGradient from 'react-native-linear-gradient' // import LinearGradient
 
 import material from '../../../../native-base-theme/variables/material'
-import styles from './styles';
 
 // export default class MainScreen extends Component {
 export default function MainScreen({navigation}) {
   const [email, onChangeEmail] = React.useState('');
   const [senha, onChangeSenha] = React.useState('');
 
+  //BACK END
   async function handleRegister(e) {
     e.preventDefault();
 
-    fetch('http://192.168.0.27:3333/api/authenticate', {
+    fetch('http://10.0.2.2:3333/api/authenticate', {
       method: 'post',
       headers: {
         Accept: 'application/json',
@@ -50,13 +50,11 @@ export default function MainScreen({navigation}) {
   }
 
   return (
+
+  //Style Provider garante que seus filhos recebam o tema que estamos utilizando (cores etc)
   <StyleProvider style={getTheme(material)}>
     <Container style={styles.container}>
-    <LinearGradient
-          colors={['#263341', '#212d3a']}
-          style={styles.linearGradient}
-        >
-    <Image style={styles2.selfCenter} source={require('../../../assets/logoOficial282x166.png')} />
+    <Image style={styles.selfCenter} source={require('../../../assets/logoOficial282x166.png')} />
 
       <Form>
           <Item stackedLabel>
@@ -77,8 +75,7 @@ export default function MainScreen({navigation}) {
       </Form>
 
 
-      <Button transparent light onPress={() => navigation.navigate('SendRecoveryCodeScreen')}>
-            
+      <Button transparent light onPress={() => navigation.navigate('SendRecoveryCodeScreen')}>     
             <Text>Esqueci minha senha</Text>
       </Button>
 
@@ -91,9 +88,9 @@ export default function MainScreen({navigation}) {
             <Text>Cadastra-se com email</Text>
       </Button>
 
-      <Text style={styles2.txtEntrar}> Entrar com: </Text>
+      <Text style={styles.txtEntrar}> Entrar com: </Text>
 
-      <Button style={styles2.btn} iconLeft bordered  full  info 
+      <Button style={styles.btn} iconLeft bordered  full  info 
       
           onPress={() => {
           Alert.alert('Aviso', 'Recurso atualmente indisponível');
@@ -105,7 +102,7 @@ export default function MainScreen({navigation}) {
       </Button>
 
 
-      <Button style={styles2.btn} iconLeft  bordered full  danger 
+      <Button style={styles.btn} iconLeft  bordered full  danger 
       
           onPress={() => {
           Alert.alert('Aviso', 'Recurso atualmente indisponível');
@@ -116,7 +113,6 @@ export default function MainScreen({navigation}) {
             <Text>google</Text>
       </Button>
 
-      </LinearGradient>
     </Container>
     
    </StyleProvider>
