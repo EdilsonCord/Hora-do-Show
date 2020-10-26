@@ -13,10 +13,10 @@ Icon.loadFont();
 
 const IconePerfil = <Icon name="account" size={24} color="gray" />;
 
-import material from '../../../../native-base-theme/variables/material';
+import material from '../../../../../native-base-theme/variables/material'
 import styles from './styles';
 
-export default function SeuPerfil({ navigation }) {
+export default function EditPerfil({ navigation }) {
 	return (
 		<StyleProvider style={getTheme(material)}>
 			<Container style={styles.container}>
@@ -27,7 +27,6 @@ export default function SeuPerfil({ navigation }) {
 							source={{
 								uri:
 									'https://avatars3.githubusercontent.com/u/50476075?s=460&u=11aba3fef6d20adac7264b36c503396700ac6182&v=4'
-								// 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
 							}}
 							onPress={() => console.log('teste')}
 							size={150}
@@ -91,16 +90,6 @@ export default function SeuPerfil({ navigation }) {
 							</View>
 						</View>
 
-						<TouchableOpacity style={styles.fatButton}
-							onPress={() => navigation.navigate('EditPerfil')}>
-							<Text style={styles.txtFatButton}>Alterar dados</Text>
-						</TouchableOpacity>
-
-						<TouchableOpacity
-							style={styles.fatButtonLogout}
-							onPress={() => navigation.popToTop()}>
-							<Text style={styles.txtFatButton}>Fazer logout</Text>
-						</TouchableOpacity>
 					</View >
 
 				</ScrollView>
