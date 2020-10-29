@@ -1,73 +1,113 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
+
+import colors from 'dir-src/assets/colors.js';
 
 export default StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#E55F54',
-    padding: 20,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  fotoPerfil: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
-  },
-  body: {
-    width: '100%',
-    flex: 1,
+	container: {
+		flex: 1,
+		padding: 20,
+		// justifyContent: 'space-between',
+		// alignItems: 'center',
+	},
+	fotoPerfil: {
+		// flex: 1,
+	},
+	scrollView: {
+		width: '100%',
+		// marginTop: 32,
 
-    alignItems: 'center',
-    justifyContent: 'center',
+	},
+	scrollViewHeader: {
+		alignItems: 'center'
+	},
+	scrollViewBody: {
+		width: '100%',
+		marginTop: 32
+	},
+	textWhite: {
+		marginTop: 16,
 
-    // backgroundColor: '#000'
-  },
-  fatButton: {
-    width: '60%',
-    height: 40,
+		fontSize: 24,
+		color: colors.mainTextColor,
+		fontWeight: "bold"
+	},
+	infos: {
+		backgroundColor: colors.mainInfoBackgroundColor,
+		// backgroundColor: "#212D3A",
+		borderRadius: 6,
+		width: '100%',
+		paddingTop: 13,
 
-    borderRadius: 6,
-    backgroundColor: '#fff',
 
-    alignItems: 'center',
-    justifyContent: 'center',
+	},
+	camposInfos: {
+		flexDirection: "row",
+		alignItems: 'center',
 
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
+		borderBottomWidth: 1,
+		borderColor: colors.mainInfoBorderColor,
 
-    elevation: 6,
+		paddingVertical: 13,
+		paddingLeft: 13,
 
-    marginBottom: 16,
-  },
-  txtFatButton: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  fatButtonLogout: {
-    width: '60%',
-    height: 40,
+	},
+	icon: {
+		// backgroundColor: colors.mainIconColor,
+		borderRadius: 24 / 2
 
-    borderRadius: 6,
-    backgroundColor: '#D9C83A',
+	},
+	textInfo: {
+		color: colors.mainInfoTextColor,
+		fontSize: 20,
+		marginLeft: 13
+	},
+	fatButton: {
+		width: '100%',
+		height: 40,
 
-    alignItems: 'center',
-    justifyContent: 'center',
+		borderRadius: 6,
+		backgroundColor: colors.secondaryButtonBackgroundColor,
 
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
+		alignItems: 'center',
+		justifyContent: 'center',
 
-    elevation: 6,
+		shadowColor: colors.shadowColor,
+		shadowOffset: {
+			width: 0,
+			height: 3,
+		},
+		shadowOpacity: 0.27,
+		shadowRadius: 4.65,
 
-    marginBottom: 16,
-  },
+		elevation: 6,
+
+		marginTop: 32,
+	},
+	txtFatButton: {
+		color: colors.secondaryButtonTextColor,
+		fontSize: 18,
+		fontWeight: 'bold',
+	},
+	fatButtonLogout: {
+		width: '100%',
+		height: 40,
+
+		borderRadius: 6,
+		backgroundColor: colors.mainButtonBackgroundColor,
+
+		alignItems: 'center',
+		justifyContent: 'center',
+
+		shadowColor: colors.shadowColor,
+		shadowOffset: {
+			width: 0,
+			height: 3,
+		},
+		shadowOpacity: 0.27,
+		shadowRadius: 4.65,
+
+		elevation: 6,
+
+		marginTop: 16,
+	},
 });
