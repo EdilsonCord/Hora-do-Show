@@ -15,18 +15,45 @@ var valorCampo = '';
 
 
 export default function EditPerfil({ navigation }) {
+	// const [value, setValue] = React.useState('Definir'); //GENERO
+	const [selectedValue, setSelectedValue] = useState(''); //META
+	const [name, setName] = React.useState('');
+	const [surname, setSurname] = React.useState('');
+	const [peso, setPeso] = React.useState('');
+	const [altura, setAltura] = React.useState('');
+	const [dtNasc, setDtNasc] = React.useState('');
+
 	const [modalVisible, setModalVisible] = useState(false);
-	const [value, onChangeText] = React.useState('');
+	// const [value, onChangeText] = React.useState('');
 
 	const TextInputNome = () => (
 		<TextInput
 			style={styles.modalInputText}
-			defaultValue={global.user.name}
+			defaultValue={global.user.name + ' ' + global.user.surname}
 			placeholderTextColor={colors.mainInputPlaceholder}
 			onChangeText={(text) => onChangeText(text)}
-			value={value}
 			autoFocus={true}
 			keyboardType='default'
+			onChangeText={(text) => {
+				setName(text);
+			}}
+			name={name}
+
+		/>
+	)
+
+	const TextInputSobrenome = () => (
+		<TextInput
+			style={styles.modalInputText}
+			defaultValue={global.user.surname}
+			placeholderTextColor={colors.mainInputPlaceholder}
+			onChangeText={(text) => onChangeText(text)}
+			autoFocus={true}
+			keyboardType='default'
+			onChangeText={(text) => {
+				setName(text);
+			}}
+			name={name}
 
 		/>
 	)
@@ -34,31 +61,47 @@ export default function EditPerfil({ navigation }) {
 	const TextInputDtNasc = () => (
 		<TextInputMask
 			mask={'[00]/[00]/[0000]'}
-			placeholder="Data de Nasc."
+			// placeholder="Data de Nasc."
+			defaultValue={global.user.dtNasc}
 			keyboardType={'number-pad'}
+			autoFocus={true}
 			style={styles.modalInputText}
+			onChangeText={(text) => {
+				setDtNasc(text);
+			}}
+			dtNasc={dtNasc}
 		/>
 	)
 
 	const TextInputAltura = () => (
 		<TextInputMask
 			mask={'[000]'}
-			placeholder="Altura (cm)"
+			// placeholder="Altura (cm)"
+			defaultValue={global.user.altura}
 			keyboardType={'number-pad'}
+			autoFocus={true}
 			style={styles.modalInputText}
+			onChangeText={(text) => {
+				setAltura(text);
+			}}
+			altura={altura}
 		/>
 	)
 
 	const TextInputPeso = () => (
 		<TextInputMask
 			mask={'[990],[000]'}
-			placeholder="Peso (kg)"
+			// placeholder="Peso (kg)"
+			defaultValue={global.user.peso}
 			keyboardType={'decimal-pad'}
+			autoFocus={true}
 			style={styles.modalInputText}
+			onChangeText={(text) => {
+				setPeso(text);
+			}}
+			peso={peso}
 		/>
 	)
-
-	const [selectedValue, setSelectedValue] = useState("");
 
 	const PickerGender = () => (
 		<Picker
@@ -78,9 +121,9 @@ export default function EditPerfil({ navigation }) {
 			style={styles.modalInputText}
 			onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
 		>
-			<Picker.Item label="Definir" value="macho" />
-			<Picker.Item label="Emagrecer" value="femea" />
-			<Picker.Item label="Crescer" value="femea" />
+			<Picker.Item label="Definir" value="definir" />
+			<Picker.Item label="Emagrecer" value="emagrecer" />
+			<Picker.Item label="Crescer" value="crescer" />
 		</Picker>
 
 	)
@@ -90,7 +133,10 @@ export default function EditPerfil({ navigation }) {
 			case 'nome':
 				return <TextInputNome />;
 
-			case 'genero':
+			case 'sobrenome':
+				return <TextInputSobrenome />;
+
+			case 'sexo':
 				return <PickerGender />;
 
 			case 'dtNasc':
@@ -104,44 +150,46 @@ export default function EditPerfil({ navigation }) {
 
 			case 'meta':
 				return <PickerMeta />
-
 		}
-
 	}
 
 	return (
 		<ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+
 			<Modal
 				animationType="fade"
 				transparent={true}
 				visible={modalVisible}
 
 			>
-				<View style={styles.baseModal}>
-					<Text style={styles.modalTitle}>Alterando {campo}</Text>
-					{/* <TextInputNome /> */}
-					{/* <PickerMeta /> */}
-					<TipoInput />
+				<View style={styles.containerModal}>
 
-					<View style={styles.doubleButtons}>
-						<TouchableOpacity style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }} onPress={() => {
-							setModalVisible(!modalVisible);
-							Alert.alert('Info', 'Seus dados não foram alterados!')
-						}}>
-							<Text style={styles.link}>Cancelar</Text>
-						</TouchableOpacity>
+					<View style={styles.baseModal}>
+						<Text style={styles.modalTitle}>Alterando {campo}</Text>
+						{/* <TextInputNome /> */}
+						{/* <PickerMeta /> */}
+						<TipoInput />
 
-						<TouchableOpacity style={styles.bigButton} onPress={() => {
-							setModalVisible(!modalVisible);
-							Alert.alert('Concluído', 'Seus dados foram alterados!')
-						}} >
-							<Text style={styles.bigButtonText}>Confirmar</Text>
+						<View style={styles.doubleButtons}>
+							<TouchableOpacity style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }} onPress={() => {
+								setModalVisible(!modalVisible);
+								Alert.alert('Info', 'Seus dados não foram alterados!')
+							}}>
+								<Text style={styles.link}>Cancelar</Text>
+							</TouchableOpacity>
 
-						</TouchableOpacity>
+							<TouchableOpacity style={styles.bigButton} onPress={() => {
+								setModalVisible(!modalVisible);
+								Alert.alert('Concluído', 'Seus dados foram alterados!')
+							}} >
+								<Text style={styles.bigButtonText}>Confirmar</Text>
+
+							</TouchableOpacity>
+						</View>
 					</View>
+
 				</View>
 			</Modal>
-
 
 			<TouchableOpacity style={styles.editInfo} onPress={() => {
 				campo = "seu nome";
@@ -149,7 +197,7 @@ export default function EditPerfil({ navigation }) {
 				setModalVisible(true);
 			}}>
 				<View style={styles.infoEsquerda}>
-					<Text style={styles.infoText}>Seu nome</Text>
+					<Text style={styles.infoText}>Seu sobrenome</Text>
 
 				</View>
 
@@ -160,12 +208,28 @@ export default function EditPerfil({ navigation }) {
 			</TouchableOpacity>
 
 			<TouchableOpacity style={styles.editInfo} onPress={() => {
-				campo = "seu gênero";
-				valorCampo = 'genero';
+				campo = "seu sobrenome";
+				valorCampo = 'sobrenome';
 				setModalVisible(true);
 			}}>
 				<View style={styles.infoEsquerda}>
-					<Text style={styles.infoText}>Gênero</Text>
+					<Text style={styles.infoText}>Seu nome</Text>
+
+				</View>
+
+				<View style={styles.infoDireita}>
+					<Text style={styles.infoText}>{global.user.surname}</Text>
+					{rightArrow}
+				</View>
+			</TouchableOpacity>
+
+			<TouchableOpacity style={styles.editInfo} onPress={() => {
+				campo = "seu sexo";
+				valorCampo = 'sexo';
+				setModalVisible(true);
+			}}>
+				<View style={styles.infoEsquerda}>
+					<Text style={styles.infoText}>Seu sexo</Text>
 
 				</View>
 
@@ -186,7 +250,7 @@ export default function EditPerfil({ navigation }) {
 				</View>
 
 				<View style={styles.infoDireita}>
-					<Text style={styles.infoText}>{global.user.name}</Text>
+					<Text style={styles.infoText}>{global.user.dtNasc}</Text>
 					{rightArrow}
 				</View>
 			</TouchableOpacity>
@@ -202,7 +266,7 @@ export default function EditPerfil({ navigation }) {
 				</View>
 
 				<View style={styles.infoDireita}>
-					<Text style={styles.infoText}>{global.user.name}</Text>
+					<Text style={styles.infoText}>{global.user.altura} cm</Text>
 					{rightArrow}
 				</View>
 			</TouchableOpacity>
@@ -218,7 +282,7 @@ export default function EditPerfil({ navigation }) {
 				</View>
 
 				<View style={styles.infoDireita}>
-					<Text style={styles.infoText}>{global.user.name}</Text>
+					<Text style={styles.infoText}>{global.user.peso} Kg</Text>
 					{rightArrow}
 				</View>
 			</TouchableOpacity>
@@ -234,7 +298,7 @@ export default function EditPerfil({ navigation }) {
 				</View>
 
 				<View style={styles.infoDireita}>
-					<Text style={styles.infoText}>{global.user.name}</Text>
+					<Text style={styles.infoText}>{global.user.meta}</Text>
 					{rightArrow}
 				</View>
 			</TouchableOpacity>

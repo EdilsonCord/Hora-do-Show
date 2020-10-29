@@ -10,7 +10,7 @@ export default {
 	// Color Scheme of Main Theme
 	mainBackgroundColor: '#212D3A',
 	// mainBackgroundColor: '#E55F54',
-	mainTextColor: "#fff",
+	mainTitleColor: "#fff",
 	mainTextColor: "#fff",
 	mainInputBackgroundColor: "#fff",
 	mainInputPlaceholder: "#404040",

@@ -10,6 +10,10 @@ export default StyleSheet.create({
 		// justifyContent: 'space-between',
 		// alignItems: 'center',
 	},
+	containerModal: {
+		height: '100%',
+		justifyContent: 'center'
+	},
 	editInfo: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
@@ -34,8 +38,6 @@ export default StyleSheet.create({
 		borderRadius: 20,
 		padding: 30,
 		alignItems: "center",
-
-
 
 	},
 	modalTitle: {
