@@ -1153,6 +1153,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/picker/-/picker-1.6.6.tgz#827edfbcb6c2e3f6f5c68674f52249fd7d03a0bc"
   integrity sha512-R2QUEcpdOClgvCsTUzfJcb/qcRy40ikHoJslvnRRj2iP8zCaB1k/3XK3JKCo3e+Alux1fR5o7edlDOIOtwx1YQ==
 
+"@react-native-picker/picker@^1.8.3":
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/@react-native-picker/picker/-/picker-1.8.3.tgz#fcbf969a4add749fc37ef064a5eb55eadc93db39"
+  integrity sha512-zfr8k9L5BJVN7fIrmrto1cCptZjkGoiKWeZTsCR+XormQnWj0Tqrv0S9Ni3SvdT5JZ2OAQ9H+edMRSUvrAxwQA==
+
 "@react-navigation/bottom-tabs@^5.6.1":
   version "5.6.1"
   resolved "https://registry.yarnpkg.com/@react-navigation/bottom-tabs/-/bottom-tabs-5.6.1.tgz#f4aa23913a0c26ec3dd4dc268cd83e3d0e5f4dc4"
@@ -1802,13 +1807,6 @@ babel-plugin-jest-hoist@^26.0.0:
     "@babel/template" "^7.3.3"
     "@babel/types" "^7.3.3"
     "@types/babel__traverse" "^7.0.6"
-
-babel-plugin-root-import@^6.5.0:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-root-import/-/babel-plugin-root-import-6.5.0.tgz#ac4016426b5d36c48127c73ad199fa72c9ff8817"
-  integrity sha512-PTD8fPl4v1kwn01u9d4rgRavDs5Z+jv4qa4/y6iYtoSgM4/xmjwMqo66j5A/BTZQEMA6OV5iFgyZ1PIhroJqqg==
-  dependencies:
-    slash "^3.0.0"
 
 babel-plugin-syntax-trailing-function-commas@^7.0.0-beta.0:
   version "7.0.0-beta.0"

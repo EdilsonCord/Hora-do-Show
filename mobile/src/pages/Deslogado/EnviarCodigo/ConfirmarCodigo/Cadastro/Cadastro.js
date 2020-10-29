@@ -147,7 +147,7 @@ import {
 
 import { RadioButton } from 'react-native-paper';
 import TextInputMask from 'react-native-text-input-mask';
-import { Picker } from '@react-native-community/picker';
+import { Picker } from '@react-native-picker/picker';
 
 import styles from './styles';
 

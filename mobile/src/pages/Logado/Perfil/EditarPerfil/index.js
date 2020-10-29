@@ -1,5 +1,7 @@
 import React, { Component, useState } from 'react';
 import { View, Image, Text, TextInput, TouchableOpacity, ScrollView, Modal, Alert } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
+import TextInputMask from 'react-native-text-input-mask';
 
 import styles from './styles';
 
@@ -29,31 +31,83 @@ export default function EditPerfil({ navigation }) {
 		/>
 	)
 
-	const PickerGender = () => (
-		<TextInput
+	const TextInputDtNasc = () => (
+		<TextInputMask
+			mask={'[00]/[00]/[0000]'}
+			placeholder="Data de Nasc."
+			keyboardType={'number-pad'}
 			style={styles.modalInputText}
-			defaultValue={global.user.name}
-			placeholderTextColor={colors.mainInputPlaceholder}
-			onChangeText={(text) => onChangeText(text)}
-			value={value}
-			autoFocus={true}
-			keyboardType='default'
-
 		/>
 	)
+
+	const TextInputAltura = () => (
+		<TextInputMask
+			mask={'[000]'}
+			placeholder="Altura (cm)"
+			keyboardType={'number-pad'}
+			style={styles.modalInputText}
+		/>
+	)
+
+	const TextInputPeso = () => (
+		<TextInputMask
+			mask={'[990],[000]'}
+			placeholder="Peso (kg)"
+			keyboardType={'decimal-pad'}
+			style={styles.modalInputText}
+		/>
+	)
+
+	const [selectedValue, setSelectedValue] = useState("");
+
+	const PickerGender = () => (
+		<Picker
+			selectedValue={selectedValue}
+			style={styles.modalInputText}
+			onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+		>
+			<Picker.Item label="Masculino" value="macho" />
+			<Picker.Item label="Feminino" value="femea" />
+		</Picker>
+	)
+
 
 	const PickerMeta = () => (
-		<TextInput
+		<Picker
+			selectedValue={selectedValue}
 			style={styles.modalInputText}
-			defaultValue={global.user.name}
-			placeholderTextColor={colors.mainInputPlaceholder}
-			onChangeText={(text) => onChangeText(text)}
-			value={value}
-			autoFocus={true}
-			keyboardType='default'
+			onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+		>
+			<Picker.Item label="Definir" value="macho" />
+			<Picker.Item label="Emagrecer" value="femea" />
+			<Picker.Item label="Crescer" value="femea" />
+		</Picker>
 
-		/>
 	)
+
+	const TipoInput = () => {
+		switch (valorCampo) {
+			case 'nome':
+				return <TextInputNome />;
+
+			case 'genero':
+				return <PickerGender />;
+
+			case 'dtNasc':
+				return <TextInputDtNasc />;
+
+			case 'altura':
+				return <TextInputAltura />;
+
+			case 'peso':
+				return <TextInputPeso />;
+
+			case 'meta':
+				return <PickerMeta />
+
+		}
+
+	}
 
 	return (
 		<ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
@@ -65,7 +119,9 @@ export default function EditPerfil({ navigation }) {
 			>
 				<View style={styles.baseModal}>
 					<Text style={styles.modalTitle}>Alterando {campo}</Text>
-					<TextInputNome />
+					{/* <TextInputNome /> */}
+					{/* <PickerMeta /> */}
+					<TipoInput />
 
 					<View style={styles.doubleButtons}>
 						<TouchableOpacity style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }} onPress={() => {
@@ -85,6 +141,7 @@ export default function EditPerfil({ navigation }) {
 					</View>
 				</View>
 			</Modal>
+
 
 			<TouchableOpacity style={styles.editInfo} onPress={() => {
 				campo = "seu nome";
