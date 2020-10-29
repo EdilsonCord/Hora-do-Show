@@ -7,6 +7,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     require: true
   },
+  surname: {
+    type: String,
+    require: true
+  },
   email: {
     type: String,
     unique: true,
@@ -40,6 +44,18 @@ const UserSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+
+  dtNasc: {
+    type: Date,
+  },
+
+  altura:{
+    type: String,
+  },
+
+  peso:{
+    type: String,
   },
   
   meta: {
