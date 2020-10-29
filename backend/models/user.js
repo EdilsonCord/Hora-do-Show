@@ -47,7 +47,7 @@ const UserSchema = new mongoose.Schema({
   },
 
   dtNasc: {
-    type: Date,
+    type: String,
   },
 
   altura:{

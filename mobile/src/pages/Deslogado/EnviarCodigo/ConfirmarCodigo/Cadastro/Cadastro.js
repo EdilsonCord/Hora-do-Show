@@ -158,6 +158,10 @@ export default function CadastrarInformacoes({ navigation, route }) {
 	const [email, onChangeEmail] = React.useState(route.params.email);
 	const [senha, onChangeSenha] = React.useState(route.params.senha);
 	const [name, setName] = React.useState('');
+	const [surname, setSurname] = React.useState('');
+	const [peso, setPeso] = React.useState('');
+	const [altura, setAltura] = React.useState('');
+	const [dtNasc, setDtNasc] = React.useState('');
 
 	async function handleCompleteRegister(e) {
 		e.preventDefault();
@@ -177,6 +181,10 @@ export default function CadastrarInformacoes({ navigation, route }) {
 				email: email,
 				password: senha,
 				name: name,
+				surname: surname,
+				peso: peso,
+				altura: altura,
+				dtNasc: dtNasc,
 				meta: selectedValue,
 			}),
 		})
@@ -217,7 +225,13 @@ export default function CadastrarInformacoes({ navigation, route }) {
 					name={name}
 				/>
 
-				<TextInput placeholder="Sobrenome" style={styles.insertText} />
+				<TextInput 
+					placeholder="Sobrenome" 
+					style={styles.insertText} 
+					onChangeText={(text) => {
+						setSurname(text);
+					}}
+					surname={surname}/>
 
 				<View style={styles.campoSexo}>
 					<Text style={styles.textoImportante}>Sexo</Text>
@@ -244,12 +258,20 @@ export default function CadastrarInformacoes({ navigation, route }) {
 						placeholder="Altura (cm)"
 						keyboardType={'number-pad'}
 						style={styles.insertValuePequeno}
+						onChangeText={(text) => {
+							setAltura(text);
+						}}
+						altura={altura}
 					/>
 					<TextInputMask
 						mask={'[990],[000]'}
 						placeholder="Peso (kg)"
 						keyboardType={'decimal-pad'}
 						style={styles.insertValuePequeno}
+						onChangeText={(text) => {
+							setPeso(text);
+						}}
+						peso={peso}
 					/>
 				</View>
 
@@ -259,6 +281,10 @@ export default function CadastrarInformacoes({ navigation, route }) {
 						placeholder="Data de Nasc."
 						keyboardType={'number-pad'}
 						style={styles.insertValuePequeno}
+						onChangeText={(text) => {
+							setDtNasc(text);
+						}}
+						dtNasc={dtNasc}
 					/>
 
 					<View style={styles.campoPicker}>
