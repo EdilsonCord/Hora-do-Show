@@ -123,7 +123,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/completeRegister", async (req, res) => {
-  const { email, password, name, meta } = req.body;
+  const { email, password, name, surname, peso, altura, dtNasc, meta } = req.body;
 
   try {
     const user = await User.findOne({ email })
@@ -133,7 +133,11 @@ router.post("/completeRegister", async (req, res) => {
           }
 
           user.name = name;
-          user.meta = meta;         
+          user.surname = surname;
+          user.peso = peso;
+          user.altura = altura;
+          user.meta = meta;    
+          user.dtNasc = dtNasc;     
           await user.save()
 
           res.send()

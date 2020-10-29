@@ -20,6 +20,10 @@ const ExercicioSchema = Schema({
         type: String,
         required: true
     },
+    qtd_carga:{
+        type: String,
+        required: true
+    },
     treinos: [{ 
         type: Schema.Types.ObjectId, 
         ref: 'Treino' }]

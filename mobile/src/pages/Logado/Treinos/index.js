@@ -58,19 +58,23 @@ export default function Exercicio({ navigation }) {
 					keyExtractor={item => item._id}
 					showsVerticalScrollIndicator={false}
 					renderItem={({ item }) => (
-						<View style={styles.containerShadow}>
+						<View>
+							{ item.meta === global.user.meta ? 
+							<View style={styles.containerShadow}>
+								
 
-							<Image source={item.tipo_treino == 'A' ? require('dir-src/assets/pushup.jpg') : item.tipo_treino == 'B' ? require('../../../assets/levantamento.jpg') : require('../../../assets/agachamento.jpg')} style={{ marginLeft: "-13%", marginVertical: -10, width: 100, height: 100, borderRadius: 50, backgroundColor: "#fafafa" }} />
+								<Image source={{uri: item.imagem}} style={{marginLeft: "-13%", marginVertical: -10, width: 100, height: 100, borderRadius: 50, backgroundColor: "#fafafa"}}/>
 
+								<TouchableOpacity style={{ marginLeft: 20, width: 225 }} onPress={() =>
+									navigation.navigate('Exercicios', { treino: item._id, nomeTreino: item.tipo_treino })
+								}>
+									<Text style={{ marginBottom: 10, fontSize: 20, fontWeight: "700" }}>Treino {item.tipo_treino}</Text>
+									<Text note>{item.desc_treino}</Text>
+									<Text style={{ color: material.brandInfo, marginTop: 5, textAlign: 'right' }}> 0 de 5 <Icon style={{ color: material.brandInfo, fontSize: 15 }} name="weight-lifter" type="MaterialCommunityIcons"></Icon></Text>
+								</TouchableOpacity>
 
-							<TouchableOpacity style={{ marginLeft: 20, width: 225 }} onPress={() =>
-								navigation.navigate('Exercicios', { treino: item._id, nomeTreino: item.tipo_treino })
-							}>
-								<Text style={{ marginBottom: 10, fontSize: 20, fontWeight: "700" }}>Treino {item.tipo_treino}</Text>
-								<Text note>{item.desc_treino}</Text>
-								<Text style={{ color: material.brandInfo, marginTop: 5, textAlign: 'right' }}> 0 de 5 <Icon style={{ color: material.brandInfo, fontSize: 15 }} name="weight-lifter" type="MaterialCommunityIcons"></Icon></Text>
-							</TouchableOpacity>
-
+							</View>
+							: null }
 						</View>
 					)}
 				/>
