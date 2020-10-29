@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import colors from 'dir-src/assets/colors.js';
+
 export default StyleSheet.create({
 	container: {
 		flex: 1,
@@ -26,11 +28,11 @@ export default StyleSheet.create({
 		marginTop: 16,
 
 		fontSize: 24,
-		color: "#F2FDFF",
+		color: colors.mainTextColor,
 		fontWeight: "bold"
 	},
 	infos: {
-		backgroundColor: "#F2FdfF",
+		backgroundColor: colors.mainInfoBackgroundColor,
 		// backgroundColor: "#212D3A",
 		borderRadius: 6,
 		width: '100%',
@@ -43,19 +45,19 @@ export default StyleSheet.create({
 		alignItems: 'center',
 
 		borderBottomWidth: 1,
-		borderColor: '#000',
+		borderColor: colors.mainInfoBorderColor,
 
 		paddingVertical: 13,
 		paddingLeft: 13,
 
 	},
 	icon: {
-		backgroundColor: 'blue',
+		// backgroundColor: colors.mainIconColor,
 		borderRadius: 24 / 2
 
 	},
 	textInfo: {
-		color: "#202020",
+		color: colors.mainInfoTextColor,
 		fontSize: 20,
 		marginLeft: 13
 	},
@@ -64,12 +66,12 @@ export default StyleSheet.create({
 		height: 40,
 
 		borderRadius: 6,
-		backgroundColor: '#fff',
+		backgroundColor: colors.secondaryButtonBackgroundColor,
 
 		alignItems: 'center',
 		justifyContent: 'center',
 
-		shadowColor: '#000',
+		shadowColor: colors.shadowColor,
 		shadowOffset: {
 			width: 0,
 			height: 3,
@@ -82,6 +84,7 @@ export default StyleSheet.create({
 		marginTop: 32,
 	},
 	txtFatButton: {
+		color: colors.secondaryButtonTextColor,
 		fontSize: 18,
 		fontWeight: 'bold',
 	},
@@ -90,12 +93,12 @@ export default StyleSheet.create({
 		height: 40,
 
 		borderRadius: 6,
-		backgroundColor: '#D9C83A',
+		backgroundColor: colors.mainButtonBackgroundColor,
 
 		alignItems: 'center',
 		justifyContent: 'center',
 
-		shadowColor: '#000',
+		shadowColor: colors.shadowColor,
 		shadowOffset: {
 			width: 0,
 			height: 3,

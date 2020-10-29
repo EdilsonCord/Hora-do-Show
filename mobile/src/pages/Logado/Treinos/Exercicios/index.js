@@ -13,7 +13,7 @@ import styles from './styles';
 import colors from 'dir-src/assets/colors.js';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 const IconCheckBoxFull = <Icon name="check-box" size={30} color={colors.mainExerciseDone} />;
-const IconCheckBoxPartial = <Icon name="check-box" size={30} color={colors.mainExerciseUndone} />;
+const IconCheckBoxPartial = <Icon name="check-box-outline-blank" size={30} color={colors.mainExerciseUndone} />;
 
 export default function Exercicios({ navigation, route }) {
 	const [dados, setDados] = useState([]);
@@ -118,9 +118,12 @@ export default function Exercicios({ navigation, route }) {
 						</View>
 
 						<TouchableOpacity
-							style={styles.botaoConcluido}
+							// style={styles.botaoConcluido}
 							onPress={() => onSelect(item._id)}>
-							<Text style={styles.textoBotao}>Concluir</Text>
+							<View>
+								{IconCheckBoxFull}
+							</View>
+							{/* <Text style={styles.textoBotao}>Concluir</Text> */}
 						</TouchableOpacity>
 					</View>
 				)}

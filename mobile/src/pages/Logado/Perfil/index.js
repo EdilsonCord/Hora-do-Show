@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Image, Text, TouchableOpacity, ScrollView, Modal, StyleSheet } from 'react-native';
 import { Avatar } from 'react-native-elements';
 
 import {
@@ -8,19 +8,26 @@ import {
 	getTheme
 } from 'native-base';
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-Icon.loadFont();
+import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const IconePerfil = <Icon name="account" size={24} color="gray" />;
+const iconSize = 30;
+
+const IconAlvo = <MCIcon name="target" size={iconSize} color="#ff0000" />
+const IconeBalanca = <MCIcon name="scale-bathroom" size={iconSize} color="#0f0faa" />;
+const IconeCalculadora = <MCIcon name="calculator-variant" size={iconSize} color="#55ff00" />;
 
 import material from '../../../../native-base-theme/variables/material';
 import styles from './styles';
 
 export default function SeuPerfil({ navigation }) {
+
+
 	return (
+
 		<StyleProvider style={getTheme(material)}>
 			<Container style={styles.container}>
 				<ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
+
 					<View style={styles.scrollViewHeader}>
 						<Avatar
 							rounded
@@ -29,14 +36,14 @@ export default function SeuPerfil({ navigation }) {
 									'https://avatars3.githubusercontent.com/u/50476075?s=460&u=11aba3fef6d20adac7264b36c503396700ac6182&v=4'
 								// 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
 							}}
-							onPress={() => console.log('teste')}
 							size={150}
+							onPress={() => { }}
 							showAccessory
 							accessory={{ style: { backgroundColor: '#000', borderRadius: 50 } }}
 							avatarStyle={styles.fotoPerfil}
 						/>
 						<Text style={styles.textWhite}>
-							Diego Braga
+							{global.user.name}
 						</Text>
 
 					</View>
@@ -61,34 +68,23 @@ export default function SeuPerfil({ navigation }) {
 								paddingBottom: 13,
 								paddingLeft: 13,
 							}}>
-								<Text style={styles.icon}>{IconePerfil}</Text>
+								<Text style={styles.icon}>{IconeBalanca}</Text>
 								<Text style={styles.textInfo}>Seu Peso: </Text>
 
 							</View>
 
 							<View style={styles.camposInfos}>
-								<Text style={styles.icon}>{IconePerfil}</Text>
+								<Text style={styles.icon}>{IconAlvo}</Text>
 								<Text style={styles.textInfo}>Sua Meta: </Text>
 
 							</View>
 
 							<View style={styles.camposInfos}>
-								<Text style={styles.icon}>{IconePerfil}</Text>
+								<Text style={styles.icon}>{IconeCalculadora}</Text>
 								<Text style={styles.textInfo}>Seu IMC: </Text>
 
 							</View>
 
-							<View style={styles.camposInfos}>
-								<Text style={styles.icon}>{IconePerfil}</Text>
-								<Text style={styles.textInfo}>Sua Altura: </Text>
-
-							</View>
-
-							<View style={styles.camposInfos}>
-								<Text style={styles.icon}>{IconePerfil}</Text>
-								<Text style={styles.textInfo}>Sua Idade: </Text>
-
-							</View>
 						</View>
 
 						<TouchableOpacity style={styles.fatButton}

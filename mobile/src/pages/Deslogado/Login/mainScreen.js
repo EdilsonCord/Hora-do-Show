@@ -192,7 +192,7 @@ export default function MainScreen({ navigation }) {
 			.then((response) => response.json())
 			.then((response) => {
 				if ('error' in response) {
-					alert(response.error);
+					Alert.alert('Erro ao fazer Login!', response.error);
 				} else {
 					global.user = response.user;
 					navigation.navigate('MainSuccessScreen');
@@ -210,7 +210,8 @@ export default function MainScreen({ navigation }) {
 			<TextInput
 				style={styles.input}
 				defaultValue="diego.cstbraga@gmail.comm"
-				placeholder="E-mail ou login"
+				placeholder="Insira seu email aqui"
+				placeholderTextColor={colors.mainInputPlaceholder}
 				onChangeText={(text) => onChangeEmail(text)}
 				email={email}
 			/>
@@ -219,7 +220,8 @@ export default function MainScreen({ navigation }) {
 				style={styles.input}
 				defaultValue="senha1233"
 				secureTextEntry={true}
-				placeholder="Senha"
+				placeholder="Sua senha"
+				placeholderTextColor={colors.mainInputPlaceholder}
 				onChangeText={(text) => onChangeSenha(text)}
 				senha={senha}
 			/>
@@ -256,9 +258,9 @@ export default function MainScreen({ navigation }) {
 					// navigation.navigate('CadastrarInformacoesTeste');
 				}}>
 				<Image source={require('../../../assets/FacebookIcon.png')} />
-				<Text style={{ color: colors.mainTextColor, fontSize: 18, fontWeight: '500' }}>
+				<Text style={{ color: colors.mainTextColor, fontSize: 18, fontWeight: 'bold', flexGrow: 1, textAlign: 'center' }}>
 					ENTRAR COM O FACEBOOK
-        </Text>
+        		</Text>
 			</TouchableOpacity>
 
 			<TouchableOpacity
@@ -267,9 +269,13 @@ export default function MainScreen({ navigation }) {
 					Alert.alert('Aviso', 'Recurso atualmente indisponível');
 				}}>
 				<Image source={require('../../../assets/GoogleIcon.png')} />
-				<Text style={{ color: colors.mainTextColor, fontSize: 18, fontWeight: '500' }}>
+
+				<Text style={{
+					color: colors.mainTextColor, fontSize: 18, fontWeight: 'bold', flexGrow: 1, textAlign: 'center'
+				}}>
 					ENTRAR COM O GOOGLE
-        </Text>
+				</Text>
+
 			</TouchableOpacity>
 		</View>
 	);

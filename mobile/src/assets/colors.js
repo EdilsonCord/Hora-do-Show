@@ -10,7 +10,7 @@ export default {
 	// Color Scheme of Main Theme
 	mainBackgroundColor: '#212D3A',
 	// mainBackgroundColor: '#E55F54',
-	mainTitleColor: "#fff",
+	mainTextColor: "#fff",
 	mainTextColor: "#fff",
 	mainInputBackgroundColor: "#fff",
 	mainInputPlaceholder: "#404040",
@@ -40,6 +40,15 @@ export default {
 	mainExerciseDone: '#27cf49',
 	mainExerciseUndone: '#ff0000',
 
+	// Tela Perfil
+	mainInfoBackgroundColor: "#3B4754",
+	mainInfoBorderColor: '#000',
+	mainIconColor: "#00ff",
+	mainInfoTextColor: "#F2FDFF",
+
+	mainEditInfoIconColor: "#000",
+	mainEditButtonSucesso: '#27cf49',
+	mainEditButtonCancelar: '#ff0000',
 
 	// Cores para os simple buttons
 	mainLinkColor: "#fff",

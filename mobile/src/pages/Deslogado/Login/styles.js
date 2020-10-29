@@ -173,7 +173,7 @@ export default StyleSheet.create({
 		backgroundColor: colors.mainFacebookButtonColor,
 		borderRadius: 6,
 		flexDirection: 'row',
-		justifyContent: "space-evenly",
+		justifyContent: "flex-start",
 		alignItems: 'center',
 
 		shadowColor: colors.shadowColor,
@@ -191,11 +191,11 @@ export default StyleSheet.create({
 		width: '100%',
 		marginTop: 16,
 		paddingVertical: 4,
-		paddingHorizontal: 5,
+		paddingHorizontal: 20,
 		backgroundColor: colors.mainGoogleButtonColor,
 		borderRadius: 6,
 		flexDirection: 'row',
-		justifyContent: "space-evenly",
+		justifyContent: "flex-start",
 		alignItems: 'center',
 
 		shadowColor: colors.shadowColor,

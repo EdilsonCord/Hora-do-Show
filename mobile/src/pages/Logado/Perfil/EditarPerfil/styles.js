@@ -1,110 +1,86 @@
 import { StyleSheet } from 'react-native';
 
+import colors from 'dir-src/assets/colors.js';
+
 export default StyleSheet.create({
 	container: {
 		flex: 1,
 		padding: 20,
+		backgroundColor: colors.mainBackgroundColor,
 		// justifyContent: 'space-between',
 		// alignItems: 'center',
 	},
-	fotoPerfil: {
-		// flex: 1,
+	editInfo: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		marginBottom: 10,
+		paddingBottom: 10,
+		borderBottomWidth: 2,
+		borderColor: colors.mainTextColor
 	},
-	scrollView: {
-		width: '100%',
-		// marginTop: 32,
-
+	infoText: {
+		color: colors.mainTextColor,
+		fontSize: 18,
+		marginRight: 10,
+		textAlign: "right"
 	},
-	scrollViewHeader: {
+	infoDireita: {
+		flexDirection: 'row',
 		alignItems: 'center'
 	},
-	scrollViewBody: {
-		width: '100%',
-		marginTop: 32
-	},
-	textWhite: {
-		marginTop: 16,
+	baseModal: {
+		backgroundColor: colors.mainInfoBackgroundColor,
+		margin: 20,
+		borderRadius: 20,
+		padding: 30,
+		alignItems: "center",
 
+
+
+	},
+	modalTitle: {
+		color: colors.mainTextColor,
 		fontSize: 24,
-		color: "#F2FDFF",
-		fontWeight: "bold"
+		textAlign: 'center'
 	},
-	infos: {
-		backgroundColor: "#F2FdfF",
-		// backgroundColor: "#212D3A",
-		borderRadius: 6,
-		width: '100%',
-		paddingTop: 13,
-
-
-	},
-	camposInfos: {
-		flexDirection: "row",
-		alignItems: 'center',
-
-		borderBottomWidth: 1,
-		borderColor: '#000',
-
-		paddingVertical: 13,
-		paddingLeft: 13,
-
-	},
-	icon: {
-		backgroundColor: 'blue',
-		borderRadius: 24 / 2
-
-	},
-	textInfo: {
-		color: "#202020",
-		fontSize: 20,
-		marginLeft: 13
-	},
-	fatButton: {
-		width: '100%',
-		height: 40,
-
-		borderRadius: 6,
-		backgroundColor: '#fff',
-
-		alignItems: 'center',
-		justifyContent: 'center',
-
-		shadowColor: '#000',
-		shadowOffset: {
-			width: 0,
-			height: 3,
-		},
-		shadowOpacity: 0.27,
-		shadowRadius: 4.65,
-
-		elevation: 6,
-
-		marginTop: 32,
-	},
-	txtFatButton: {
-		fontSize: 18,
-		fontWeight: 'bold',
-	},
-	fatButtonLogout: {
-		width: '100%',
-		height: 40,
-
-		borderRadius: 6,
-		backgroundColor: '#D9C83A',
-
-		alignItems: 'center',
-		justifyContent: 'center',
-
-		shadowColor: '#000',
-		shadowOffset: {
-			width: 0,
-			height: 3,
-		},
-		shadowOpacity: 0.27,
-		shadowRadius: 4.65,
-
-		elevation: 6,
-
+	modalInputText: {
 		marginTop: 16,
+		width: '100%',
+		height: 35,
+
+		borderRadius: 6,
+		paddingLeft: 10,
+		paddingVertical: 7,
+
+		color: colors.mainInputText,
+		alignItems: 'center',
+
+		backgroundColor: colors.mainInputBackgroundColor,
+		fontSize: 18,
+	},
+	doubleButtons: {
+		marginTop: 16,
+		flexDirection: 'row',
+		justifyContent: 'space-evenly'
+	},
+	link: {
+		color: colors.mainLinkColor,
+		fontSize: 18,
+		lineHeight: 21,
+		textDecorationLine: "underline",
+	},
+	bigButton: {
+		backgroundColor: colors.mainEditButtonSucesso,
+		flexGrow: 1,
+		height: 40,
+		borderRadius: 8,
+
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	bigButtonText: {
+		color: colors.mainButtonTextColor,
+		fontSize: 18,
+		fontWeight: "bold",
 	},
 });

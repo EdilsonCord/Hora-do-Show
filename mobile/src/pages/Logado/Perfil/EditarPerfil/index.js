@@ -1,99 +1,187 @@
-import React, { Component } from 'react';
-import { View, Image, Text, TouchableOpacity, ScrollView } from 'react-native';
-import { Avatar } from 'react-native-elements';
+import React, { Component, useState } from 'react';
+import { View, Image, Text, TextInput, TouchableOpacity, ScrollView, Modal, Alert } from 'react-native';
 
-import {
-	Container, CardItem,
-	StyleProvider,
-	getTheme
-} from 'native-base';
-
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-Icon.loadFont();
-
-const IconePerfil = <Icon name="account" size={24} color="gray" />;
-
-import material from '../../../../../native-base-theme/variables/material'
 import styles from './styles';
 
+const iconSize = 16;
+
+import MCIcon from 'react-native-vector-icons/MaterialIcons';
+import colors from 'dir-src/assets/colors';
+const rightArrow = <MCIcon name="keyboard-arrow-right" size={iconSize} color={colors.mainTextColor} />
+var campo = '';
+var valorCampo = '';
+
+
 export default function EditPerfil({ navigation }) {
+	const [modalVisible, setModalVisible] = useState(false);
+	const [value, onChangeText] = React.useState('');
+
+	const TextInputNome = () => (
+		<TextInput
+			style={styles.modalInputText}
+			defaultValue={global.user.name}
+			placeholderTextColor={colors.mainInputPlaceholder}
+			onChangeText={(text) => onChangeText(text)}
+			value={value}
+			autoFocus={true}
+			keyboardType='default'
+
+		/>
+	)
+
+	const PickerGender = () => (
+		<TextInput
+			style={styles.modalInputText}
+			defaultValue={global.user.name}
+			placeholderTextColor={colors.mainInputPlaceholder}
+			onChangeText={(text) => onChangeText(text)}
+			value={value}
+			autoFocus={true}
+			keyboardType='default'
+
+		/>
+	)
+
+	const PickerMeta = () => (
+		<TextInput
+			style={styles.modalInputText}
+			defaultValue={global.user.name}
+			placeholderTextColor={colors.mainInputPlaceholder}
+			onChangeText={(text) => onChangeText(text)}
+			value={value}
+			autoFocus={true}
+			keyboardType='default'
+
+		/>
+	)
+
 	return (
-		<StyleProvider style={getTheme(material)}>
-			<Container style={styles.container}>
-				<ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
-					<View style={styles.scrollViewHeader}>
-						<Avatar
-							rounded
-							source={{
-								uri:
-									'https://avatars3.githubusercontent.com/u/50476075?s=460&u=11aba3fef6d20adac7264b36c503396700ac6182&v=4'
-							}}
-							onPress={() => console.log('teste')}
-							size={150}
-							showAccessory
-							accessory={{ style: { backgroundColor: '#000', borderRadius: 50 } }}
-							avatarStyle={styles.fotoPerfil}
-						/>
-						<Text style={styles.textWhite}>
-							Diego Braga
-						</Text>
+		<ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+			<Modal
+				animationType="fade"
+				transparent={true}
+				visible={modalVisible}
 
+			>
+				<View style={styles.baseModal}>
+					<Text style={styles.modalTitle}>Alterando {campo}</Text>
+					<TextInputNome />
+
+					<View style={styles.doubleButtons}>
+						<TouchableOpacity style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }} onPress={() => {
+							setModalVisible(!modalVisible);
+							Alert.alert('Info', 'Seus dados não foram alterados!')
+						}}>
+							<Text style={styles.link}>Cancelar</Text>
+						</TouchableOpacity>
+
+						<TouchableOpacity style={styles.bigButton} onPress={() => {
+							setModalVisible(!modalVisible);
+							Alert.alert('Concluído', 'Seus dados foram alterados!')
+						}} >
+							<Text style={styles.bigButtonText}>Confirmar</Text>
+
+						</TouchableOpacity>
 					</View>
+				</View>
+			</Modal>
 
-					<View style={styles.scrollViewBody}>
-						<Text style={{
-							fontSize: 24,
-							color: "#F2FDFF",
-							fontWeight: "bold",
-							marginLeft: 6,
-							marginBottom: 6
-						}}>Suas informações</Text>
+			<TouchableOpacity style={styles.editInfo} onPress={() => {
+				campo = "seu nome";
+				valorCampo = 'nome';
+				setModalVisible(true);
+			}}>
+				<View style={styles.infoEsquerda}>
+					<Text style={styles.infoText}>Seu nome</Text>
 
-						<View style={styles.infos}>
-							<View style={{
-								flexDirection: "row",
-								alignItems: 'center',
+				</View>
 
-								borderBottomWidth: 1,
-								borderColor: '#000',
+				<View style={styles.infoDireita}>
+					<Text style={styles.infoText}>{global.user.name}</Text>
+					{rightArrow}
+				</View>
+			</TouchableOpacity>
 
-								paddingBottom: 13,
-								paddingLeft: 13,
-							}}>
-								<Text style={styles.icon}>{IconePerfil}</Text>
-								<Text style={styles.textInfo}>Seu Peso: </Text>
+			<TouchableOpacity style={styles.editInfo} onPress={() => {
+				campo = "seu gênero";
+				valorCampo = 'genero';
+				setModalVisible(true);
+			}}>
+				<View style={styles.infoEsquerda}>
+					<Text style={styles.infoText}>Gênero</Text>
 
-							</View>
+				</View>
 
-							<View style={styles.camposInfos}>
-								<Text style={styles.icon}>{IconePerfil}</Text>
-								<Text style={styles.textInfo}>Sua Meta: </Text>
+				<View style={styles.infoDireita}>
+					<Text style={styles.infoText}>{global.user.name}</Text>
+					{rightArrow}
+				</View>
+			</TouchableOpacity>
 
-							</View>
+			<TouchableOpacity style={styles.editInfo} onPress={() => {
+				campo = "sua data de nascimento";
+				valorCampo = 'dtNasc';
+				setModalVisible(true);
+			}}>
+				<View style={styles.infoEsquerda}>
+					<Text style={styles.infoText}>Data de Nascimento</Text>
 
-							<View style={styles.camposInfos}>
-								<Text style={styles.icon}>{IconePerfil}</Text>
-								<Text style={styles.textInfo}>Seu IMC: </Text>
+				</View>
 
-							</View>
+				<View style={styles.infoDireita}>
+					<Text style={styles.infoText}>{global.user.name}</Text>
+					{rightArrow}
+				</View>
+			</TouchableOpacity>
 
-							<View style={styles.camposInfos}>
-								<Text style={styles.icon}>{IconePerfil}</Text>
-								<Text style={styles.textInfo}>Sua Altura: </Text>
+			<TouchableOpacity style={styles.editInfo} onPress={() => {
+				campo = "sua altura";
+				valorCampo = 'altura';
+				setModalVisible(true);
+			}}>
+				<View style={styles.infoEsquerda}>
+					<Text style={styles.infoText}>Altura</Text>
 
-							</View>
+				</View>
 
-							<View style={styles.camposInfos}>
-								<Text style={styles.icon}>{IconePerfil}</Text>
-								<Text style={styles.textInfo}>Sua Idade: </Text>
+				<View style={styles.infoDireita}>
+					<Text style={styles.infoText}>{global.user.name}</Text>
+					{rightArrow}
+				</View>
+			</TouchableOpacity>
 
-							</View>
-						</View>
+			<TouchableOpacity style={styles.editInfo} onPress={() => {
+				campo = "seu peso";
+				valorCampo = 'peso';
+				setModalVisible(true);
+			}}>
+				<View style={styles.infoEsquerda}>
+					<Text style={styles.infoText}>Peso</Text>
 
-					</View >
+				</View>
 
-				</ScrollView>
-			</Container>
-		</StyleProvider>
+				<View style={styles.infoDireita}>
+					<Text style={styles.infoText}>{global.user.name}</Text>
+					{rightArrow}
+				</View>
+			</TouchableOpacity>
+
+			<TouchableOpacity style={styles.editInfo} onPress={() => {
+				campo = "sua meta";
+				valorCampo = 'meta';
+				setModalVisible(true);
+			}}>
+				<View style={styles.infoEsquerda}>
+					<Text style={styles.infoText}>Meta</Text>
+
+				</View>
+
+				<View style={styles.infoDireita}>
+					<Text style={styles.infoText}>{global.user.name}</Text>
+					{rightArrow}
+				</View>
+			</TouchableOpacity>
+
+		</ScrollView>
 	);
 }
