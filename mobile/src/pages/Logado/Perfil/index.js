@@ -8,32 +8,53 @@ import {
 	getTheme
 } from 'native-base';
 
+import material from '../../../../native-base-theme/variables/material';
+import styles from './styles';
+import colors from 'dir-src/assets/colors.js';
+
 import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import EntypoIcon from 'react-native-vector-icons/Entypo';
 
 const iconSize = 30;
 
-const IconAlvo = <MCIcon name="target" size={iconSize} color="#ff0000" />
-const IconeBalanca = <MCIcon name="scale-bathroom" size={iconSize} color="#0f0faa" />;
-const IconeCalculadora = <MCIcon name="calculator-variant" size={iconSize} color="#55ff00" />;
+const IconAlvo = <MCIcon name="target" size={iconSize} color={colors.red} />
+const IconeBalanca = <MCIcon name="scale-bathroom" size={iconSize} color={colors.blue} />;
+const IconeCalculadora = <MCIcon name="calculator-variant" size={iconSize} color={colors.green} />;
+const HappyFace = <EntypoIcon name="emoji-happy" size={iconSize} color={colors.green} />;
+const PokerFace = <EntypoIcon name="emoji-neutral" size={iconSize} color={colors.orange} />;
+const SadFace = <EntypoIcon name="emoji-sad" size={iconSize} color={colors.red} />;
 
-import material from '../../../../native-base-theme/variables/material';
-import styles from './styles';
 
 export default function SeuPerfil({ navigation }) {
 	const CalculaIMC = () => {
 		const imc = parseFloat(global.user.peso) / Math.pow(global.user.altura * 0.01, 2);
+		// const imc = 40;
+		var retornaIMC;
+		var retornaIcone;
 
 		if (imc > 40) {
-			return 'Obesidade Grave ';
+			retornaIMC = 'Obesidade Grave';
+			retornaIcone = SadFace
 		} else if (imc > 30) {
-			return 'Obesidade';
+			retornaIMC = 'Obesidade';
+			retornaIcone = SadFace;
 		} else if (imc > 25) {
-			return 'Sobrepeso';
+			retornaIMC = 'Sobrepeso';
+			retornaIcone = PokerFace;
 		} else if (imc > 18.5) {
-			return 'Normal';
-		} else {
-			return 'Magreza';
+			retornaIMC = 'Normal';
+			retornaIcone = HappyFace;
+		} else if (imc > 18.5) {
+			retornaIMC = 'Magreza';
+			retornaIcone = PokerFace;
 		}
+
+		return <View style={{ flexDirection: 'row', flexGrow: 1, justifyContent: 'space-between' }}>
+			<Text style={styles.textInfo}>Seu IMC: {retornaIMC} </Text>
+			<Text style={styles.icon}>{retornaIcone}</Text>
+
+		</View>
+
 	}
 
 	return (
@@ -48,7 +69,6 @@ export default function SeuPerfil({ navigation }) {
 							source={{
 								uri:
 									'https://avatars3.githubusercontent.com/u/50476075?s=460&u=11aba3fef6d20adac7264b36c503396700ac6182&v=4'
-								// 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
 							}}
 							size={150}
 							onPress={() => { }}
@@ -77,10 +97,13 @@ export default function SeuPerfil({ navigation }) {
 								alignItems: 'center',
 
 								borderBottomWidth: 1,
-								borderColor: '#000',
+								borderColor: colors.mainInfoBorderColor,
 
 								paddingBottom: 13,
-								paddingLeft: 13,
+								paddingHorizontal: 13,
+
+								flexDirection: "row",
+
 							}}>
 								<Text style={styles.icon}>{IconeBalanca}</Text>
 								<Text style={styles.textInfo}>Seu Peso: {global.user.peso} Kg</Text>
@@ -95,7 +118,13 @@ export default function SeuPerfil({ navigation }) {
 
 							<View style={styles.camposInfos}>
 								<Text style={styles.icon}>{IconeCalculadora}</Text>
-								<Text style={styles.textInfo}>Seu IMC: <CalculaIMC /></Text>
+
+								{/* <View style={{ backgroundColor: 'green', flexDirection: 'row', width: '90%', justifyContent: 'space-between' }}>
+									<Text style={styles.textInfo}>Seu IMC: <CalculaIMC /> </Text>
+									<Text style={styles.icon}>{HappyFace}</Text>
+
+								</View> */}
+								<CalculaIMC />
 
 							</View>
 

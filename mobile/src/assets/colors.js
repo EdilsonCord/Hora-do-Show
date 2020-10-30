@@ -2,10 +2,14 @@ export default {
 	black: '#000',
 	white: '#fff',
 
-	blue: '#0B7285',
 	corLogo1: '#E55F54',
 	corLogo2: '#F9EE92',
 	semiBlack: '#373737',
+
+	blue: '#0B7285',
+	green: '#4d9078',
+	orange: '#b87100',
+	red: '#b80c00',
 
 	// Color Scheme of Main Theme
 	mainBackgroundColor: '#212D3A',

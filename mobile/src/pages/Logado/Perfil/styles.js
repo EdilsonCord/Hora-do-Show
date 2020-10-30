@@ -48,7 +48,7 @@ export default StyleSheet.create({
 		borderColor: colors.mainInfoBorderColor,
 
 		paddingVertical: 13,
-		paddingLeft: 13,
+		paddingHorizontal: 13,
 
 	},
 	icon: {
@@ -59,7 +59,8 @@ export default StyleSheet.create({
 	textInfo: {
 		color: colors.mainInfoTextColor,
 		fontSize: 20,
-		marginLeft: 13
+		marginLeft: 13,
+		textAlignVertical: "center"
 	},
 	fatButton: {
 		width: '100%',
