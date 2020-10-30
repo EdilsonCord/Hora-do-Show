@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { View, Image, Text, TextInput, TouchableOpacity, ScrollView, Modal, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import TextInputMask from 'react-native-text-input-mask';
@@ -13,47 +13,40 @@ const rightArrow = <MCIcon name="keyboard-arrow-right" size={iconSize} color={co
 var campo = '';
 var valorCampo = '';
 
-
 export default function EditPerfil({ navigation }) {
-	// const [value, setValue] = React.useState('Definir'); //GENERO
 	const [selectedValue, setSelectedValue] = useState(''); //META
-	const [name, setName] = React.useState('');
-	const [surname, setSurname] = React.useState('');
-	const [peso, setPeso] = React.useState('');
-	const [altura, setAltura] = React.useState('');
-	const [dtNasc, setDtNasc] = React.useState('');
+	const [name, editName] = useState('');
+	const [surname, editSurname] = useState('');
+	const [peso, editPeso] = useState('');
+	const [altura, editAltura] = useState('');
+	const [dtNasc, editDtNasc] = useState('');
 
 	const [modalVisible, setModalVisible] = useState(false);
-	// const [value, onChangeText] = React.useState('');
 
 	const TextInputNome = () => (
 		<TextInput
 			style={styles.modalInputText}
-			defaultValue={global.user.name + ' ' + global.user.surname}
-			placeholderTextColor={colors.mainInputPlaceholder}
-			onChangeText={(text) => onChangeText(text)}
-			autoFocus={true}
-			keyboardType='default'
-			onChangeText={(text) => {
-				setName(text);
-			}}
+			defaultValue={global.user.name}
+			onChangeText={(text) => editName(text)}
 			name={name}
 
+			autoCapitalize='words'
+			autoFocus={true}
+			keyboardType='default'
+
 		/>
-	)
+	);
 
 	const TextInputSobrenome = () => (
 		<TextInput
 			style={styles.modalInputText}
 			defaultValue={global.user.surname}
-			placeholderTextColor={colors.mainInputPlaceholder}
-			onChangeText={(text) => onChangeText(text)}
+			onChangeText={(text) => editSurname(text)}
+			surname={surname}
+
+			autoCapitalize='words'
 			autoFocus={true}
 			keyboardType='default'
-			onChangeText={(text) => {
-				setName(text);
-			}}
-			name={name}
 
 		/>
 	)
@@ -67,8 +60,9 @@ export default function EditPerfil({ navigation }) {
 			autoFocus={true}
 			style={styles.modalInputText}
 			onChangeText={(text) => {
-				setDtNasc(text);
+				editDtNasc(text);
 			}}
+
 			dtNasc={dtNasc}
 		/>
 	)
@@ -82,7 +76,7 @@ export default function EditPerfil({ navigation }) {
 			autoFocus={true}
 			style={styles.modalInputText}
 			onChangeText={(text) => {
-				setAltura(text);
+				editAltura(text);
 			}}
 			altura={altura}
 		/>
@@ -90,6 +84,7 @@ export default function EditPerfil({ navigation }) {
 
 	const TextInputPeso = () => (
 		<TextInputMask
+
 			mask={'[990],[000]'}
 			// placeholder="Peso (kg)"
 			defaultValue={global.user.peso}
@@ -97,7 +92,7 @@ export default function EditPerfil({ navigation }) {
 			autoFocus={true}
 			style={styles.modalInputText}
 			onChangeText={(text) => {
-				setPeso(text);
+				editPeso(text);
 			}}
 			peso={peso}
 		/>
@@ -131,25 +126,28 @@ export default function EditPerfil({ navigation }) {
 	const TipoInput = () => {
 		switch (valorCampo) {
 			case 'nome':
-				return <TextInputNome />;
+				return TextInputNome();
 
 			case 'sobrenome':
-				return <TextInputSobrenome />;
+				return TextInputSobrenome();
 
 			case 'sexo':
-				return <PickerGender />;
+				return PickerGender();
 
 			case 'dtNasc':
-				return <TextInputDtNasc />;
+				return TextInputDtNasc();
 
 			case 'altura':
-				return <TextInputAltura />;
+				return TextInputAltura();
 
 			case 'peso':
-				return <TextInputPeso />;
+				return TextInputPeso();
 
 			case 'meta':
-				return <PickerMeta />
+				return PickerMeta();
+
+			default:
+				return <View></View>
 		}
 	}
 
@@ -166,9 +164,7 @@ export default function EditPerfil({ navigation }) {
 
 					<View style={styles.baseModal}>
 						<Text style={styles.modalTitle}>Alterando {campo}</Text>
-						{/* <TextInputNome /> */}
-						{/* <PickerMeta /> */}
-						<TipoInput />
+						{TipoInput()}
 
 						<View style={styles.doubleButtons}>
 							<TouchableOpacity style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }} onPress={() => {
@@ -197,7 +193,7 @@ export default function EditPerfil({ navigation }) {
 				setModalVisible(true);
 			}}>
 				<View style={styles.infoEsquerda}>
-					<Text style={styles.infoText}>Seu sobrenome</Text>
+					<Text style={styles.infoText}>Seu nome</Text>
 
 				</View>
 
@@ -213,7 +209,7 @@ export default function EditPerfil({ navigation }) {
 				setModalVisible(true);
 			}}>
 				<View style={styles.infoEsquerda}>
-					<Text style={styles.infoText}>Seu nome</Text>
+					<Text style={styles.infoText}>Seu sobrenome</Text>
 
 				</View>
 
