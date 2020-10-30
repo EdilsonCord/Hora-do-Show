@@ -13,15 +13,67 @@ const rightArrow = <MCIcon name="keyboard-arrow-right" size={iconSize} color={co
 var campo = '';
 var valorCampo = '';
 
+
+
 export default function EditPerfil({ navigation }) {
-	const [selectedValue, setSelectedValue] = useState(''); //META
-	const [name, editName] = useState('');
-	const [surname, editSurname] = useState('');
-	const [peso, editPeso] = useState('');
-	const [altura, editAltura] = useState('');
-	const [dtNasc, editDtNasc] = useState('');
+	const [selectedValue, setSelectedValue] = useState(global.user.meta); //META
+	const [name, editName] = useState(global.user.name);
+	const [surname, editSurname] = useState(global.user.surname);
+	const [peso, editPeso] = useState(global.user.peso);
+	const [altura, editAltura] = useState(global.user.altura);
+	const [dtNasc, editDtNasc] = useState(global.user.dtnasc);
 
 	const [modalVisible, setModalVisible] = useState(false);
+
+	async function handleCompleteRegister(e) {
+		e.preventDefault();
+
+		
+		//CRIAR OUTRA FUNÇÃO NÃO-ASYNC PARA VERIFICAR CAMPOS INVES DE POR AQUI
+		//if (name === '') {
+		//	return alert('Você esqueceu de por seu nome');
+		//}
+
+		global.user.name = name;
+		global.user.surname = surname;
+		global.user.peso = peso;
+		global.user.altura = altura;
+		global.user.dtNasc = dtNasc;
+		global.user.meta = selectedValue;
+
+		fetch('http://' + global.endereco +'/api/att_dados', {
+			method: 'post',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				email: global.user.email,
+				name: name,
+				surname: surname,
+				peso: peso,
+				altura: altura,
+				dtNasc: dtNasc,
+				meta: selectedValue
+			}),
+		})
+			.then((response) => response.json())
+			.then((response) => {
+				if ('error' in response) {
+					alert(response.error);
+				} else {
+					console.log(response);
+					Alert.alert('Concluído', 'Seus dados foram alterados!')
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+
+			setModalVisible(!modalVisible);
+	}
+
+
 
 	const TextInputNome = () => (
 		<TextInput
@@ -116,9 +168,9 @@ export default function EditPerfil({ navigation }) {
 			style={styles.modalInputText}
 			onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
 		>
-			<Picker.Item label="Definir" value="definir" />
-			<Picker.Item label="Emagrecer" value="emagrecer" />
-			<Picker.Item label="Crescer" value="crescer" />
+			<Picker.Item label="Definir" value="Definir" />
+			<Picker.Item label="Emagrecer" value="Emagrecer" />
+			<Picker.Item label="Crescer" value="Crescer" />
 		</Picker>
 
 	)
@@ -174,10 +226,7 @@ export default function EditPerfil({ navigation }) {
 								<Text style={styles.link}>Cancelar</Text>
 							</TouchableOpacity>
 
-							<TouchableOpacity style={styles.bigButton} onPress={() => {
-								setModalVisible(!modalVisible);
-								Alert.alert('Concluído', 'Seus dados foram alterados!')
-							}} >
+							<TouchableOpacity style={styles.bigButton} onPress={handleCompleteRegister} >
 								<Text style={styles.bigButtonText}>Confirmar</Text>
 
 							</TouchableOpacity>

@@ -3,4 +3,5 @@ import Routes from './src/routes/deslogado.routes';
 import {name as appName} from './app.json';
 
 global.user = []
+global.endereco = '192.168.0.27:3333'
 AppRegistry.registerComponent(appName, () => Routes);

@@ -23,7 +23,7 @@ export default function Exercicio({ navigation }) {
 		//Have a try and catch block for catching errors.
 		try {
 			//Assign the promise unresolved first then get the data using the json method.
-			const pokemonApiCall = await fetch('http://10.0.2.2:3333/treino/get');
+			const pokemonApiCall = await fetch('http://' + global.endereco +'/treino/get');
 			const pokemon = await pokemonApiCall.json();
 			setDados(pokemon);
 		} catch (err) {

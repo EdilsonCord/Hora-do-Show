@@ -148,6 +148,7 @@ router.post("/completeRegister", async (req, res) => {
           }
 });
 
+
 router.post("/authenticate", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -257,6 +258,142 @@ router.post('/reset_password', async (req, res) => {
     res.status(400).send({error: 'Nao foi possivel resetar a senha, tente novamente.'})
   }
 })
+
+router.post("/att_nome", async (req, res) => {
+  const { email, name } = req.body;
+
+  try {
+    const user = await User.findOne({ email })
+
+          user.name = name;
+          await user.save()
+          res.send()
+   
+        } catch (err) {
+            console.log(err)
+            res.status(400).send({error: 'Não foi possivel fazer alterações, tente novamente.'})
+          }
+});
+
+router.post("/att_sobrenome", async (req, res) => {
+  const { email, surname } = req.body;
+
+  try {
+    const user = await User.findOne({ email })
+
+          user.surname = surname;
+          await user.save()
+          res.send()
+   
+        } catch (err) {
+            console.log(err)
+            res.status(400).send({error: 'Não foi possivel fazer alterações, tente novamente.'})
+          }
+});
+
+router.post("/att_datanasc", async (req, res) => {
+  const { email, dtNasc } = req.body;
+
+  try {
+    const user = await User.findOne({ email })
+
+          user.dtNasc = dtNasc;
+          await user.save()
+          res.send()
+   
+        } catch (err) {
+            console.log(err)
+            res.status(400).send({error: 'Não foi possivel fazer alterações, tente novamente.'})
+          }
+});
+
+router.post("/att_peso", async (req, res) => {
+  const { email, peso } = req.body;
+
+  try {
+    const user = await User.findOne({ email })
+
+          user.peso = peso;
+          await user.save()
+          res.send()
+   
+        } catch (err) {
+            console.log(err)
+            res.status(400).send({error: 'Não foi possivel fazer alterações, tente novamente.'})
+          }
+});
+
+router.post("/att_altura", async (req, res) => {
+  const { email, altura } = req.body;
+
+  try {
+    const user = await User.findOne({ email })
+
+          user.altura = altura;
+          await user.save()
+          res.send()
+   
+        } catch (err) {
+            console.log(err)
+            res.status(400).send({error: 'Não foi possivel fazer alterações, tente novamente.'})
+          }
+});
+
+router.post("/att_meta", async (req, res) => {
+  const { email, meta } = req.body;
+
+  try {
+    const user = await User.findOne({ email })
+
+          user.meta = meta;
+          await user.save()
+          res.send()
+   
+        } catch (err) {
+            console.log(err)
+            res.status(400).send({error: 'Não foi possivel fazer alterações, tente novamente.'})
+          }
+});
+
+router.post("/att_sexo", async (req, res) => {
+  const { email, sexo } = req.body;
+
+  try {
+    const user = await User.findOne({ email })
+
+          user.sexo = sexo;
+          await user.save()
+          res.send()
+   
+        } catch (err) {
+            console.log(err)
+            res.status(400).send({error: 'Não foi possivel fazer alterações, tente novamente.'})
+          }
+});
+
+router.post("/att_dados", async (req, res) => {
+  const { email, name, surname, peso, altura, dtNasc, meta } = req.body;
+
+  try {
+    const user = await User.findOne({ email })
+
+          user.name = name;
+          user.surname = surname;
+          user.peso = peso;
+          user.altura = altura;
+          user.dtNasc = dtNasc;
+          user.meta = meta;
+
+          await user.save()
+          res.send()
+   
+        } catch (err) {
+            console.log(err)
+            res.status(400).send({error: 'Não foi possivel fazer alterações, tente novamente.'})
+          }
+});
+
+
 
 router.use(authMiddleware);
 

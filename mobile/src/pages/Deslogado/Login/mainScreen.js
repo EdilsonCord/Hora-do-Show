@@ -178,7 +178,7 @@ export default function MainScreen({ navigation }) {
 	async function handleRegister(e) {
 		e.preventDefault();
 
-		fetch('http://10.0.2.2:3333/api/authenticate', {
+		fetch('http://' + global.endereco +'/api/authenticate', {
 			method: 'post',
 			headers: {
 				Accept: 'application/json',

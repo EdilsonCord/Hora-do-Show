@@ -40,7 +40,7 @@ export default function Exercicios({ navigation, route }) {
 			//Assign the promise unresolved first then get the data using the json method.
 			console.log(treino);
 			const dadosAPICall = await fetch(
-				'http://10.0.2.2:3333/treino/get/id/' + treino,
+				'http://' + global.endereco +'/treino/get/id/' + treino,
 			);
 			const dadosJson = await dadosAPICall.json();
 			console.log(dadosJson);
