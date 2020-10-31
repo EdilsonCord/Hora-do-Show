@@ -63,7 +63,7 @@ function StackTelaPerfil() {
 
 			screenOptions={{
 				headerStyle: {
-					backgroundColor: '#E55F54',
+					backgroundColor: colors.headerColor,
 				},
 				headerTintColor: '#fff',
 				headerTitleStyle: {

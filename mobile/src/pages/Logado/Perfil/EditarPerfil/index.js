@@ -16,19 +16,20 @@ var valorCampo = '';
 
 
 export default function EditPerfil({ navigation }) {
-	const [selectedValue, setSelectedValue] = useState(global.user.meta); //META
+	const [meta, editMeta] = useState(global.user.meta); //META
+	const [sexo, editSexo] = useState(global.user.sexo); //sexo
 	const [name, editName] = useState(global.user.name);
 	const [surname, editSurname] = useState(global.user.surname);
 	const [peso, editPeso] = useState(global.user.peso);
 	const [altura, editAltura] = useState(global.user.altura);
-	const [dtNasc, editDtNasc] = useState(global.user.dtnasc);
+	const [dtNasc, editDtNasc] = useState(global.user.dtNasc);
 
 	const [modalVisible, setModalVisible] = useState(false);
 
 	async function handleCompleteRegister(e) {
 		e.preventDefault();
 
-		
+
 		//CRIAR OUTRA FUNÇÃO NÃO-ASYNC PARA VERIFICAR CAMPOS INVES DE POR AQUI
 		//if (name === '') {
 		//	return alert('Você esqueceu de por seu nome');
@@ -36,12 +37,13 @@ export default function EditPerfil({ navigation }) {
 
 		global.user.name = name;
 		global.user.surname = surname;
+		global.user.sexo = sexo;
 		global.user.peso = peso;
 		global.user.altura = altura;
 		global.user.dtNasc = dtNasc;
-		global.user.meta = selectedValue;
+		global.user.meta = meta;
 
-		fetch('http://' + global.endereco +'/api/att_dados', {
+		fetch('http://' + global.endereco + '/api/att_dados', {
 			method: 'post',
 			headers: {
 				Accept: 'application/json',
@@ -51,10 +53,11 @@ export default function EditPerfil({ navigation }) {
 				email: global.user.email,
 				name: name,
 				surname: surname,
+				sexo: sexo,
 				peso: peso,
 				altura: altura,
 				dtNasc: dtNasc,
-				meta: selectedValue
+				meta: meta
 			}),
 		})
 			.then((response) => response.json())
@@ -70,7 +73,8 @@ export default function EditPerfil({ navigation }) {
 				console.log(err);
 			});
 
-			setModalVisible(!modalVisible);
+		Alert.alert('Concluído', 'Seus dados foram alterados!');
+		setModalVisible(!modalVisible);
 	}
 
 
@@ -150,26 +154,27 @@ export default function EditPerfil({ navigation }) {
 		/>
 	)
 
-	const PickerGender = () => (
+	const PickerSexo = () => (
 		<Picker
-			selectedValue={selectedValue}
+			selectedValue={sexo}
 			style={styles.modalInputText}
-			onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+			onValueChange={(itemValue, itemIndex) => editSexo(itemValue)}
 		>
-			<Picker.Item label="Masculino" value="macho" />
-			<Picker.Item label="Feminino" value="femea" />
+			<Picker.Item label="Masculino" value="Masculino" />
+			<Picker.Item label="Feminino" value="Feminino" />
 		</Picker>
 	)
 
 
 	const PickerMeta = () => (
 		<Picker
-			selectedValue={selectedValue}
+
+			selectedValue={meta}
 			style={styles.modalInputText}
-			onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+			onValueChange={(itemValue, itemIndex) => editMeta(itemValue)}
 		>
-			<Picker.Item label="Definir" value="Definir" />
 			<Picker.Item label="Emagrecer" value="Emagrecer" />
+			<Picker.Item label="Definir" value="Definir" />
 			<Picker.Item label="Crescer" value="Crescer" />
 		</Picker>
 
@@ -184,7 +189,7 @@ export default function EditPerfil({ navigation }) {
 				return TextInputSobrenome();
 
 			case 'sexo':
-				return PickerGender();
+				return PickerSexo();
 
 			case 'dtNasc':
 				return TextInputDtNasc();
@@ -279,7 +284,7 @@ export default function EditPerfil({ navigation }) {
 				</View>
 
 				<View style={styles.infoDireita}>
-					<Text style={styles.infoText}>{global.user.name}</Text>
+					<Text style={styles.infoText}>{global.user.sexo}</Text>
 					{rightArrow}
 				</View>
 			</TouchableOpacity>

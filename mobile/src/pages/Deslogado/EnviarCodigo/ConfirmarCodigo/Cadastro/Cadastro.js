@@ -153,8 +153,8 @@ import styles from './styles';
 
 export default function CadastrarInformacoes({ navigation, route }) {
 	// export default function CadastrarInformacoes({ navigation }) {
-	const [value, setValue] = React.useState('Definir'); //GENERO
-	const [selectedValue, setSelectedValue] = useState(''); //META
+	const [sexo, setSexo] = React.useState('Masculino'); //sexo kkkkkk
+	const [meta, setMeta] = useState('Emagrecer'); //META
 	const [email, onChangeEmail] = React.useState(route.params.email);
 	const [senha, onChangeSenha] = React.useState(route.params.senha);
 	const [name, setName] = React.useState('');
@@ -182,10 +182,11 @@ export default function CadastrarInformacoes({ navigation, route }) {
 				password: senha,
 				name: name,
 				surname: surname,
+				sexo: sexo,
 				peso: peso,
 				altura: altura,
 				dtNasc: dtNasc,
-				meta: selectedValue,
+				meta: meta,
 			}),
 		})
 			.then((response) => response.json())
@@ -225,33 +226,39 @@ export default function CadastrarInformacoes({ navigation, route }) {
 					name={name}
 				/>
 
-				<TextInput 
-					placeholder="Sobrenome" 
-					style={styles.insertText} 
+				<TextInput
+					placeholder="Sobrenome"
+					style={styles.insertText}
 					onChangeText={(text) => {
 						setSurname(text);
 					}}
-					surname={surname}/>
+					surname={surname} />
 
 				<View style={styles.campoSexo}>
 					<Text style={styles.textoImportante}>Sexo</Text>
 
 					<RadioButton.Group
-						onValueChange={(value) => setValue(value)}
-						value={value}>
+						onValueChange={(value) => setSexo(value)}
+						value={sexo}>
 						<View style={styles.radioButton}>
-							<RadioButton value="Masc" />
+							<RadioButton value="Masculino"
+							// status={sexo === 'masc' ? 'checked' : 'unchecked'}
+							// onPress={() => setSexo('masc')} 
+							/>
 
 							<Text style={styles.textoRB}>Masculino</Text>
 						</View>
 						<View style={styles.radioButton}>
-							<RadioButton value="Fem" />
+							<RadioButton value="Feminino"
+							// status={sexo === 'fem' ? 'checked' : 'unchecked'}
+							// onPress={() => setSexo('fem')}
+							/>
 
 							<Text style={styles.textoRB}>Feminino</Text>
 						</View>
 					</RadioButton.Group>
 				</View>
-
+				{/* <Text>Valor sexo kkkk: {sexo}</Text> */}
 				<View style={styles.campoDuplo}>
 					<TextInputMask
 						mask={'[000]'}
@@ -289,14 +296,13 @@ export default function CadastrarInformacoes({ navigation, route }) {
 
 					<View style={styles.campoPicker}>
 						<Picker
-							selectedValue={selectedValue}
+							selectedValue={meta}
 							style={styles.picker}
-							onValueChange={(itemValue, itemIndex) =>
-								setSelectedValue(itemValue)
+							onValueChange={(itemValue) =>
+								setMeta(itemValue)
 							}>
-							<Picker.name label="Meta" />
-							<Picker.Item label="Definir" value="Definir" />
 							<Picker.Item label="Emagrecer" value="Emagrecer" />
+							<Picker.Item label="Definir" value="Definir" />
 							<Picker.Item label="Crescer" value="Crescer" />
 						</Picker>
 						{/* {DownArrow} */}

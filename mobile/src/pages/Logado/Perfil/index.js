@@ -24,8 +24,8 @@ const HappyFace = <EntypoIcon name="emoji-happy" size={iconSize} color={colors.g
 const PokerFace = <EntypoIcon name="emoji-neutral" size={iconSize} color={colors.orange} />;
 const SadFace = <EntypoIcon name="emoji-sad" size={iconSize} color={colors.red} />;
 
-
 export default function SeuPerfil({ navigation }) {
+
 	const CalculaIMC = () => {
 		const imc = parseFloat(global.user.peso) / Math.pow(global.user.altura * 0.01, 2);
 		// const imc = 40;
@@ -57,18 +57,34 @@ export default function SeuPerfil({ navigation }) {
 
 	}
 
+	const defineAvatar = () => {
+		var retornaAvatar;
+
+		if (global.user.sexo == 'Masculino') {
+			retornaAvatar = 'https://i.imgur.com/kzABjUH.png'
+			// retornaAvatar = 'https://avatars3.githubusercontent.com/u/50476075?s=460&u=11aba3fef6d20adac7264b36c503396700ac6182&v=4'
+		} else {
+			retornaAvatar = 'https://i.imgur.com/91M3k0c.png'
+			// retornaAvatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'
+		}
+
+		return retornaAvatar
+	}
+
 	return (
 
 		<StyleProvider style={getTheme(material)}>
 			<Container style={styles.container}>
 				<ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
 
+
 					<View style={styles.scrollViewHeader}>
 						<Avatar
 							rounded
 							source={{
 								uri:
-									'https://avatars3.githubusercontent.com/u/50476075?s=460&u=11aba3fef6d20adac7264b36c503396700ac6182&v=4'
+									defineAvatar()
+								// 	'https://avatars3.githubusercontent.com/u/50476075?s=460&u=11aba3fef6d20adac7264b36c503396700ac6182&v=4'
 							}}
 							size={150}
 							onPress={() => { }}
@@ -144,6 +160,6 @@ export default function SeuPerfil({ navigation }) {
 
 				</ScrollView>
 			</Container>
-		</StyleProvider>
+		</StyleProvider >
 	);
 }
