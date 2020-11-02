@@ -23,7 +23,7 @@ export default function Exercicio({ navigation }) {
 		//Have a try and catch block for catching errors.
 		try {
 			//Assign the promise unresolved first then get the data using the json method.
-			const pokemonApiCall = await fetch('http://' + global.endereco +'/treino/get');
+			const pokemonApiCall = await fetch('http://' + global.endereco + '/treino/get');
 			const pokemon = await pokemonApiCall.json();
 			setDados(pokemon);
 		} catch (err) {
@@ -59,22 +59,22 @@ export default function Exercicio({ navigation }) {
 					showsVerticalScrollIndicator={false}
 					renderItem={({ item }) => (
 						<View>
-							{ item.meta === global.user.meta ? 
-							<View style={styles.containerShadow}>
-								
-
-								<Image source={{uri: item.imagem}} style={{marginLeft: "-13%", marginVertical: -10, width: 100, height: 100, borderRadius: 50, backgroundColor: "#fafafa"}}/>
-
-								<TouchableOpacity style={{ marginLeft: 20, width: 225 }} onPress={() =>
+							{ item.meta === global.user.meta ?
+								<TouchableOpacity style={styles.containerShadow} onPress={() =>
 									navigation.navigate('Exercicios', { treino: item._id, nomeTreino: item.tipo_treino })
 								}>
-									<Text style={{ marginBottom: 10, fontSize: 20, fontWeight: "700" }}>Treino {item.tipo_treino}</Text>
-									<Text note>{item.desc_treino}</Text>
-									<Text style={{ color: material.brandInfo, marginTop: 5, textAlign: 'right' }}> 0 de 5 <Icon style={{ color: material.brandInfo, fontSize: 15 }} name="weight-lifter" type="MaterialCommunityIcons"></Icon></Text>
-								</TouchableOpacity>
 
-							</View>
-							: null }
+
+									<Image source={{ uri: item.imagem }} style={{ marginLeft: "-13%", marginVertical: -10, width: 100, height: 100, borderRadius: 50, backgroundColor: "#fafafa" }} />
+
+									<View style={{ marginLeft: 20, width: 225 }} >
+										<Text style={{ marginBottom: 10, fontSize: 20, fontWeight: "700" }}>Treino {item.tipo_treino}</Text>
+										<Text note>{item.desc_treino}</Text>
+										<Text style={{ color: material.brandInfo, marginTop: 5, textAlign: 'right' }}>{item.exercicios.length} exercícios no total <Icon style={{ color: material.brandInfo, fontSize: 15 }} name="weight-lifter" type="MaterialCommunityIcons"></Icon></Text>
+									</View>
+
+								</TouchableOpacity>
+								: null}
 						</View>
 					)}
 				/>

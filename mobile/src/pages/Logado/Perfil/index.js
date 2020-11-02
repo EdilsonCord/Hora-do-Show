@@ -140,7 +140,8 @@ export default function SeuPerfil({ navigation }) {
 									<Text style={styles.icon}>{HappyFace}</Text>
 
 								</View> */}
-								<CalculaIMC />
+								{/* <CalculaIMC /> */}
+								{CalculaIMC()}
 
 							</View>
 
