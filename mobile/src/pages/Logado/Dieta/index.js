@@ -17,7 +17,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import DietIcon from '../../../assets/DietIcon.js';
 
-export default function Exercicio({navigation}) {
+export default function Dieta({navigation}) {
 
   
 
@@ -173,7 +173,10 @@ const AlimentosLancheManha = [
                 style={styles.listarIndiceRefeicoes}
                 showsHorizontalScrollIndicator={false}
                 extraData={food}
-                renderItem={({item}) => (<Card transparent style={{height: 150}}>
+                renderItem={({item}) => (<TouchableOpacity style={styles.containerShadow} onPress={() =>
+                                            navigation.navigate('Alimento', { alimento: food[item.idAlimento] })
+                                          }>
+                                          <Card transparent style={{height: 150}}>
                                             <Body >
                                             <Image
                                               style={{width: 100, height: 100, resizeMode: "contain", marginBottom: 15}}
@@ -181,6 +184,7 @@ const AlimentosLancheManha = [
                                             <Text note>{food[item.idAlimento].titulo}</Text>
                                             </Body>
                                          </Card>
+                                         </TouchableOpacity>
 
                 )}
                 />

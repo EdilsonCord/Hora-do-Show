@@ -10,9 +10,9 @@ import Video from 'react-native-video';
 
 import styles from './styles';
 
-export default function Alimento({ navigation }) {
+export default function Alimento({ navigation, route }) {
 
-	//const [dados, setDados] = React.useState(route.params.exercicio)
+	const [dados, setDados] = React.useState(route.params.alimento)
 
 	const dados1 = 
 		{
@@ -30,7 +30,7 @@ export default function Alimento({ navigation }) {
 			<View style={styles.headerTotal}>
 				<View style={styles.headerFaixa}>
 					<View style={styles.faixa}>
-						<Text style={styles.textoFaixa}>{dados1.titulo}</Text>
+						<Text style={styles.textoFaixa}>{dados.titulo}</Text>
 					</View>
 				</View>
 				<View style={styles.headerInicio}>
@@ -57,7 +57,7 @@ export default function Alimento({ navigation }) {
           <Text style={styles.textoInfoDesc}>Supino Reto</Text> */}
 
 					<Text style={styles.textoInfoTitulo}>Descrição</Text>
-					<Text style={styles.textoInfoDescAbaixo}>{dados1.descAlimento}
+					<Text style={styles.textoInfoDescAbaixo}>{dados.descAlimento}
  
 
 						{/* {dados.descricao_exercicio} */}
@@ -65,12 +65,12 @@ export default function Alimento({ navigation }) {
 
 					<Text style={styles.textoInfoTitulo}>
 						kCal:
-            <Text style={styles.textoInfoDescLado}> {dados1.kCal}</Text>
+            <Text style={styles.textoInfoDescLado}> {dados.kCal}</Text>
 					</Text>
 
 					<Text style={styles.textoInfoTitulo}>
 						Tipo do Alimento:
-            <Text style={styles.textoInfoDescLado}> {dados1.tipoDoAlimento}</Text>
+            <Text style={styles.textoInfoDescLado}> {dados.tipoDoAlimento}</Text>
 					</Text>
 				</View>
 			</ScrollView>
