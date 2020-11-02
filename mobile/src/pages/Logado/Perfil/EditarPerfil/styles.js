@@ -60,6 +60,28 @@ export default StyleSheet.create({
 		backgroundColor: colors.mainInputBackgroundColor,
 		fontSize: 18,
 	},
+
+	insertDtNasc: {
+		marginTop: 16,
+		width: '100%',
+		height: 35,
+
+		borderRadius: 6,
+		paddingHorizontal: 10,
+		// paddingVertical: 7,
+
+		color: colors.mainInputText,
+		justifyContent: 'space-between',
+
+		backgroundColor: colors.mainInputBackgroundColor,
+		fontSize: 18,
+	},
+
+	insertDtNascText: {
+		fontSize: 18,
+		color: colors.mainInputText,
+		textAlignVertical: 'center'
+	},
 	doubleButtons: {
 		marginTop: 16,
 		flexDirection: 'row',

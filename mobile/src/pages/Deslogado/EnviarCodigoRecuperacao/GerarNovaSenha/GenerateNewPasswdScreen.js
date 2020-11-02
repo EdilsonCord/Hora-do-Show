@@ -58,7 +58,7 @@ export default function GenerateNewPasswdScreen({ navigation, route }) {
 	return (
 		<SafeAreaView style={styles.container}>
 			<Image
-				style={{ marginBottom: 10 }}
+				style={{ marginBottom: 10, height: 150, resizeMode: 'contain' }}
 				source={require('dir-src/assets/ShieldCheck.png')}
 			/>
 			<View style={styles.yellowBox}>

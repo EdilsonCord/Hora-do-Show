@@ -63,15 +63,17 @@ router.post('/pre_register', async (req, res) => {
 		mailer2.sendMail({
 			to: email,
 			from: 'pepespim06@gmail.com',
+			// from: 'horadoshowdev@gmail.com',
 			template: 'preregister_password',
 			subject: 'Senha para Pré-Registro: Hora Do Show',
 			context: { passwordR },
 		},
 			(err) => {
 
-				if (err)
+				if (err) {
 					console.log(err);
-				return res.status(400).send({ error: 'Nao foi possivel enviar a senha' })
+					return res.status(400).send({ error: 'Nao foi possivel enviar a senha' })
+				}
 				return res.send()
 
 			})

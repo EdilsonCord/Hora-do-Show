@@ -3,6 +3,9 @@ import { View, Image, Text, TextInput, TouchableOpacity, ScrollView, Modal, Aler
 import { Picker } from '@react-native-picker/picker';
 import TextInputMask from 'react-native-text-input-mask';
 
+import DateTimePicker from '@react-native-community/datetimepicker';
+import moment from "moment"
+
 import styles from './styles';
 
 const iconSize = 16;
@@ -12,6 +15,12 @@ import colors from 'dir-src/assets/colors';
 const rightArrow = <MCIcon name="keyboard-arrow-right" size={iconSize} color={colors.mainTextColor} />
 var campo = '';
 var valorCampo = '';
+
+import FeatherIcons from 'react-native-vector-icons/Feather';
+
+const iconSize2 = 18;
+
+const Relogio = <FeatherIcons name="clock" size={iconSize2} color={colors.red} />
 
 
 
@@ -26,9 +35,43 @@ export default function EditPerfil({ navigation }) {
 
 	const [modalVisible, setModalVisible] = useState(false);
 
+	const [dtNascAux, setDtNasc] = React.useState(parseInt(moment().format('L')));
+
+
+	// DatePicker functions
+	const [show, setShow] = useState(false);
+
+	const onChange = (event, selectedDate) => {
+		const currentDate = selectedDate || dtNascAux;
+		setShow(Platform.OS === 'ios');
+		setDtNasc(currentDate);
+		editDtNasc(moment(currentDate).format("DD/MM/YYYY"))
+	};
+
+	const showDatepicker = () => {
+		setShow(true);
+		// showMode('date');
+	};
+
+	const CampoDtNasc = () => {
+		var retorno;
+
+		if (dtNascAux == parseInt(moment().format('L')))
+			retorno = global.user.dtNasc;
+		else {
+			retorno = moment(dtNascAux).format("DD/MM/YYYY");
+		}
+
+		return <View style={{ flexDirection: 'row', flexGrow: 1, justifyContent: 'space-between', alignItems: 'center' }}>
+			<Text style={styles.insertDtNascText}>{retorno}</Text>
+			<Text >{Relogio}</Text>
+
+		</View>
+
+	}
+
 	async function handleCompleteRegister(e) {
 		e.preventDefault();
-
 
 		//CRIAR OUTRA FUNÇÃO NÃO-ASYNC PARA VERIFICAR CAMPOS INVES DE POR AQUI
 		//if (name === '') {
@@ -108,19 +151,23 @@ export default function EditPerfil({ navigation }) {
 	)
 
 	const TextInputDtNasc = () => (
-		<TextInputMask
-			mask={'[00]/[00]/[0000]'}
-			// placeholder="Data de Nasc."
-			defaultValue={global.user.dtNasc}
-			keyboardType={'number-pad'}
-			autoFocus={true}
-			style={styles.modalInputText}
-			onChangeText={(text) => {
-				editDtNasc(text);
-			}}
+		// <TextInputMask
+		// 	mask={'[00]/[00]/[0000]'}
+		// 	// placeholder="Data de Nasc."
+		// 	defaultValue={global.user.dtNasc}
+		// 	keyboardType={'number-pad'}
+		// 	autoFocus={true}
+		// 	style={styles.modalInputText}
+		// 	onChangeText={(text) => {
+		// 		editDtNasc(text);
+		// 	}}
 
-			dtNasc={dtNasc}
-		/>
+		// 	dtNasc={dtNasc}
+		// />
+
+		<TouchableOpacity style={styles.insertDtNasc} onPress={showDatepicker}>
+			{CampoDtNasc()}
+		</TouchableOpacity>
 	)
 
 	const TextInputAltura = () => (
@@ -237,6 +284,16 @@ export default function EditPerfil({ navigation }) {
 							</TouchableOpacity>
 						</View>
 					</View>
+
+					{show && (
+						<DateTimePicker
+							testID="dateTimePicker"
+							value={dtNascAux}
+							mode={'date'}
+							display="default"
+							onChange={onChange}
+						/>
+					)}
 
 				</View>
 			</Modal>

@@ -148,7 +148,7 @@ export default function ConfirmCodeScreen({ navigation, route }) {
 		}).then((response) => response.json())
 			.then(response => {
 				if ("error" in response) {
-					alert(response.error)
+					Alert.alert("Aviso", response.error)
 				} else {
 					console.log(response)
 					navigation.navigate('CadastrarInformacoes', { email: email, senha: senha })

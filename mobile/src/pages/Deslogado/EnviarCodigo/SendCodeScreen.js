@@ -95,7 +95,7 @@ import {
 	Image,
 	Text,
 	TextInput,
-	TouchableOpacity, KeyboardAvoidingView
+	TouchableOpacity, KeyboardAvoidingView, Alert
 } from 'react-native';
 
 import { Container, Content, getTheme, StyleProvider, Icon, Form, Item, List, ListItem, Input, Label, Button } from 'native-base';
@@ -131,7 +131,7 @@ export default function SendCodeScreen({ navigation }) {
 		}).then((response) => response.json())
 			.then(response => {
 				if ("error" in response) {
-					alert(response.error)
+					Alert.alert("Aviso", response.error)
 				} else {
 					console.log(response)
 					navigation.navigate('ConfirmCodeScreen', { email: value })
@@ -141,7 +141,7 @@ export default function SendCodeScreen({ navigation }) {
 				navigation.navigate('ConfirmCodeScreen', { email: value })
 			});
 
-		navigation.navigate('ConfirmCodeScreen', { email: value })
+		// navigation.navigate('ConfirmCodeScreen', { email: value })
 	}
 
 	return (

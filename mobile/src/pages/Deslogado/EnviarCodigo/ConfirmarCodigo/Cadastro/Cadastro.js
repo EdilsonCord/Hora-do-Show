@@ -140,6 +140,7 @@ import {
 	Image,
 	Text,
 	TextInput,
+	Alert,
 	ScrollView,
 	TouchableOpacity,
 	KeyboardAvoidingView
@@ -149,7 +150,17 @@ import { RadioButton } from 'react-native-paper';
 import TextInputMask from 'react-native-text-input-mask';
 import { Picker } from '@react-native-picker/picker';
 
+import DateTimePicker from '@react-native-community/datetimepicker';
+import moment from "moment"
+
 import styles from './styles';
+import colors from 'dir-src/assets/colors.js';
+
+import FeatherIcons from 'react-native-vector-icons/Feather';
+
+const iconSize = 18;
+
+const Relogio = <FeatherIcons name="clock" size={iconSize} color={colors.red} />
 
 export default function CadastrarInformacoes({ navigation, route }) {
 	// export default function CadastrarInformacoes({ navigation }) {
@@ -161,15 +172,59 @@ export default function CadastrarInformacoes({ navigation, route }) {
 	const [surname, setSurname] = React.useState('');
 	const [peso, setPeso] = React.useState('');
 	const [altura, setAltura] = React.useState('');
-	const [dtNasc, setDtNasc] = React.useState('');
+
+	const [dtNasc, setDtNasc] = React.useState(parseInt(moment().format('L')));
+
+
+	// DatePicker functions
+	const [show, setShow] = useState(false);
+
+	const onChange = (event, selectedDate) => {
+		const currentDate = selectedDate || dtNasc;
+		setShow(Platform.OS === 'ios');
+		setDtNasc(currentDate);
+	};
+
+	const showDatepicker = () => {
+		setShow(true);
+		// showMode('date');
+	};
+
+	const CampoDtNasc = () => {
+		var retorno;
+
+		// if (dtNasc == Date())
+		if (dtNasc == parseInt(moment().format('L')))
+			retorno = 'Data de Nasc.';
+		else
+			retorno = moment(dtNasc).format("DD/MM/YYYY");
+		// retorno = new Date(dtNasc).toLocaleDateString('pt-BR', options);
+
+		return <View style={{ flexDirection: 'row', flexGrow: 1, justifyContent: 'space-between', alignItems: 'center' }}>
+			<Text style={styles.insertDtNascText}>{retorno}</Text>
+			<Text >{Relogio}</Text>
+
+		</View>
+
+	}
 
 	async function handleCompleteRegister(e) {
 		e.preventDefault();
 
 		//CRIAR OUTRA FUNÇÃO NÃO-ASYNC PARA VERIFICAR CAMPOS INVES DE POR AQUI
 		if (name === '') {
-			return alert('Você esqueceu de por seu nome');
+			return Alert.alert('Aviso', 'Você esqueceu de por seu nome');
+		} else if (surname === '') {
+			return Alert.alert('Aviso', 'Você esqueceu de por seu sobrenome');
+		} else if (altura === '') {
+			return Alert.alert('Aviso', 'Você esqueceu de por seu altura');
+		} else if (peso === '') {
+			return Alert.alert('Aviso', 'Você esqueceu de por seu peso');
+		} else if (dtNasc === '') {
+			return Alert.alert('Aviso', 'Você esqueceu de por sua data de nascimento');
 		}
+
+
 
 		fetch('http://10.0.2.2:3333/api/completeRegister', {
 			method: 'post',
@@ -185,7 +240,7 @@ export default function CadastrarInformacoes({ navigation, route }) {
 				sexo: sexo,
 				peso: peso,
 				altura: altura,
-				dtNasc: dtNasc,
+				dtNasc: moment(dtNasc).format("DD/MM/YYYY"),
 				meta: meta,
 			}),
 		})
@@ -208,9 +263,11 @@ export default function CadastrarInformacoes({ navigation, route }) {
 		<KeyboardAvoidingView style={styles.container}>
 			<View style={styles.header}>
 
+				{/* <Text>Data aqui: {dtNasc}</Text> */}
+
 				<Image
-					style={{ width: 125, height: 125, marginBottom: 20, alignSelf: "center", tintColor: "#ffe42e" }}
-					source={require('dir-src/assets/perfil.png')}
+					style={{ width: 125, height: 125, marginBottom: 20, alignSelf: "center" }}
+					source={require('dir-src/assets/notepad.png')}
 				/>
 
 				<Text style={styles.textoImportante}>FINALIZAR CADASTRO</Text>
@@ -283,7 +340,7 @@ export default function CadastrarInformacoes({ navigation, route }) {
 				</View>
 
 				<View style={styles.campoDuplo}>
-					<TextInputMask
+					{/* <TextInputMask
 						mask={'[00]/[00]/[0000]'}
 						placeholder="Data de Nasc."
 						keyboardType={'number-pad'}
@@ -292,7 +349,34 @@ export default function CadastrarInformacoes({ navigation, route }) {
 							setDtNasc(text);
 						}}
 						dtNasc={dtNasc}
-					/>
+					/> */}
+					<TouchableOpacity style={styles.insertDtNasc} onPress={showDatepicker}>
+						{CampoDtNasc()}
+					</TouchableOpacity>
+
+					{show && (
+						<DateTimePicker
+							testID="dateTimePicker"
+							value={dtNasc}
+							mode={'date'}
+							display="default"
+							onChange={onChange}
+						/>
+					)}
+
+					{/* <TextInputMaskDate
+						placeholder="Data de Nasc."
+						style={styles.insertValuePequeno}
+						type={'datetime'}
+						options={{
+							format: 'DD/MM/YYYY'
+						}}
+						value={dtNasc}
+						onChangeText={text => {
+							setDtNasc(text)
+						}}
+
+					/> */}
 
 					<View style={styles.campoPicker}>
 						<Picker
@@ -320,6 +404,7 @@ export default function CadastrarInformacoes({ navigation, route }) {
 				<TouchableOpacity onPress={() => navigation.pop()}>
 					<Text style={styles.link}>Voltar</Text>
 				</TouchableOpacity>
+
 			</View>
 		</KeyboardAvoidingView>
 	);

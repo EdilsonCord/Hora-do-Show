@@ -91,6 +91,24 @@ export default StyleSheet.create({
 		marginBottom: 16,
 	},
 
+	insertDtNasc: {
+		width: '40%',
+		height: 35,
+		borderRadius: 6,
+		paddingHorizontal: 10,
+		paddingTop: 7,
+		paddingBottom: 7,
+		justifyContent: 'center',
+		backgroundColor: colors.mainInputBackgroundColor,
+		marginBottom: 16,
+	},
+
+	insertDtNascText: {
+		fontSize: 18,
+		color: colors.mainInputText,
+		textAlignVertical: 'center'
+	},
+
 	campoPicker: {
 		width: '40%',
 		height: 35,
