@@ -7,7 +7,6 @@ var Schema = mongoose.Schema;
 const DietaSchema = new Schema({
     nome_Dieta: {
         type: String,
-        unique: true,
         required: true
     },
     descricao_Dieta: {

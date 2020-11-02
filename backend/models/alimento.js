@@ -6,7 +6,6 @@ var Schema = mongoose.Schema;
 const AlimentoSchema = new Schema({
     nome_Alimento: {
         type: String,
-        unique:true,
         required: true
     },
     kcal_Alimento: {

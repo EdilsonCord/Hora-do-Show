@@ -10,7 +10,6 @@ const TreinoSchema = Schema({
     },
     tipo_treino: {
       type: String,
-      unique:true,
       required: true
     },
     meta: {
