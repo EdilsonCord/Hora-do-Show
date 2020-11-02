@@ -17,35 +17,24 @@ export default StyleSheet.create({
 	},
 	headerTotal: {
 		width: '100%',
-<<<<<<< HEAD
-		// height: '50%',
-=======
->>>>>>> 443fc7740f6f18e25dde06c67026d05112c3f2a7
 		justifyContent: 'space-between',
 		alignItems: 'center',
-
+		
 		// backgroundColor: 'gray'
 	},
 	inicio: {
 		width: '100%',
-<<<<<<< HEAD
-		marginTop: 15,
-		// backgroundColor: 'black',
-=======
-		marginTop:30,
-		
->>>>>>> 443fc7740f6f18e25dde06c67026d05112c3f2a7
-
+		marginTop:15,
 		justifyContent: 'flex-start',
 		alignItems: 'center',
 	},
 	video: {
 		// width: '100%',
 		// height: '80%',
-		width: 'auto',
-		height: 100 ,
+		width: win.width,
+		height: 300 * ratio,
 		// resizeMode: 'stretch',
-
+		
 	},
 	headerFaixa: {
 		width: '120%',
@@ -69,8 +58,6 @@ export default StyleSheet.create({
 		marginTop: 15,
 	},
 	campoInfoExercicio: {
-		//marginTop: 100,
-		//padding:30,
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'flex-start',
@@ -82,11 +69,10 @@ export default StyleSheet.create({
 		marginBottom: 16
 	},
 	textoInfoDescAbaixo: {
-		marginRight: 50,
+		marginRight: 5,
 		color: colors.mainTextColor,
 		fontSize: 16,
-		marginLeft: 10,
-		marginRight: 5,
+		paddingLeft: 10,
 		textAlign: 'justify',
 		marginTop: -16,
 		marginBottom: 16
@@ -97,23 +83,23 @@ export default StyleSheet.create({
 		fontWeight: 'bold',
 	},
 
-	faixaDetalhes: {
-		marginTop: 15,
+	faixaDetalhes:{
+		marginTop: 30,
 		//marginBottom: 30,
 		width: '120%',
 		height: 30,
 		backgroundColor: '#676767',
 		justifyContent: 'center',
 		alignItems: 'center',
-	},
-
-	textoFaixaDetalhes: {
+	  },
+	
+	  textoFaixaDetalhes: {
 		color: 'white',
 		fontSize: 20,
 		fontWeight: 'bold',
 		width: '80%',
 		textAlign: 'center',
 		flex: 1,
-	},
+	  },
 
 });
