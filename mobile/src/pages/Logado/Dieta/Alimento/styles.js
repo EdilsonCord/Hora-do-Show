@@ -24,17 +24,15 @@ export default StyleSheet.create({
 	},
 	inicio: {
 		width: '100%',
-		marginTop:30,
-		
-
+		marginTop:15,
 		justifyContent: 'flex-start',
 		alignItems: 'center',
 	},
 	video: {
 		// width: '100%',
 		// height: '80%',
-		width: 'auto',
-		height: 100 ,
+		width: win.width,
+		height: 300 * ratio,
 		// resizeMode: 'stretch',
 		
 	},
@@ -60,8 +58,6 @@ export default StyleSheet.create({
 		marginTop: 15,
 	},
 	campoInfoExercicio: {
-		//marginTop: 100,
-		//padding:30,
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'flex-start',
@@ -73,7 +69,7 @@ export default StyleSheet.create({
 		marginBottom: 16
 	},
 	textoInfoDescAbaixo: {
-		marginRight: 50,
+		marginRight: 5,
 		color: colors.mainTextColor,
 		fontSize: 16,
 		paddingLeft: 10,

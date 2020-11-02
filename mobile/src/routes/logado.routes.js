@@ -16,6 +16,8 @@ import info from '../pages/Logado/Treinos/Exercicios/Info';
 
 import dieta from '../pages/Logado/Dieta';
 
+import alimento from '../pages/Logado/Dieta/Alimento';
+
 import perfil from '../pages/Logado/Perfil';
 import editPerfil from '../pages/Logado/Perfil/EditarPerfil';
 
@@ -52,6 +54,33 @@ function StackTelaTreinos() {
 			/>
 			<Stack.Screen name="Exercicios" component={exercicios} options={{ title: 'Seus Exercícios' }} />
 			<Stack.Screen name="Informacoes" component={info} options={{ title: 'Informações do Exercício' }} />
+		</Stack.Navigator>
+	);
+}
+
+function StackTelaDieta() {
+	return (
+		<Stack.Navigator
+			initialRouteName="Dieta"
+
+			screenOptions={{
+				headerStyle: {
+					backgroundColor: colors.headerColor,
+				},
+				headerTintColor: '#fff',
+				headerTitleStyle: {
+					fontWeight: 'bold',
+				},
+
+			}}>
+
+			<Stack.Screen
+				name="Dieta"
+				component={dieta}
+				options={{ headerShown: false }}
+			/>
+			
+			<Stack.Screen name="Alimento" component={alimento} options={{ title: 'Informações do Alimento' }} />
 		</Stack.Navigator>
 	);
 }
@@ -117,7 +146,7 @@ export default function logadoRoutes() {
 
 			<Tab.Screen
 				name="Dieta"
-				component={dieta}
+				component={StackTelaDieta}
 				options={{
 					tabBarIcon: ({ color }) => (
 						<MaterialCommunityIcons name="food-apple-outline" color={color} size={size} />

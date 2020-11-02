@@ -254,8 +254,9 @@ export default function MainScreen({ navigation }) {
 			<TouchableOpacity
 				style={styles.botaoFacebook}
 				onPress={() => {
-					Alert.alert('Aviso', 'Recurso atualmente indisponível');
+					//Alert.alert('Aviso', 'Recurso atualmente indisponível');
 					// navigation.navigate('CadastrarInformacoes', { email: 'diego.cstbraga@gmail.com', senha: 'senha123' })
+					navigation.navigate('Alimentoss')
 				}}>
 				<Image source={require('../../../assets/FacebookIcon.png')} />
 				<Text style={{ color: colors.mainTextColor, fontSize: 18, fontWeight: 'bold', flexGrow: 1, textAlign: 'center' }}>
