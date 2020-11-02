@@ -44,7 +44,7 @@ export default function SeuPerfil({ navigation }) {
 		} else if (imc > 18.5) {
 			retornaIMC = 'Normal';
 			retornaIcone = HappyFace;
-		} else if (imc > 18.5) {
+		} else if (imc < 18.5) {
 			retornaIMC = 'Magreza';
 			retornaIcone = PokerFace;
 		}
