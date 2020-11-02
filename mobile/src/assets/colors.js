@@ -33,6 +33,10 @@ export default {
 	secondaryButtonBackgroundColor: '#fff',
 	secondaryButtonTextColor: "#000",
 
+	// Tela treinos
+	mainCabecalhoColor: '#62B1F6',
+	mainContainerTreinoColor: "#273645",
+
 	// Tela exercícios
 	mainFaixaColor: '#F9EE92',
 	mainFaixaTextColor: '#000',

@@ -40,7 +40,7 @@ export default function Exercicios({ navigation, route }) {
 			//Assign the promise unresolved first then get the data using the json method.
 			console.log(treino);
 			const dadosAPICall = await fetch(
-				'http://' + global.endereco +'/treino/get/id/' + treino,
+				'http://' + global.endereco + '/treino/get/id/' + treino,
 			);
 			const dadosJson = await dadosAPICall.json();
 			console.log(dadosJson);
@@ -60,7 +60,7 @@ export default function Exercicios({ navigation, route }) {
 				<View style={styles.introducao}>
 					<Text style={styles.textoIntroducao}>Olá, {global.user.name}!</Text>
 					<Text style={styles.textoIntroducao}>
-						Aqui estão os exercícios do seu treino de hoje
+						Aqui estão os exercícios do seu treino de hoje!
           </Text>
 					<Text style={styles.textoIntroducao}>
 						Você completou x exercícios de {dados.length}

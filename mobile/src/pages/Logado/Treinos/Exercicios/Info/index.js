@@ -28,29 +28,41 @@ export default function Informacoes({ navigation, route }) {
 	return (
 		<SafeAreaView style={styles.container}>
 			<View style={styles.headerTotal}>
-				<View style={styles.headerInicio}>
-					<View style={styles.inicio}>
-						<Image style={styles.video} source={require('../../../../../assets/DiegoFit.gif')} />
-
-						{/* <Text>Video deve estar acima de mim</Text> */}
-					</View>
-				</View>
-
 				<View style={styles.headerFaixa}>
 					<View style={styles.faixa}>
 						<Text style={styles.textoFaixa}>{dados.nome_exercicio}</Text>
 					</View>
 				</View>
-			</View>
+				<View style={styles.headerInicio}>
+					<View style={styles.inicio}>
+						<Image style={styles.video} source={require('../../../../../assets/DiegoFit.gif')} />
 
+						{/* <Text>Video deve estar acima de mim</Text> */}
+						
+					</View>
+					
+				</View>
+				<View style={styles.faixaDetalhes}>
+					<Text style={styles.textoFaixaDetalhes}>Detalhes</Text>
+				</View>
+				
+				
+			</View>
+			
+			
 			<ScrollView showsVerticalScrollIndicator={true} style={styles.scrollView}>
+				
 				<View style={styles.campoInfoExercicio}>
 					{/* <Text style={styles.textoInfoTitulo}>Nome</Text>
           <Text style={styles.textoInfoDesc}>Supino Reto</Text> */}
 
 					<Text style={styles.textoInfoTitulo}>Descrição</Text>
 					<Text style={styles.textoInfoDescAbaixo}>
-						{dados.descricao_exercicio}
+					Pode ser executado deitado, flexionando as pernas e deixando-as 
+					alinhadas ao quadril. Após se posicionar, basta erguer o tronco 
+					com a força dos músculos do abdômen, nunca chegando tão próximo de 
+					encostar os peitos aos joelhos. 
+						{/* {dados.descricao_exercicio} */}
 					</Text>
 
 					<Text style={styles.textoInfoTitulo}>
@@ -61,6 +73,10 @@ export default function Informacoes({ navigation, route }) {
 					<Text style={styles.textoInfoTitulo}>
 						Quantidade de Repetições:
             <Text style={styles.textoInfoDescLado}> {dados.qtd_repeticoes}</Text>
+					</Text>
+					<Text style={styles.textoInfoTitulo}>
+						Carga:
+            <Text style={styles.textoInfoDescLado}> {dados.qtd_carga}</Text>
 					</Text>
 				</View>
 			</ScrollView>

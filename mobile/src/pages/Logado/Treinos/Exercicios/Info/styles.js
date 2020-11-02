@@ -10,7 +10,7 @@ export default StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: colors.mainBackgroundColor,
-		padding: 20,
+		padding: 30,
 		flexDirection: 'column',
 		justifyContent: 'flex-start',
 		alignItems: 'flex-start',
@@ -20,11 +20,12 @@ export default StyleSheet.create({
 		height: '50%',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+		
 		// backgroundColor: 'gray'
 	},
 	inicio: {
 		width: '100%',
-
+		marginTop:30,
 		backgroundColor: 'black',
 
 		justifyContent: 'flex-start',
@@ -35,7 +36,8 @@ export default StyleSheet.create({
 		// height: '80%',
 		width: win.width,
 		height: 300 * ratio,
-		// resizeMode: 'stretch'
+		// resizeMode: 'stretch',
+		
 	},
 	headerFaixa: {
 		width: '120%',
@@ -56,10 +58,11 @@ export default StyleSheet.create({
 		textAlign: 'center',
 	},
 	scrollView: {
-		marginTop: 10,
+		marginTop: 60,
 	},
 	campoInfoExercicio: {
-
+		//marginTop: 100,
+		//padding:30,
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'flex-start',
@@ -83,5 +86,24 @@ export default StyleSheet.create({
 		fontSize: 18,
 		fontWeight: 'bold',
 	},
+
+	faixaDetalhes:{
+		marginTop: 30,
+		//marginBottom: 30,
+		width: '120%',
+		height: 30,
+		backgroundColor: '#676767',
+		justifyContent: 'center',
+		alignItems: 'center',
+	  },
+	
+	  textoFaixaDetalhes: {
+		color: 'white',
+		fontSize: 20,
+		fontWeight: 'bold',
+		width: '80%',
+		textAlign: 'center',
+		flex: 1,
+	  },
 
 });
