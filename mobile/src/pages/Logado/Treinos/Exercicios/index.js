@@ -10,15 +10,18 @@ import {
 
 import styles from './styles';
 
+const iconSize = 30;
+
 import colors from 'dir-src/assets/colors.js';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-const IconCheckBoxFull = <Icon name="check-box" size={30} color={colors.mainExerciseDone} />;
-const IconCheckBoxPartial = <Icon name="check-box-outline-blank" size={30} color={colors.mainExerciseUndone} />;
+const IconCheckBoxFull = <Icon name="check-box" size={iconSize} color={colors.mainExerciseDone} />;
+const IconCheckBoxPartial = <Icon name="check-box-outline-blank" size={iconSize} color={colors.mainExerciseUndone} />;
 
 export default function Exercicios({ navigation, route }) {
 	const [dados, setDados] = useState([]);
 	const [treino, setTreino] = useState([route.params.treino]);
 	const [nomeTreino, setNomeTreino] = useState([route.params.nomeTreino]);
+	const [count, editCount] = useState(0);
 
 	const [selected, setSelected] = React.useState(new Map());
 
@@ -28,8 +31,16 @@ export default function Exercicios({ navigation, route }) {
 			newSelected.set(id, !selected.get(id));
 
 			setSelected(newSelected);
+
+			if (selected.get(id) == true) {
+				editCount(count - 1)
+			}
+			else {
+				editCount(count + 1)
+			}
 		},
 		[selected],
+
 	);
 
 	//Define your componentDidMount lifecycle hook that will retrieve data.
@@ -63,7 +74,7 @@ export default function Exercicios({ navigation, route }) {
 						Aqui estão os exercícios do seu treino de hoje!
           </Text>
 					<Text style={styles.textoIntroducao}>
-						Você completou x exercícios de {dados.length}
+						Você completou {count} exercícios de {dados.length}
 					</Text>
 				</View>
 
@@ -89,8 +100,7 @@ export default function Exercicios({ navigation, route }) {
 						}>
 						<Image
 							source={{
-								uri:
-									'https://images.unsplash.com/photo-1562771242-a02d9090c90c?ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80',
+								uri: item.imagem,
 							}}
 							style={styles.imgExercicio}
 						/>
@@ -121,7 +131,7 @@ export default function Exercicios({ navigation, route }) {
 							// style={styles.botaoConcluido}
 							onPress={() => onSelect(item._id)}>
 							<View>
-								{IconCheckBoxFull}
+								{selected.get(item._id) ? IconCheckBoxFull : IconCheckBoxPartial}
 							</View>
 							{/* <Text style={styles.textoBotao}>Concluir</Text> */}
 						</TouchableOpacity>

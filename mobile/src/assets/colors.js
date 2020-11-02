@@ -40,7 +40,8 @@ export default {
 	// Tela exercícios
 	mainFaixaColor: '#F9EE92',
 	mainFaixaTextColor: '#000',
-	mainCardBackgroundColor: '#4d9078',
+	mainCardBackgroundColor: "#273645",
+	mainCardOutlineColor: '#4d9078',
 	mainCardTitleColor: '#f2c14e',
 	mainCardTextColor: '#F2FDFF',
 	mainTextDestacado: '#F9EE92',

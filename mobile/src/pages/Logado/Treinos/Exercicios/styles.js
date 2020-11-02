@@ -61,12 +61,22 @@ export default StyleSheet.create({
 		height: 140,
 
 		padding: 5,
-		// backgroundColor: '#E55F54',
-		// borderRadius: 6,
+		backgroundColor: colors.mainCardBackgroundColor,
+		borderRadius: 6,
 
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+
+		shadowColor: colors.shadowColor,
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.27,
+		shadowRadius: 4.65,
+
+		elevation: 6,
 	},
 	campoExercicioConcluido: {
 		marginBottom: 16,
@@ -77,9 +87,23 @@ export default StyleSheet.create({
 		backgroundColor: colors.mainCardBackgroundColor,
 		borderRadius: 6,
 
+		borderStyle: "solid",
+		borderWidth: 2,
+		borderColor: colors.mainCardOutlineColor,
+
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+
+		shadowColor: colors.shadowColor,
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.27,
+		shadowRadius: 4.65,
+
+		elevation: 6,
 	},
 	imgExercicio: {
 		width: 120,

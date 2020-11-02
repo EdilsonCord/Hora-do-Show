@@ -17,15 +17,24 @@ export default StyleSheet.create({
 	},
 	headerTotal: {
 		width: '100%',
+<<<<<<< HEAD
+		// height: '50%',
+=======
+>>>>>>> 443fc7740f6f18e25dde06c67026d05112c3f2a7
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		
+
 		// backgroundColor: 'gray'
 	},
 	inicio: {
 		width: '100%',
+<<<<<<< HEAD
+		marginTop: 15,
+		// backgroundColor: 'black',
+=======
 		marginTop:30,
 		
+>>>>>>> 443fc7740f6f18e25dde06c67026d05112c3f2a7
 
 		justifyContent: 'flex-start',
 		alignItems: 'center',
@@ -36,7 +45,7 @@ export default StyleSheet.create({
 		width: 'auto',
 		height: 100 ,
 		// resizeMode: 'stretch',
-		
+
 	},
 	headerFaixa: {
 		width: '120%',
@@ -76,7 +85,8 @@ export default StyleSheet.create({
 		marginRight: 50,
 		color: colors.mainTextColor,
 		fontSize: 16,
-		paddingLeft: 10,
+		marginLeft: 10,
+		marginRight: 5,
 		textAlign: 'justify',
 		marginTop: -16,
 		marginBottom: 16
@@ -87,23 +97,23 @@ export default StyleSheet.create({
 		fontWeight: 'bold',
 	},
 
-	faixaDetalhes:{
-		marginTop: 30,
+	faixaDetalhes: {
+		marginTop: 15,
 		//marginBottom: 30,
 		width: '120%',
 		height: 30,
 		backgroundColor: '#676767',
 		justifyContent: 'center',
 		alignItems: 'center',
-	  },
-	
-	  textoFaixaDetalhes: {
+	},
+
+	textoFaixaDetalhes: {
 		color: 'white',
 		fontSize: 20,
 		fontWeight: 'bold',
 		width: '80%',
 		textAlign: 'center',
 		flex: 1,
-	  },
+	},
 
 });
