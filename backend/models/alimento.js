@@ -16,6 +16,10 @@ const AlimentoSchema = new Schema({
         type: String,
         required: true
     },
+    imagem: {
+        type: String,
+        default: "https://cfl.dropboxstatic.com/static/images/illustration_catalog/403_error-illo.png"
+      },  
     dietas: [{ 
         type: Schema.Types.ObjectId, 
         ref: 'Dieta' }]

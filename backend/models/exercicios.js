@@ -20,6 +20,14 @@ const ExercicioSchema = Schema({
         type: String,
         required: true
     },
+    imagem: {
+        type: String,
+        default: "https://cfl.dropboxstatic.com/static/images/illustration_catalog/403_error-illo.png"
+      },
+    video: {
+        type: String,
+        default: "https://cfl.dropboxstatic.com/static/images/illustration_catalog/403_error-illo.png"
+    },    
     qtd_carga:{
         type: String,
         required: true
