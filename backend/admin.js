@@ -9,11 +9,11 @@ const express = require('express')
 const app = express()
 
 const adminBro = new AdminBro({
-  databases: [mongoose],
-  rootPath: '/admin',
-  branding: {
-    companyName: 'Pedro Spim e empregados',
-  },
+	databases: [mongoose],
+	rootPath: '/admin',
+	branding: {
+		companyName: 'Hora do Show Corporation',
+	},
 })
 
 module.exports = adminRouter = AdminBroExpress.buildRouter(adminBro)
