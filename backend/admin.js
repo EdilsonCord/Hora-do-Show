@@ -11,6 +11,9 @@ const app = express()
 const adminBro = new AdminBro({
   databases: [mongoose],
   rootPath: '/admin',
+  branding: {
+    companyName: 'Pedro Spim e empregados',
+  },
 })
 
 module.exports = adminRouter = AdminBroExpress.buildRouter(adminBro)
