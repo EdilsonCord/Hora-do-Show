@@ -17,10 +17,7 @@ export default StyleSheet.create({
 	},
 	headerTotal: {
 		width: '100%',
-<<<<<<< HEAD
 		// height: '50%',
-=======
->>>>>>> 443fc7740f6f18e25dde06c67026d05112c3f2a7
 		justifyContent: 'space-between',
 		alignItems: 'center',
 
@@ -28,13 +25,8 @@ export default StyleSheet.create({
 	},
 	inicio: {
 		width: '100%',
-<<<<<<< HEAD
 		marginTop: 15,
 		// backgroundColor: 'black',
-=======
-		marginTop:30,
-		
->>>>>>> 443fc7740f6f18e25dde06c67026d05112c3f2a7
 
 		justifyContent: 'flex-start',
 		alignItems: 'center',
@@ -42,8 +34,8 @@ export default StyleSheet.create({
 	video: {
 		// width: '100%',
 		// height: '80%',
-		width: 'auto',
-		height: 100 ,
+		width: win.width,
+		height: 300 * ratio,
 		// resizeMode: 'stretch',
 
 	},

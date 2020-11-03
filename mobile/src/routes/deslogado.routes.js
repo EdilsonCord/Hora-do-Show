@@ -18,7 +18,7 @@ import NovaSenhaGerada from '../pages/Deslogado/EnviarCodigoRecuperacao/GerarNov
 
 import logadoRoutes from './logado.routes';
 
-import Alimento from '../pages/Logado/Dieta/Alimento';
+// import Alimento from '../pages/Logado/Dieta/Alimento';
 
 const Stack = createStackNavigator();
 
@@ -41,7 +41,7 @@ export default function deslogadoRoutes() {
 
 
 
-				<Stack.Screen name="Alimentoss" component={Alimento} />
+				{/* <Stack.Screen name="Alimentoss" component={Alimento} /> */}
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
