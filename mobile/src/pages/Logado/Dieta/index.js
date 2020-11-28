@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	View,
 	Image,
@@ -19,48 +19,31 @@ import DietIcon from '../../../assets/DietIcon.js';
 
 export default function Dieta({ navigation }) {
 
+	const [Alimentos, setAlimentos] = useState([]);
 
-
-	const Alimentos = [
-		{
-			id: '0',
-			titulo: 'Maçã',
-			imagem: require('../../../assets/Maçã.png')
-		},
-		{
-			id: '1',
-			titulo: 'Pão',
-			imagem: require('../../../assets/Pão.png')
-
-		},
-		{
-			id: '2',
-			titulo: 'Tomate',
-			imagem: require('../../../assets/Tomato.png')
-		},
-		{
-			id: '3',
-			titulo: 'Massa',
-			imagem: require('../../../assets/Pasta.png')
-		},
-		{
-			id: '4',
-			titulo: 'Pizza Veggie',
-			imagem: require('../../../assets/PizzaVeggie.png')
-		},
-		{
-			id: '5',
-			titulo: 'Arroz',
-			imagem: require('../../../assets/Rice.png')
+	async function loadAlimentos() {
+		//Have a try and catch block for catching errors.
+		try {
+		   //Assign the promise unresolved first then get the data using the json method.
+		   const pokemonApiCall = await fetch('http://' + global.endereco + '/alimento/get');
+		   const pokemon = await pokemonApiCall.json();
+		   setAlimentos(pokemon);
+		} catch (err) {
+		   console.log('Error fetching data-----------', err);
 		}
-	]
+	 }
+  
+	 useEffect(() => {
+		loadAlimentos();
+	 }, []);
+
 
 	const [food, setFood] = useState(Alimentos);
 
 	const AlimentosCafe = [
 		{
 			id: '0',
-			idAlimento: 1,
+			idAlimento: 0,
 		},
 		{
 			id: '1',
@@ -75,19 +58,19 @@ export default function Dieta({ navigation }) {
 		},
 		{
 			id: '1',
-			idAlimento: 1,
+			idAlimento: 0,
 		},
 		{
 			id: '2',
-			idAlimento: 2,
+			idAlimento: 0,
 		},
 		{
 			id: '3',
-			idAlimento: 3,
+			idAlimento: 0,
 		},
 		{
 			id: '4',
-			idAlimento: 4,
+			idAlimento: 0,
 		}
 	]
 
@@ -134,7 +117,11 @@ export default function Dieta({ navigation }) {
 		<Text style={styles.textoIndiceRefeicoes}>{titulo}</Text>
 	)
 
+	console.log(Alimentos);
+
+
 	return (
+		Alimentos === undefined ? null :
 		<StyleProvider style={getTheme(material)}>
 			<Container style={styles.container}>
 
@@ -172,16 +159,16 @@ export default function Dieta({ navigation }) {
 								horizontal={true}
 								style={styles.listarIndiceRefeicoes}
 								showsHorizontalScrollIndicator={false}
-								extraData={food}
+								extraData={Alimentos}
 								renderItem={({ item }) => (<TouchableOpacity style={styles.containerShadow} onPress={() =>
-									navigation.navigate('Alimento', { alimento: food[item.idAlimento] })
+									navigation.navigate('Alimento', { alimento: Alimentos[0] })
 								}>
 									<Card transparent style={{ height: 150 }}>
 										<Body >
 											<Image
 												style={{ width: 100, height: 100, resizeMode: "contain", marginBottom: 15 }}
-												source={food[item.idAlimento].imagem} />
-											<Text note>{food[item.idAlimento].titulo}</Text>
+												source={{uri: 'https://i.imgur.com/8hhG7ar.png'}} />
+											<Text note>Maçã</Text>
 										</Body>
 									</Card>
 								</TouchableOpacity>
