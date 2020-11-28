@@ -12,7 +12,9 @@ const adminBro = new AdminBro({
 	databases: [mongoose],
 	rootPath: '/admin',
 	branding: {
-		companyName: 'Hora do Show Corporation',
+    companyName: 'Hora do Show Corporation',
+    logo: 'https://i.imgur.com/ystKdeu.png',
+    softwareBrothers: false
 	},
 })
 
