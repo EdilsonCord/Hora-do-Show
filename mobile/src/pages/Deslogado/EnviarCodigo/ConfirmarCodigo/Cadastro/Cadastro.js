@@ -226,7 +226,7 @@ export default function CadastrarInformacoes({ navigation, route }) {
 
 
 
-		fetch('http://10.0.2.2:3333/api/completeRegister', {
+		fetch('http://'+  global.endereco + '/api/completeRegister', {
 			method: 'post',
 			headers: {
 				Accept: 'application/json',
