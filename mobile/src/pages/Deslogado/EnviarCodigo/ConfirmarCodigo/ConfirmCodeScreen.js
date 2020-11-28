@@ -140,7 +140,7 @@ export default function ConfirmCodeScreen({ navigation, route }) {
          return
       }
 
-      fetch('http://10.0.2.2:3333/api/register', {
+      fetch('http://' + global.endereco + '/api/pre_register', {
          method: 'post',
          headers: {
             'Accept': 'application/json',
