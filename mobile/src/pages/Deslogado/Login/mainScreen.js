@@ -209,7 +209,7 @@ export default function MainScreen({ navigation }) {
 
 			<TextInput
 				style={styles.input}
-				defaultValue="diego.cstbraga@gmail.comm"
+				// defaultValue="diego.cstbraga@gmail.comm"
 				placeholder="Insira seu email aqui"
 				placeholderTextColor={colors.mainInputPlaceholder}
 				onChangeText={(text) => onChangeEmail(text)}
@@ -218,7 +218,7 @@ export default function MainScreen({ navigation }) {
 
 			<TextInput
 				style={styles.input}
-				defaultValue="senha1233"
+				// defaultValue="senha1233"
 				secureTextEntry={true}
 				placeholder="Sua senha"
 				placeholderTextColor={colors.mainInputPlaceholder}
@@ -254,9 +254,9 @@ export default function MainScreen({ navigation }) {
 			<TouchableOpacity
 				style={styles.botaoFacebook}
 				onPress={() => {
-					//Alert.alert('Aviso', 'Recurso atualmente indisponível');
+					Alert.alert('Aviso', 'Recurso atualmente indisponível');
 					// navigation.navigate('CadastrarInformacoes', { email: 'diego.cstbraga@gmail.com', senha: 'senha123' })
-					navigation.navigate('Alimentoss')
+					// navigation.navigate('Alimentoss')
 				}}>
 				<Image source={require('../../../assets/FacebookIcon.png')} />
 				<Text style={{ color: colors.mainTextColor, fontSize: 18, fontWeight: 'bold', flexGrow: 1, textAlign: 'center' }}>

@@ -3,9 +3,9 @@ import { View, Image, Text, TouchableOpacity, ScrollView, Modal, StyleSheet } fr
 import { Avatar } from 'react-native-elements';
 
 import {
-	Container, CardItem,
-	StyleProvider,
-	getTheme
+   Container, CardItem,
+   StyleProvider,
+   getTheme
 } from 'native-base';
 
 import material from '../../../../native-base-theme/variables/material';
@@ -26,141 +26,141 @@ const SadFace = <EntypoIcon name="emoji-sad" size={iconSize} color={colors.red} 
 
 export default function SeuPerfil({ navigation }) {
 
-	const CalculaIMC = () => {
-		const imc = parseFloat(global.user.peso) / Math.pow(global.user.altura * 0.01, 2);
-		// const imc = 40;
-		var retornaIMC;
-		var retornaIcone;
+   const CalculaIMC = () => {
+      const imc = parseFloat(global.user.peso) / Math.pow(global.user.altura * 0.01, 2);
+      // const imc = 40;
+      var retornaIMC;
+      var retornaIcone;
 
-		if (imc > 40) {
-			retornaIMC = 'Obesidade Grave';
-			retornaIcone = SadFace
-		} else if (imc > 30) {
-			retornaIMC = 'Obesidade';
-			retornaIcone = SadFace;
-		} else if (imc > 25) {
-			retornaIMC = 'Sobrepeso';
-			retornaIcone = PokerFace;
-		} else if (imc > 18.5) {
-			retornaIMC = 'Normal';
-			retornaIcone = HappyFace;
-		} else if (imc < 18.5) {
-			retornaIMC = 'Magreza';
-			retornaIcone = PokerFace;
-		}
+      if (imc > 40) {
+         retornaIMC = 'Obesidade Grave';
+         retornaIcone = SadFace
+      } else if (imc > 30) {
+         retornaIMC = 'Obesidade';
+         retornaIcone = SadFace;
+      } else if (imc > 25) {
+         retornaIMC = 'Sobrepeso';
+         retornaIcone = PokerFace;
+      } else if (imc > 18.5) {
+         retornaIMC = 'Normal';
+         retornaIcone = HappyFace;
+      } else if (imc < 18.5) {
+         retornaIMC = 'Magreza';
+         retornaIcone = PokerFace;
+      }
 
-		return <View style={{ flexDirection: 'row', flexGrow: 1, justifyContent: 'space-between' }}>
-			<Text style={styles.textInfo}>Seu IMC: {retornaIMC} </Text>
-			<Text style={styles.icon}>{retornaIcone}</Text>
+      return <View style={{ flexDirection: 'row', flexGrow: 1, justifyContent: 'space-between' }}>
+         <Text style={styles.textInfo}>Seu IMC: {retornaIMC} </Text>
+         <Text style={styles.icon}>{retornaIcone}</Text>
 
-		</View>
+      </View>
 
-	}
+   }
 
-	const defineAvatar = () => {
-		var retornaAvatar;
+   const defineAvatar = () => {
+      var retornaAvatar;
 
-		if (global.user.sexo == 'Masculino') {
-			retornaAvatar = 'https://i.imgur.com/kzABjUH.png'
-			// retornaAvatar = 'https://avatars3.githubusercontent.com/u/50476075?s=460&u=11aba3fef6d20adac7264b36c503396700ac6182&v=4'
-		} else {
-			retornaAvatar = 'https://i.imgur.com/91M3k0c.png'
-			// retornaAvatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'
-		}
+      if (global.user.sexo == 'Masculino') {
+         retornaAvatar = 'https://i.imgur.com/kzABjUH.png'
+         // retornaAvatar = 'https://avatars3.githubusercontent.com/u/50476075?s=460&u=11aba3fef6d20adac7264b36c503396700ac6182&v=4'
+      } else {
+         retornaAvatar = 'https://i.imgur.com/91M3k0c.png'
+         // retornaAvatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'
+      }
 
-		return retornaAvatar
-	}
+      return retornaAvatar
+   }
 
-	return (
+   return (
 
-		<StyleProvider style={getTheme(material)}>
-			<Container style={styles.container}>
-				<ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
+      <StyleProvider style={getTheme(material)}>
+         <Container style={styles.container}>
+            <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
 
 
-					<View style={styles.scrollViewHeader}>
-						<Avatar
-							rounded
-							source={{
-								uri:
-									defineAvatar()
-								// 	'https://avatars3.githubusercontent.com/u/50476075?s=460&u=11aba3fef6d20adac7264b36c503396700ac6182&v=4'
-							}}
-							size={150}
-							onPress={() => { }}
-							showAccessory
-							accessory={{ style: { backgroundColor: '#000', borderRadius: 50 } }}
-							avatarStyle={styles.fotoPerfil}
-						/>
-						<Text style={styles.textWhite}>
-							{global.user.name + ' ' + global.user.surname}
-						</Text>
+               <View style={styles.scrollViewHeader}>
+                  <Avatar
+                     rounded
+                     source={{
+                        uri:
+                           defineAvatar()
+                        // 	'https://avatars3.githubusercontent.com/u/50476075?s=460&u=11aba3fef6d20adac7264b36c503396700ac6182&v=4'
+                     }}
+                     size={150}
+                     onPress={() => { }}
+                     showAccessory
+                     accessory={{ style: { backgroundColor: '#000', borderRadius: 50 } }}
+                     avatarStyle={styles.fotoPerfil}
+                  />
+                  <Text style={styles.textWhite}>
+                     {global.user.name + ' ' + global.user.surname}
+                  </Text>
 
-					</View>
+               </View>
 
-					<View style={styles.scrollViewBody}>
-						<Text style={{
-							fontSize: 24,
-							color: "#F2FDFF",
-							fontWeight: "bold",
-							marginLeft: 6,
-							marginBottom: 6
-						}}>Suas informações</Text>
+               <View style={styles.scrollViewBody}>
+                  <Text style={{
+                     fontSize: 24,
+                     color: "#F2FDFF",
+                     fontWeight: "bold",
+                     marginLeft: 6,
+                     marginBottom: 6
+                  }}>Suas informações</Text>
 
-						<View style={styles.infos}>
-							<View style={{
-								flexDirection: "row",
-								alignItems: 'center',
+                  <View style={styles.infos}>
+                     <View style={{
+                        flexDirection: "row",
+                        alignItems: 'center',
 
-								borderBottomWidth: 1,
-								borderColor: colors.mainInfoBorderColor,
+                        borderBottomWidth: 1,
+                        borderColor: colors.mainInfoBorderColor,
 
-								paddingBottom: 13,
-								paddingHorizontal: 13,
+                        paddingBottom: 13,
+                        paddingHorizontal: 13,
 
-								flexDirection: "row",
+                        flexDirection: "row",
 
-							}}>
-								<Text style={styles.icon}>{IconeBalanca}</Text>
-								<Text style={styles.textInfo}>Seu Peso: {global.user.peso} Kg</Text>
+                     }}>
+                        <Text style={styles.icon}>{IconeBalanca}</Text>
+                        <Text style={styles.textInfo}>Seu Peso: {global.user.peso} Kg</Text>
 
-							</View>
+                     </View>
 
-							<View style={styles.camposInfos}>
-								<Text style={styles.icon}>{IconAlvo}</Text>
-								<Text style={styles.textInfo}>Sua Meta: {global.user.meta}</Text>
+                     <View style={styles.camposInfos}>
+                        <Text style={styles.icon}>{IconAlvo}</Text>
+                        <Text style={styles.textInfo}>Seu objetivo: {global.user.meta}</Text>
 
-							</View>
+                     </View>
 
-							<View style={styles.camposInfos}>
-								<Text style={styles.icon}>{IconeCalculadora}</Text>
+                     <View style={styles.camposInfos}>
+                        <Text style={styles.icon}>{IconeCalculadora}</Text>
 
-								{/* <View style={{ backgroundColor: 'green', flexDirection: 'row', width: '90%', justifyContent: 'space-between' }}>
+                        {/* <View style={{ backgroundColor: 'green', flexDirection: 'row', width: '90%', justifyContent: 'space-between' }}>
 									<Text style={styles.textInfo}>Seu IMC: <CalculaIMC /> </Text>
 									<Text style={styles.icon}>{HappyFace}</Text>
 
 								</View> */}
-								{/* <CalculaIMC /> */}
-								{CalculaIMC()}
+                        {/* <CalculaIMC /> */}
+                        {CalculaIMC()}
 
-							</View>
+                     </View>
 
-						</View>
+                  </View>
 
-						<TouchableOpacity style={styles.fatButton}
-							onPress={() => navigation.navigate('EditPerfil')}>
-							<Text style={styles.txtFatButton}>Alterar dados</Text>
-						</TouchableOpacity>
+                  <TouchableOpacity style={styles.fatButton}
+                     onPress={() => navigation.navigate('EditPerfil')}>
+                     <Text style={styles.txtFatButton}>Alterar dados</Text>
+                  </TouchableOpacity>
 
-						<TouchableOpacity
-							style={styles.fatButtonLogout}
-							onPress={() => navigation.popToTop()}>
-							<Text style={styles.txtFatButton}>Fazer logout</Text>
-						</TouchableOpacity>
-					</View >
+                  <TouchableOpacity
+                     style={styles.fatButtonLogout}
+                     onPress={() => navigation.popToTop()}>
+                     <Text style={styles.txtFatButton}>Fazer logout</Text>
+                  </TouchableOpacity>
+               </View >
 
-				</ScrollView>
-			</Container>
-		</StyleProvider >
-	);
+            </ScrollView>
+         </Container>
+      </StyleProvider >
+   );
 }

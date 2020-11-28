@@ -156,11 +156,11 @@ import moment from "moment"
 import styles from './styles';
 import colors from 'dir-src/assets/colors.js';
 
-import FeatherIcons from 'react-native-vector-icons/Feather';
+import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const iconSize = 18;
 
-const Relogio = <FeatherIcons name="clock" size={iconSize} color={colors.red} />
+const calendario = <MCIcons name="calendar" size={iconSize} color={colors.red} />
 
 export default function CadastrarInformacoes({ navigation, route }) {
 	// export default function CadastrarInformacoes({ navigation }) {
@@ -202,7 +202,7 @@ export default function CadastrarInformacoes({ navigation, route }) {
 
 		return <View style={{ flexDirection: 'row', flexGrow: 1, justifyContent: 'space-between', alignItems: 'center' }}>
 			<Text style={styles.insertDtNascText}>{retorno}</Text>
-			<Text >{Relogio}</Text>
+			<Text >{calendario}</Text>
 
 		</View>
 
@@ -233,6 +233,7 @@ export default function CadastrarInformacoes({ navigation, route }) {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
+
 				email: email,
 				password: senha,
 				name: name,
@@ -247,7 +248,7 @@ export default function CadastrarInformacoes({ navigation, route }) {
 			.then((response) => response.json())
 			.then((response) => {
 				if ('error' in response) {
-					alert(response.error);
+					Alert.alert('Aviso', response.error);
 				} else {
 					console.log(response);
 					navigation.navigate('ContaCriada');

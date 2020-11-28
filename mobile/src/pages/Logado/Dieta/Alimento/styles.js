@@ -19,22 +19,23 @@ export default StyleSheet.create({
 		width: '100%',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		
+
 		// backgroundColor: 'gray'
 	},
 	inicio: {
 		width: '100%',
-		marginTop:15,
+		marginTop: 15,
 		justifyContent: 'flex-start',
 		alignItems: 'center',
 	},
 	video: {
-		// width: '100%',
+		width: 150,
+		height: 150,
 		// height: '80%',
-		width: win.width,
-		height: 300 * ratio,
+		// width: win.width,
+		// height: 300 * ratio,
 		// resizeMode: 'stretch',
-		
+
 	},
 	headerFaixa: {
 		width: '120%',
@@ -83,7 +84,7 @@ export default StyleSheet.create({
 		fontWeight: 'bold',
 	},
 
-	faixaDetalhes:{
+	faixaDetalhes: {
 		marginTop: 30,
 		//marginBottom: 30,
 		width: '120%',
@@ -91,15 +92,15 @@ export default StyleSheet.create({
 		backgroundColor: '#676767',
 		justifyContent: 'center',
 		alignItems: 'center',
-	  },
-	
-	  textoFaixaDetalhes: {
+	},
+
+	textoFaixaDetalhes: {
 		color: 'white',
 		fontSize: 20,
 		fontWeight: 'bold',
 		width: '80%',
 		textAlign: 'center',
 		flex: 1,
-	  },
+	},
 
 });
