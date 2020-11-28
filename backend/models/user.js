@@ -64,7 +64,7 @@ const UserSchema = new mongoose.Schema({
 
 	meta: {
 		type: String,
-		default: "Definir"
+		// default: "Definir"
 	},
 
 });
