@@ -19,27 +19,6 @@ import DietIcon from '../../../assets/DietIcon.js';
 
 export default function Dieta({ navigation }) {
 
-	const [Alimentos, setAlimentos] = useState([]);
-
-	async function loadAlimentos() {
-		//Have a try and catch block for catching errors.
-		try {
-		   //Assign the promise unresolved first then get the data using the json method.
-		   const pokemonApiCall = await fetch('http://' + global.endereco + '/alimento/get');
-		   const pokemon = await pokemonApiCall.json();
-		   setAlimentos(pokemon);
-		} catch (err) {
-		   console.log('Error fetching data-----------', err);
-		}
-	 }
-  
-	 useEffect(() => {
-		loadAlimentos();
-	 }, []);
-
-
-	const [food, setFood] = useState(Alimentos);
-
 	const AlimentosCafe = [
 		{
 			id: '0',
@@ -78,27 +57,27 @@ export default function Dieta({ navigation }) {
 		{
 			id: '1',
 			titulo: 'Café da Manhã',
-			alimentos: AlimentosCafe,
+			alimentos: global.Alimentos.alimentosCafe,
 		},
 		{
 			id: '2',
 			titulo: 'Lanche da Manhã',
-			alimentos: AlimentosLancheManha,
+			alimentos: global.Alimentos.alimentosLancheM,
 		},
 		{
 			id: '3',
 			titulo: 'Almoço',
-			alimentos: AlimentosCafe,
+			alimentos: global.Alimentos.alimentosAlmoco,
 		},
 		{
 			id: '4',
 			titulo: 'Lanche da Tarde',
-			alimentos: AlimentosCafe,
+			alimentos: global.Alimentos.alimentosLancheT,
 		},
 		{
 			id: '5',
 			titulo: 'Janta',
-			alimentos: AlimentosCafe,
+			alimentos: global.Alimentos.alimentosJanta,
 		},
 	];
 
@@ -116,8 +95,6 @@ export default function Dieta({ navigation }) {
 	const Item = ({ titulo }) => (
 		<Text style={styles.textoIndiceRefeicoes}>{titulo}</Text>
 	)
-
-	console.log(Alimentos);
 
 
 	return (
@@ -159,16 +136,15 @@ export default function Dieta({ navigation }) {
 								horizontal={true}
 								style={styles.listarIndiceRefeicoes}
 								showsHorizontalScrollIndicator={false}
-								extraData={Alimentos}
 								renderItem={({ item }) => (<TouchableOpacity style={styles.containerShadow} onPress={() =>
-									navigation.navigate('Alimento', { alimento: Alimentos[0] })
+									navigation.navigate('Alimento', { alimento: item })
 								}>
 									<Card transparent style={{ height: 150 }}>
 										<Body >
 											<Image
 												style={{ width: 100, height: 100, resizeMode: "contain", marginBottom: 15 }}
-												source={{uri: 'https://i.imgur.com/8hhG7ar.png'}} />
-											<Text note>Maçã</Text>
+												source={{uri: item.imagem}} />
+											<Text note>{item.nome_Alimento}</Text>
 										</Body>
 									</Card>
 								</TouchableOpacity>

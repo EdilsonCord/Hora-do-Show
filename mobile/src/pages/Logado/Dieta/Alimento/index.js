@@ -17,10 +17,10 @@ export default function Alimento({ navigation, route }) {
 	const dados1 =
 	{
 		id: '1',
-		titulo: 'Maçã',
+		nome_Alimento: 'Maçã',
 		imagem: require('dir-src/assets/Maçã.png'),
-		kCal: '100',
-		descAlimento: 'A maçã é o pseudofruto pomáceo da macieira, árvore da família Rosaceae. É um dos pseudofrutos de árvore mais cultivados, e o mais conhecido dos muitos membros do género Malus que são usados ​​pelos seres humanos.',
+		kcal_Alimento: '100',
+		descricao_Alimento: 'A maçã é o pseudofruto pomáceo da macieira, árvore da família Rosaceae. É um dos pseudofrutos de árvore mais cultivados, e o mais conhecido dos muitos membros do género Malus que são usados ​​pelos seres humanos.',
 		tipoDoAlimento: 'Fruta'
 	}
 
@@ -30,12 +30,12 @@ export default function Alimento({ navigation, route }) {
 			<View style={styles.headerTotal}>
 				<View style={styles.headerFaixa}>
 					<View style={styles.faixa}>
-						<Text style={styles.textoFaixa}>{dados1.titulo}</Text>
+						<Text style={styles.textoFaixa}>{dados.titulo}</Text>
 					</View>
 				</View>
 				<View style={styles.headerInicio}>
 					<View style={styles.inicio}>
-						<Image style={styles.video} source={require('dir-src/assets/Maçã.png')} />
+						<Image style={styles.video} source={{uri: dados.imagem}} />
 
 						{/* <Text>Video deve estar acima de mim</Text> */}
 
@@ -57,20 +57,20 @@ export default function Alimento({ navigation, route }) {
           <Text style={styles.textoInfoDesc}>Supino Reto</Text> */}
 
 					<Text style={styles.textoInfoTitulo}>Descrição</Text>
-					<Text style={styles.textoInfoDescAbaixo}>{dados1.descAlimento}
+					<Text style={styles.textoInfoDescAbaixo}>{dados.descricao_Alimento}
 
 
-						{/* {dados1.descricao_exercicio} */}
+						{/* {dados.descricao_exercicio} */}
 					</Text>
 
 					<Text style={styles.textoInfoTitulo}>
 						kCal:
-            <Text style={styles.textoInfoDescLado}> {dados1.kCal}</Text>
+            <Text style={styles.textoInfoDescLado}> {dados.kcal_Alimento}</Text>
 					</Text>
 
 					<Text style={styles.textoInfoTitulo}>
 						Tipo do Alimento:
-            <Text style={styles.textoInfoDescLado}> {dados1.tipoDoAlimento}</Text>
+            <Text style={styles.textoInfoDescLado}> TIPO ALIMENTO</Text>
 					</Text>
 				</View>
 			</ScrollView>
