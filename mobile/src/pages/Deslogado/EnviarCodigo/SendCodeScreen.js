@@ -119,7 +119,7 @@ export default function SendCodeScreen({ navigation }) {
 	async function handleRegister(e) {
 		e.preventDefault();
 
-		fetch('http://10.0.2.2:3333/api/pre_register', {
+		fetch('http://' + global.endereco + '/api/pre_register', {
 			method: 'post',
 			headers: {
 				'Accept': 'application/json',
