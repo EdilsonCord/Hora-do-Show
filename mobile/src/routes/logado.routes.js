@@ -128,8 +128,10 @@ export default function logadoRoutes() {
 
 
 				options={{
-					tabBarIcon: ({ focused }) => (
-						<MaterialCommunityIcons name="home" color={focused ? material.brandSuccess : "#757575"} size={size} />
+					//tabBarIcon: ({ focused }) => (
+						// <MaterialCommunityIcons name="home" color={focused ? material.brandSuccess : "#757575"} size={size} />
+						tabBarIcon: ({ color }) => (
+						<MaterialCommunityIcons name="home" color={color} size={size} />
 					),
 				}}
 			/>
