@@ -19,40 +19,6 @@ import DietIcon from '../../../assets/DietIcon.js';
 
 export default function Dieta({ navigation }) {
 
-	const AlimentosCafe = [
-		{
-			id: '0',
-			idAlimento: 0,
-		},
-		{
-			id: '1',
-			idAlimento: 0,
-		}
-	]
-
-	const AlimentosLancheManha = [
-		{
-			id: '0',
-			idAlimento: 0,
-		},
-		{
-			id: '1',
-			idAlimento: 0,
-		},
-		{
-			id: '2',
-			idAlimento: 0,
-		},
-		{
-			id: '3',
-			idAlimento: 0,
-		},
-		{
-			id: '4',
-			idAlimento: 0,
-		}
-	]
-
 	const flDados = [
 		{
 			id: '1',
@@ -80,6 +46,16 @@ export default function Dieta({ navigation }) {
 			alimentos: global.Alimentos.alimentosJanta,
 		},
 	];
+
+	function CalcularCaloria(item){	
+		var caloriaTotal = 0;
+		console.log("Ué: ", item.length)
+		for (var x = 0; x < item.length; x ++){
+			console.log("Ué: ", caloriaTotal)
+			caloriaTotal = caloriaTotal + parseInt(item[x].kcal_Alimento)
+		}
+		return caloriaTotal
+	}
 
 
 
@@ -128,7 +104,7 @@ export default function Dieta({ navigation }) {
 						<View style={styles.containerRefeicoes}>
 							<View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
 								<Text style={styles.textoIndiceRefeicoes}>{item.titulo}</Text>
-								<Text note>1200 kcal</Text>
+								<Text note>{CalcularCaloria(item.alimentos)} kcal</Text>
 							</View>
 
 							<FlatList
