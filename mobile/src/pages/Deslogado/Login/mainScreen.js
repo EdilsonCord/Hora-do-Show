@@ -159,12 +159,12 @@
 
 import React, { useEffect, useState } from 'react';
 import {
-	View,
-	Text,
-	Image,
-	TextInput,
-	TouchableOpacity,
-	Alert,
+   View,
+   Text,
+   Image,
+   TextInput,
+   TouchableOpacity,
+   Alert,
 } from 'react-native';
 
 import styles from './styles';
@@ -172,140 +172,140 @@ import colors from 'dir-src/assets/colors.js'
 
 // export default class MainScreen extends Component {
 export default function MainScreen({ navigation }) {
-	const [email, onChangeEmail] = React.useState('');
-	const [senha, onChangeSenha] = React.useState('');
+   const [email, onChangeEmail] = React.useState('');
+   const [senha, onChangeSenha] = React.useState('');
 
-	////
-	/// GAMBIARRA N MEXER
-	///
+   ////
+   /// GAMBIARRA N MEXER
+   ///
 
-	const [Alimentos, setAlimentos] = useState([]);
+   const [Alimentos, setAlimentos] = useState([]);
 
-	async function loadAlimentos() {
-		//Have a try and catch block for catching errors.
-		try {
-		   //Assign the promise unresolved first then get the data using the json method.
-		   const pokemonApiCall = await fetch('http://' + global.endereco + '/dieta/get/id/5fc2b7e35a42cb0017950b78');
-		   const pokemon = await pokemonApiCall.json();
-		   setAlimentos(pokemon);
-		   global.Alimentos = pokemon;
-		   console.log(pokemon)
-		} catch (err) {
-		   console.log('Error fetching data-----------', err);
-		}
-	 }
-  
-	 useEffect(() => {
-		loadAlimentos();
-	 }, []);
+   async function loadAlimentos() {
+      //Have a try and catch block for catching errors.
+      try {
+         //Assign the promise unresolved first then get the data using the json method.
+         const pokemonApiCall = await fetch('http://' + global.endereco + '/dieta/get/id/5fc2b7e35a42cb0017950b78');
+         const pokemon = await pokemonApiCall.json();
+         setAlimentos(pokemon);
+         global.Alimentos = pokemon;
+         console.log(pokemon)
+      } catch (err) {
+         console.log('Error fetching data-----------', err);
+      }
+   }
 
-	 ////
-	 /// FIM DA GAMBIARRA
-	 //
+   useEffect(() => {
+      loadAlimentos();
+   }, []);
 
-	async function handleRegister(e) {
-		e.preventDefault();
+   ////
+   /// FIM DA GAMBIARRA
+   //
 
-		fetch('http://' + global.endereco + '/api/authenticate', {
-			method: 'post',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				email: email,
-				password: senha,
-			}),
-		})
-			.then((response) => response.json())
-			.then((response) => {
-				if ('error' in response) {
-					Alert.alert('Erro ao fazer Login!', response.error);
-				} else {
-					global.user = response.user;
-					navigation.navigate('MainSuccessScreen');
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	}
+   async function handleRegister(e) {
+      e.preventDefault();
 
-	return (
-		<View style={styles.container}>
-			<Image source={require('../../../assets/logoOficial282x166.png')} />
+      fetch('http://' + global.endereco + '/api/authenticate', {
+         method: 'post',
+         headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({
+            email: email,
+            password: senha,
+         }),
+      })
+         .then((response) => response.json())
+         .then((response) => {
+            if ('error' in response) {
+               Alert.alert('Erro ao fazer Login!', response.error);
+            } else {
+               global.user = response.user;
+               navigation.navigate('MainSuccessScreen');
+            }
+         })
+         .catch((err) => {
+            console.log(err);
+         });
+   }
 
-			<TextInput
-				style={styles.input}
-				// defaultValue="diego.cstbraga@gmail.comm"
-				placeholder="Insira seu email aqui"
-				placeholderTextColor={colors.mainInputPlaceholder}
-				onChangeText={(text) => onChangeEmail(text)}
-				email={email}
-			/>
+   return (
+      <View style={styles.container}>
+         <Image source={require('../../../assets/logoOficial282x166.png')} />
 
-			<TextInput
-				style={styles.input}
-				// defaultValue="senha1233"
-				secureTextEntry={true}
-				placeholder="Sua senha"
-				placeholderTextColor={colors.mainInputPlaceholder}
-				onChangeText={(text) => onChangeSenha(text)}
-				senha={senha}
-			/>
+         <TextInput
+            style={styles.input}
+            // defaultValue="diego.cstbraga@gmail.comm"
+            placeholder="Insira seu email aqui"
+            placeholderTextColor={colors.mainInputPlaceholder}
+            onChangeText={(text) => onChangeEmail(text)}
+            email={email}
+         />
 
-			<View style={styles.layerLink}>
-				<TouchableOpacity
-					onPress={() => navigation.navigate('SendRecoveryCodeScreen')}>
-					<Text style={styles.link}>Esqueci minha senha</Text>
-				</TouchableOpacity>
-			</View>
+         <TextInput
+            style={styles.input}
+            // defaultValue="senha1233"
+            secureTextEntry={true}
+            placeholder="Sua senha"
+            placeholderTextColor={colors.mainInputPlaceholder}
+            onChangeText={(text) => onChangeSenha(text)}
+            senha={senha}
+         />
 
-			<TouchableOpacity style={styles.botao} onPress={handleRegister}>
-				<Text style={styles.botaoText}>Entrar</Text>
-			</TouchableOpacity>
+         <View style={styles.layerLink}>
+            <TouchableOpacity
+               onPress={() => navigation.navigate('SendRecoveryCodeScreen')}>
+               <Text style={styles.link}>Esqueci minha senha</Text>
+            </TouchableOpacity>
+         </View>
 
-			<View style={styles.grupoOu}>
-				<View style={styles.horizontalLine} />
+         <TouchableOpacity style={styles.botao} onPress={handleRegister}>
+            <Text style={styles.botaoText}>Entrar</Text>
+         </TouchableOpacity>
 
-				<Text style={styles.textoOu}>ou</Text>
+         <View style={styles.grupoOu}>
+            <View style={styles.horizontalLine} />
 
-				<View style={styles.horizontalLine} />
-			</View>
+            <Text style={styles.textoOu}>ou</Text>
 
-			<TouchableOpacity
-				style={styles.botaoCadastro}
-				onPress={() => navigation.navigate('SendCodeScreen')}>
-				<Text style={styles.botaoText}>CADASTRE-SE GRÁTIS</Text>
-			</TouchableOpacity>
+            <View style={styles.horizontalLine} />
+         </View>
 
-			<TouchableOpacity
-				style={styles.botaoFacebook}
-				onPress={() => {
-					Alert.alert('Aviso', 'Recurso atualmente indisponível');
-					// navigation.navigate('CadastrarInformacoes', { email: 'diego.cstbraga@gmail.com', senha: 'senha123' })
-					// navigation.navigate('Alimentoss')
-				}}>
-				<Image source={require('../../../assets/FacebookIcon.png')} />
-				<Text style={{ color: colors.mainTextColor, fontSize: 18, fontWeight: 'bold', flexGrow: 1, textAlign: 'center' }}>
-					ENTRAR COM O FACEBOOK
+         <TouchableOpacity
+            style={styles.botaoCadastro}
+            onPress={() => navigation.navigate('SendCodeScreen')}>
+            <Text style={styles.botaoText}>CADASTRE-SE GRÁTIS</Text>
+         </TouchableOpacity>
+
+         <TouchableOpacity
+            style={styles.botaoFacebook}
+            onPress={() => {
+               Alert.alert('Aviso', 'Recurso atualmente indisponível');
+               // navigation.navigate('ContaCriada', { email: 'diego.cstbraga@gmail.com', senha: 'senha123' })
+               // navigation.navigate('Alimentoss')
+            }}>
+            <Image source={require('../../../assets/FacebookIcon.png')} />
+            <Text style={{ color: colors.mainTextColor, fontSize: 18, fontWeight: 'bold', flexGrow: 1, textAlign: 'center' }}>
+               ENTRAR COM O FACEBOOK
         		</Text>
-			</TouchableOpacity>
+         </TouchableOpacity>
 
-			<TouchableOpacity
-				style={styles.botaoGoogle}
-				onPress={() => {
-					Alert.alert('Aviso', 'Recurso atualmente indisponível');
-				}}>
-				<Image source={require('../../../assets/GoogleIcon.png')} />
+         <TouchableOpacity
+            style={styles.botaoGoogle}
+            onPress={() => {
+               Alert.alert('Aviso', 'Recurso atualmente indisponível');
+            }}>
+            <Image source={require('../../../assets/GoogleIcon.png')} />
 
-				<Text style={{
-					color: colors.mainTextColor, fontSize: 18, fontWeight: 'bold', flexGrow: 1, textAlign: 'center'
-				}}>
-					ENTRAR COM O GOOGLE
+            <Text style={{
+               color: colors.mainTextColor, fontSize: 18, fontWeight: 'bold', flexGrow: 1, textAlign: 'center'
+            }}>
+               ENTRAR COM O GOOGLE
 				</Text>
 
-			</TouchableOpacity>
-		</View>
-	);
+         </TouchableOpacity>
+      </View>
+   );
 }

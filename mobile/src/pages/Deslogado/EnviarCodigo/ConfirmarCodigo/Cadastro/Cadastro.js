@@ -135,15 +135,15 @@
 
 import React, { useState } from 'react';
 import {
-	View,
-	SafeAreaView,
-	Image,
-	Text,
-	TextInput,
-	Alert,
-	ScrollView,
-	TouchableOpacity,
-	KeyboardAvoidingView
+   View,
+   SafeAreaView,
+   Image,
+   Text,
+   TextInput,
+   Alert,
+   ScrollView,
+   TouchableOpacity,
+   KeyboardAvoidingView
 } from 'react-native';
 
 import { RadioButton } from 'react-native-paper';
@@ -163,185 +163,185 @@ const iconSize = 18;
 const calendario = <MCIcons name="calendar" size={iconSize} color={colors.red} />
 
 export default function CadastrarInformacoes({ navigation, route }) {
-	// export default function CadastrarInformacoes({ navigation }) {
-	const [sexo, setSexo] = React.useState('Masculino'); //sexo kkkkkk
-	const [meta, setMeta] = useState('Emagrecer'); //META
-	const [email, onChangeEmail] = React.useState(route.params.email);
-	const [senha, onChangeSenha] = React.useState(route.params.senha);
-	const [name, setName] = React.useState('');
-	const [surname, setSurname] = React.useState('');
-	const [peso, setPeso] = React.useState('');
-	const [altura, setAltura] = React.useState('');
+   // export default function CadastrarInformacoes({ navigation }) {
+   const [sexo, setSexo] = React.useState('Masculino'); //sexo kkkkkk
+   const [meta, setMeta] = useState('Emagrecer'); //META
+   const [email, onChangeEmail] = React.useState(route.params.email);
+   const [senha, onChangeSenha] = React.useState(route.params.senha);
+   const [name, setName] = React.useState('');
+   const [surname, setSurname] = React.useState('');
+   const [peso, setPeso] = React.useState('');
+   const [altura, setAltura] = React.useState('');
 
-	const [dtNasc, setDtNasc] = React.useState(parseInt(moment().format('L')));
-
-
-	// DatePicker functions
-	const [show, setShow] = useState(false);
-
-	const onChange = (event, selectedDate) => {
-		const currentDate = selectedDate || dtNasc;
-		setShow(Platform.OS === 'ios');
-		setDtNasc(currentDate);
-	};
-
-	const showDatepicker = () => {
-		setShow(true);
-		// showMode('date');
-	};
-
-	const CampoDtNasc = () => {
-		var retorno;
-
-		// if (dtNasc == Date())
-		if (dtNasc == parseInt(moment().format('L')))
-			retorno = 'Data de Nasc.';
-		else
-			retorno = moment(dtNasc).format("DD/MM/YYYY");
-		// retorno = new Date(dtNasc).toLocaleDateString('pt-BR', options);
-
-		return <View style={{ flexDirection: 'row', flexGrow: 1, justifyContent: 'space-between', alignItems: 'center' }}>
-			<Text style={styles.insertDtNascText}>{retorno}</Text>
-			<Text >{calendario}</Text>
-
-		</View>
-
-	}
-
-	async function handleCompleteRegister(e) {
-		e.preventDefault();
-
-		//CRIAR OUTRA FUNÇÃO NÃO-ASYNC PARA VERIFICAR CAMPOS INVES DE POR AQUI
-		if (name === '') {
-			return Alert.alert('Aviso', 'Você esqueceu de por seu nome');
-		} else if (surname === '') {
-			return Alert.alert('Aviso', 'Você esqueceu de por seu sobrenome');
-		} else if (altura === '') {
-			return Alert.alert('Aviso', 'Você esqueceu de por seu altura');
-		} else if (peso === '') {
-			return Alert.alert('Aviso', 'Você esqueceu de por seu peso');
-		} else if (dtNasc === '') {
-			return Alert.alert('Aviso', 'Você esqueceu de por sua data de nascimento');
-		}
+   const [dtNasc, setDtNasc] = React.useState(parseInt(moment().format('L')));
 
 
+   // DatePicker functions
+   const [show, setShow] = useState(false);
 
-		fetch('http://'+  global.endereco + '/api/completeRegister', {
-			method: 'post',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
+   const onChange = (event, selectedDate) => {
+      const currentDate = selectedDate || dtNasc;
+      setShow(Platform.OS === 'ios');
+      setDtNasc(currentDate);
+   };
 
-				email: email,
-				password: senha,
-				name: name,
-				surname: surname,
-				sexo: sexo,
-				peso: peso,
-				altura: altura,
-				dtNasc: moment(dtNasc).format("DD/MM/YYYY"),
-				meta: meta,
-			}),
-		})
-			.then((response) => response.json())
-			.then((response) => {
-				if ('error' in response) {
-					Alert.alert('Aviso', response.error);
-				} else {
-					console.log(response);
-					navigation.navigate('ContaCriada');
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-				navigation.navigate('ContaCriada');
-			});
-	}
+   const showDatepicker = () => {
+      setShow(true);
+      // showMode('date');
+   };
 
-	return (
-		<KeyboardAvoidingView style={styles.container}>
-			<View style={styles.header}>
+   const CampoDtNasc = () => {
+      var retorno;
 
-				{/* <Text>Data aqui: {dtNasc}</Text> */}
+      // if (dtNasc == Date())
+      if (dtNasc == parseInt(moment().format('L')))
+         retorno = 'Data de Nasc.';
+      else
+         retorno = moment(dtNasc).format("DD/MM/YYYY");
+      // retorno = new Date(dtNasc).toLocaleDateString('pt-BR', options);
 
-				<Image
-					style={{ width: 125, height: 125, marginBottom: 20, alignSelf: "center" }}
-					source={require('dir-src/assets/notepad.png')}
-				/>
+      return <View style={{ flexDirection: 'row', flexGrow: 1, justifyContent: 'space-between', alignItems: 'center' }}>
+         <Text style={styles.insertDtNascText}>{retorno}</Text>
+         <Text >{calendario}</Text>
 
-				<Text style={styles.textoImportante}>FINALIZAR CADASTRO</Text>
-			</View>
+      </View>
 
-			<View style={styles.forms}>
-				<TextInput
-					placeholder="Nome"
-					style={styles.insertText}
-					onChangeText={(text) => {
-						setName(text);
-					}}
-					name={name}
-				/>
+   }
 
-				<TextInput
-					placeholder="Sobrenome"
-					style={styles.insertText}
-					onChangeText={(text) => {
-						setSurname(text);
-					}}
-					surname={surname} />
+   async function handleCompleteRegister(e) {
+      e.preventDefault();
 
-				<View style={styles.campoSexo}>
-					<Text style={styles.textoImportante}>Sexo</Text>
+      //CRIAR OUTRA FUNÇÃO NÃO-ASYNC PARA VERIFICAR CAMPOS INVES DE POR AQUI
+      if (name === '') {
+         return Alert.alert('Aviso', 'Você esqueceu de por seu nome');
+      } else if (surname === '') {
+         return Alert.alert('Aviso', 'Você esqueceu de por seu sobrenome');
+      } else if (altura === '') {
+         return Alert.alert('Aviso', 'Você esqueceu de por seu altura');
+      } else if (peso === '') {
+         return Alert.alert('Aviso', 'Você esqueceu de por seu peso');
+      } else if (dtNasc === '') {
+         return Alert.alert('Aviso', 'Você esqueceu de por sua data de nascimento');
+      }
 
-					<RadioButton.Group
-						onValueChange={(value) => setSexo(value)}
-						value={sexo}>
-						<View style={styles.radioButton}>
-							<RadioButton value="Masculino"
-							// status={sexo === 'masc' ? 'checked' : 'unchecked'}
-							// onPress={() => setSexo('masc')} 
-							/>
 
-							<Text style={styles.textoRB}>Masculino</Text>
-						</View>
-						<View style={styles.radioButton}>
-							<RadioButton value="Feminino"
-							// status={sexo === 'fem' ? 'checked' : 'unchecked'}
-							// onPress={() => setSexo('fem')}
-							/>
 
-							<Text style={styles.textoRB}>Feminino</Text>
-						</View>
-					</RadioButton.Group>
-				</View>
-				{/* <Text>Valor sexo kkkk: {sexo}</Text> */}
-				<View style={styles.campoDuplo}>
-					<TextInputMask
-						mask={'[000]'}
-						placeholder="Altura (cm)"
-						keyboardType={'number-pad'}
-						style={styles.insertValuePequeno}
-						onChangeText={(text) => {
-							setAltura(text);
-						}}
-						altura={altura}
-					/>
-					<TextInputMask
-						mask={'[990],[000]'}
-						placeholder="Peso (kg)"
-						keyboardType={'decimal-pad'}
-						style={styles.insertValuePequeno}
-						onChangeText={(text) => {
-							setPeso(text);
-						}}
-						peso={peso}
-					/>
-				</View>
+      fetch('http://' + global.endereco + '/api/completeRegister', {
+         method: 'post',
+         headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({
 
-				<View style={styles.campoDuplo}>
-					{/* <TextInputMask
+            email: email,
+            password: senha,
+            name: name,
+            surname: surname,
+            sexo: sexo,
+            peso: peso,
+            altura: altura,
+            dtNasc: moment(dtNasc).format("DD/MM/YYYY"),
+            meta: meta,
+         }),
+      })
+         .then((response) => response.json())
+         .then((response) => {
+            if ('error' in response) {
+               Alert.alert('Aviso', response.error);
+            } else {
+               console.log(response);
+               navigation.navigate('ContaCriada', { email: email, senha: senha });
+            }
+         })
+         .catch((err) => {
+            console.log(err);
+            navigation.navigate('ContaCriada', { email: email, senha: senha });
+         });
+   }
+
+   return (
+      <KeyboardAvoidingView style={styles.container}>
+         <View style={styles.header}>
+
+            {/* <Text>Data aqui: {dtNasc}</Text> */}
+
+            <Image
+               style={{ width: 125, height: 125, marginBottom: 20, alignSelf: "center" }}
+               source={require('dir-src/assets/notepad.png')}
+            />
+
+            <Text style={styles.textoImportante}>FINALIZAR CADASTRO</Text>
+         </View>
+
+         <View style={styles.forms}>
+            <TextInput
+               placeholder="Nome"
+               style={styles.insertText}
+               onChangeText={(text) => {
+                  setName(text);
+               }}
+               name={name}
+            />
+
+            <TextInput
+               placeholder="Sobrenome"
+               style={styles.insertText}
+               onChangeText={(text) => {
+                  setSurname(text);
+               }}
+               surname={surname} />
+
+            <View style={styles.campoSexo}>
+               <Text style={styles.textoImportante}>Sexo</Text>
+
+               <RadioButton.Group
+                  onValueChange={(value) => setSexo(value)}
+                  value={sexo}>
+                  <View style={styles.radioButton}>
+                     <RadioButton value="Masculino"
+                     // status={sexo === 'masc' ? 'checked' : 'unchecked'}
+                     // onPress={() => setSexo('masc')} 
+                     />
+
+                     <Text style={styles.textoRB}>Masculino</Text>
+                  </View>
+                  <View style={styles.radioButton}>
+                     <RadioButton value="Feminino"
+                     // status={sexo === 'fem' ? 'checked' : 'unchecked'}
+                     // onPress={() => setSexo('fem')}
+                     />
+
+                     <Text style={styles.textoRB}>Feminino</Text>
+                  </View>
+               </RadioButton.Group>
+            </View>
+            {/* <Text>Valor sexo kkkk: {sexo}</Text> */}
+            <View style={styles.campoDuplo}>
+               <TextInputMask
+                  mask={'[000]'}
+                  placeholder="Altura (cm)"
+                  keyboardType={'number-pad'}
+                  style={styles.insertValuePequeno}
+                  onChangeText={(text) => {
+                     setAltura(text);
+                  }}
+                  altura={altura}
+               />
+               <TextInputMask
+                  mask={'[990],[000]'}
+                  placeholder="Peso (kg)"
+                  keyboardType={'decimal-pad'}
+                  style={styles.insertValuePequeno}
+                  onChangeText={(text) => {
+                     setPeso(text);
+                  }}
+                  peso={peso}
+               />
+            </View>
+
+            <View style={styles.campoDuplo}>
+               {/* <TextInputMask
 						mask={'[00]/[00]/[0000]'}
 						placeholder="Data de Nasc."
 						keyboardType={'number-pad'}
@@ -351,21 +351,21 @@ export default function CadastrarInformacoes({ navigation, route }) {
 						}}
 						dtNasc={dtNasc}
 					/> */}
-					<TouchableOpacity style={styles.insertDtNasc} onPress={showDatepicker}>
-						{CampoDtNasc()}
-					</TouchableOpacity>
+               <TouchableOpacity style={styles.insertDtNasc} onPress={showDatepicker}>
+                  {CampoDtNasc()}
+               </TouchableOpacity>
 
-					{show && (
-						<DateTimePicker
-							testID="dateTimePicker"
-							value={dtNasc}
-							mode={'date'}
-							display="default"
-							onChange={onChange}
-						/>
-					)}
+               {show && (
+                  <DateTimePicker
+                     testID="dateTimePicker"
+                     value={dtNasc}
+                     mode={'date'}
+                     display="default"
+                     onChange={onChange}
+                  />
+               )}
 
-					{/* <TextInputMaskDate
+               {/* <TextInputMaskDate
 						placeholder="Data de Nasc."
 						style={styles.insertValuePequeno}
 						type={'datetime'}
@@ -379,34 +379,34 @@ export default function CadastrarInformacoes({ navigation, route }) {
 
 					/> */}
 
-					<View style={styles.campoPicker}>
-						<Picker
-							selectedValue={meta}
-							style={styles.picker}
-							onValueChange={(itemValue) =>
-								setMeta(itemValue)
-							}>
-							<Picker.Item label="Emagrecer" value="Emagrecer" />
-							<Picker.Item label="Definir" value="Definir" />
-							<Picker.Item label="Crescer" value="Crescer" />
-						</Picker>
-						{/* {DownArrow} */}
-					</View>
-				</View>
-			</View>
+               <View style={styles.campoPicker}>
+                  <Picker
+                     selectedValue={meta}
+                     style={styles.picker}
+                     onValueChange={(itemValue) =>
+                        setMeta(itemValue)
+                     }>
+                     <Picker.Item label="Emagrecer" value="Emagrecer" />
+                     <Picker.Item label="Definir" value="Definir" />
+                     <Picker.Item label="Crescer" value="Crescer" />
+                  </Picker>
+                  {/* {DownArrow} */}
+               </View>
+            </View>
+         </View>
 
-			<View style={styles.footer}>
-				<TouchableOpacity
-					style={styles.fatButton}
-					onPress={handleCompleteRegister}>
-					<Text style={styles.textoFatButton}>FINALIZAR CADASTRO</Text>
-				</TouchableOpacity>
+         <View style={styles.footer}>
+            <TouchableOpacity
+               style={styles.fatButton}
+               onPress={handleCompleteRegister}>
+               <Text style={styles.textoFatButton}>FINALIZAR CADASTRO</Text>
+            </TouchableOpacity>
 
-				<TouchableOpacity onPress={() => navigation.pop()}>
-					<Text style={styles.link}>Voltar</Text>
-				</TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.pop()}>
+               <Text style={styles.link}>Voltar</Text>
+            </TouchableOpacity>
 
-			</View>
-		</KeyboardAvoidingView>
-	);
+         </View>
+      </KeyboardAvoidingView>
+   );
 }
