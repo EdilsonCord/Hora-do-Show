@@ -21,7 +21,7 @@ export default function Alimento({ navigation, route }) {
 		imagem: require('dir-src/assets/Maçã.png'),
 		kcal_Alimento: '100',
 		descricao_Alimento: 'A maçã é o pseudofruto pomáceo da macieira, árvore da família Rosaceae. É um dos pseudofrutos de árvore mais cultivados, e o mais conhecido dos muitos membros do género Malus que são usados ​​pelos seres humanos.',
-		tipoDoAlimento: 'Fruta'
+		tipoAlimento: 'Fruta'
 	}
 
 
@@ -70,7 +70,7 @@ export default function Alimento({ navigation, route }) {
 
 					<Text style={styles.textoInfoTitulo}>
 						Tipo do Alimento:
-            <Text style={styles.textoInfoDescLado}> TIPO ALIMENTO</Text>
+            <Text style={styles.textoInfoDescLado}> {dados.tipoAlimento} </Text>
 					</Text>
 				</View>
 			</ScrollView>

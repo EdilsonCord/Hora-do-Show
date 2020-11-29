@@ -175,34 +175,6 @@ export default function MainScreen({ navigation }) {
 	const [email, onChangeEmail] = React.useState('');
 	const [senha, onChangeSenha] = React.useState('');
 
-	////
-	/// GAMBIARRA N MEXER
-	///
-
-	const [Alimentos, setAlimentos] = useState([]);
-
-	async function loadAlimentos() {
-		//Have a try and catch block for catching errors.
-		try {
-		   //Assign the promise unresolved first then get the data using the json method.
-		   const pokemonApiCall = await fetch('http://' + global.endereco + '/dieta/get/id/5fc2b7e35a42cb0017950b78');
-		   const pokemon = await pokemonApiCall.json();
-		   setAlimentos(pokemon);
-		   global.Alimentos = pokemon;
-		   console.log(pokemon)
-		} catch (err) {
-		   console.log('Error fetching data-----------', err);
-		}
-	 }
-  
-	 useEffect(() => {
-		loadAlimentos();
-	 }, []);
-
-	 ////
-	 /// FIM DA GAMBIARRA
-	 //
-
 	async function handleRegister(e) {
 		e.preventDefault();
 
