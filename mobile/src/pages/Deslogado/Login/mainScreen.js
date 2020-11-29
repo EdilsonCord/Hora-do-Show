@@ -172,97 +172,6 @@ import colors from 'dir-src/assets/colors.js'
 
 // export default class MainScreen extends Component {
 export default function MainScreen({ navigation }) {
-<<<<<<< HEAD
-	const [email, onChangeEmail] = React.useState('');
-	const [senha, onChangeSenha] = React.useState('');
-
-	async function handleRegister(e) {
-		e.preventDefault();
-
-		fetch('http://' + global.endereco + '/api/authenticate', {
-			method: 'post',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				email: email,
-				password: senha,
-			}),
-		})
-			.then((response) => response.json())
-			.then((response) => {
-				if ('error' in response) {
-					Alert.alert('Erro ao fazer Login!', response.error);
-				} else {
-					global.user = response.user;
-					navigation.navigate('MainSuccessScreen');
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	}
-
-	return (
-		<View style={styles.container}>
-			<Image source={require('../../../assets/logoOficial282x166.png')} />
-
-			<TextInput
-				style={styles.input}
-				// defaultValue="diego.cstbraga@gmail.comm"
-				placeholder="Insira seu email aqui"
-				placeholderTextColor={colors.mainInputPlaceholder}
-				onChangeText={(text) => onChangeEmail(text)}
-				email={email}
-			/>
-
-			<TextInput
-				style={styles.input}
-				// defaultValue="senha1233"
-				secureTextEntry={true}
-				placeholder="Sua senha"
-				placeholderTextColor={colors.mainInputPlaceholder}
-				onChangeText={(text) => onChangeSenha(text)}
-				senha={senha}
-			/>
-
-			<View style={styles.layerLink}>
-				<TouchableOpacity
-					onPress={() => navigation.navigate('SendRecoveryCodeScreen')}>
-					<Text style={styles.link}>Esqueci minha senha</Text>
-				</TouchableOpacity>
-			</View>
-
-			<TouchableOpacity style={styles.botao} onPress={handleRegister}>
-				<Text style={styles.botaoText}>Entrar</Text>
-			</TouchableOpacity>
-
-			<View style={styles.grupoOu}>
-				<View style={styles.horizontalLine} />
-
-				<Text style={styles.textoOu}>ou</Text>
-
-				<View style={styles.horizontalLine} />
-			</View>
-
-			<TouchableOpacity
-				style={styles.botaoCadastro}
-				onPress={() => navigation.navigate('SendCodeScreen')}>
-				<Text style={styles.botaoText}>CADASTRE-SE GRÁTIS</Text>
-			</TouchableOpacity>
-
-			<TouchableOpacity
-				style={styles.botaoFacebook}
-				onPress={() => {
-					Alert.alert('Aviso', 'Recurso atualmente indisponível');
-					// navigation.navigate('CadastrarInformacoes', { email: 'diego.cstbraga@gmail.com', senha: 'senha123' })
-					// navigation.navigate('Alimentoss')
-				}}>
-				<Image source={require('../../../assets/FacebookIcon.png')} />
-				<Text style={{ color: colors.mainTextColor, fontSize: 18, fontWeight: 'bold', flexGrow: 1, textAlign: 'center' }}>
-					ENTRAR COM O FACEBOOK
-=======
    const [email, onChangeEmail] = React.useState('');
    const [senha, onChangeSenha] = React.useState('');
 
@@ -380,7 +289,6 @@ export default function MainScreen({ navigation }) {
             <Image source={require('../../../assets/FacebookIcon.png')} />
             <Text style={{ color: colors.mainTextColor, fontSize: 18, fontWeight: 'bold', flexGrow: 1, textAlign: 'center' }}>
                ENTRAR COM O FACEBOOK
->>>>>>> 299e864761e8f967b9878f9204374897bde040d0
         		</Text>
          </TouchableOpacity>
 

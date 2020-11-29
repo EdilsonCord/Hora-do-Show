@@ -36,7 +36,7 @@ export default function Informacoes({ navigation, route }) {
 				<View style={styles.headerInicio}>
 					<View style={styles.inicio}>
 						<Image style={styles.video}
-							source={require('dir-src/assets/DiegoFit.gif')}
+							source={{uri: dados.video}}
 						// source={{uri: {dados.}}}
 						/>
 
