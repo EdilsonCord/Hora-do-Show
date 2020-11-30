@@ -65,7 +65,7 @@ export default function Alimento({ navigation, route }) {
 
                <Text style={styles.textoInfoTitulo}>
                   Calorias:
-            <Text style={styles.textoInfoDescLado}> {dados.kcal_Alimento} kCal a cada 100g</Text>
+            <Text style={styles.textoInfoDescLado}> {dados.kcal_Alimento} kCal</Text>
                </Text>
 
                <Text style={styles.textoInfoTitulo}>

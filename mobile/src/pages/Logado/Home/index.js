@@ -98,13 +98,13 @@ export default function Home({ navigation }) {
                            source={require('../../../assets/laVidaFit.png')}
                         />
                      </CardItem>
-                     <CardItem cardBody>
+                     {/* <CardItem cardBody>
                         <Body style={{ alignContent: 'center' }}>
                            <Button rounded full success>
                               <Text>Visitar Site</Text>
                            </Button>
                         </Body>
-                     </CardItem>
+                     </CardItem> */}
                   </Card>
 
                   <Card>
@@ -114,13 +114,13 @@ export default function Home({ navigation }) {
                            source={require('../../../assets/laVidaFit.png')}
                         />
                      </CardItem>
-                     <CardItem cardBody>
+                     {/* <CardItem cardBody>
                         <Body style={{ alignContent: 'center' }}>
                            <Button rounded full success>
                               <Text>Visitar Site</Text>
                            </Button>
                         </Body>
-                     </CardItem>
+                     </CardItem> */}
                   </Card>
                </Body>
             </Content>
