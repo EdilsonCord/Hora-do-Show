@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { View, Image, Text, TouchableOpacity, ScrollView, Modal, StyleSheet } from 'react-native';
+=======
+import React, { Component, useEffect } from 'react';
+import { View, Image, Text, TouchableOpacity, ScrollView, Modal, StyleSheet, Alert } from 'react-native';
+>>>>>>> 33d97050400743f7c1f7f2a1726f3ad271d6c7d9
 import { Avatar } from 'react-native-elements';
 
 import {
@@ -7,6 +12,8 @@ import {
    StyleProvider,
    getTheme
 } from 'native-base';
+
+import { useIsFocused } from '@react-navigation/native';
 
 import material from '../../../../native-base-theme/variables/material';
 import styles from './styles';
@@ -91,7 +98,7 @@ export default function SeuPerfil({ navigation }) {
                         // 	'https://avatars3.githubusercontent.com/u/50476075?s=460&u=11aba3fef6d20adac7264b36c503396700ac6182&v=4'
                      }}
                      size={150}
-                     onPress={() => { }}
+                     onPress={() => { Alert.alert('Aviso', 'Recurso disponível nas próximas versões.') }}
                      showAccessory
                      accessory={{ style: { backgroundColor: '#000', borderRadius: 50 } }}
                      avatarStyle={styles.fotoPerfil}
