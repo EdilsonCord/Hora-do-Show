@@ -17,38 +17,153 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import DietIcon from '../../../assets/DietIcon.js';
 
+import { useFocusEffect } from '@react-navigation/native';
+
 export default function Dieta({ navigation }) {
 
-   const flDados = [
+   const [Alimentos, setAlimentos] = useState({
+      "meta": "Crescer",
+      "alimentosCafe": [
+        {
+
+        },
+      ],
+      "alimentosLancheM": [
+        {
+
+        } ],
+      "alimentosAlmoco": [
+        {
+
+        }
+      ],
+      "alimentosLancheT": [
+        {
+
+        },
+      ],
+      "alimentosJanta": [
+        {
+
+        },
+      ],
+      "_id": "5fc2e937961ea50017afee2a",
+      "nome_Dieta": "Crescer",
+      "descricao_Dieta": "Dieta para crescer",
+      "__v": 0
+    });
+
+   const [calorias, setCalorias] = useState({
+      cafe: 0,
+      lancheM: 0,
+      almoco: 0,
+      lancheT: 0,
+      janta: 0
+   })
+
+
+   async function loadAlimentos(meta) {
+      //Have a try and catch block for catching errors.
+      try {
+         //Assign the promise unresolved first then get the data using the json method.
+         const pokemonApiCall = await fetch('http://' + global.endereco + '/dieta/get/nome/' + meta);
+         const pokemon = await pokemonApiCall.json();
+         setAlimentos(pokemon);
+         global.Alimentos = pokemon;
+         console.log(pokemon)
+      } catch (err) {
+         console.log('Error fetching data-----------', err);
+      }
+
+      if(global.Alimentos.alimentosCafe.length > 0 ){
+
+      var kcalCafe = 0;
+      for (var x = 0; x < global.Alimentos.alimentosCafe.length; x++) {
+         kcalCafe = kcalCafe + parseInt(global.Alimentos.alimentosCafe[x].kcal_Alimento)
+      }
+
+      var kcalLancheM = 0;
+      for (var x = 0; x < global.Alimentos.alimentosLancheM.length; x++) {
+         kcalLancheM = kcalLancheM + parseInt(global.Alimentos.alimentosLancheM[x].kcal_Alimento)
+      }
+
+      var kcalAlmoco = 0;
+      for (var x = 0; x < global.Alimentos.alimentosAlmoco.length; x++) {
+         kcalAlmoco = kcalAlmoco + parseInt(global.Alimentos.alimentosAlmoco[x].kcal_Alimento)
+      }
+
+      var kcalLancheT = 0;
+      for (var x = 0; x < global.Alimentos.alimentosLancheT.length; x++) {
+         kcalLancheT = kcalLancheT + parseInt(global.Alimentos.alimentosLancheT[x].kcal_Alimento)
+      }
+
+      var kcalJanta = 0;
+      for (var x = 0; x < global.Alimentos.alimentosJanta.length; x++) {
+         kcalJanta = kcalJanta + parseInt(global.Alimentos.alimentosJanta[x].kcal_Alimento)
+      }
+
+      setCalorias({
+         cafe: kcalCafe,
+         lancheM: kcalLancheM,
+         almoco: kcalAlmoco,
+         lancheT: kcalLancheT,
+         janta: kcalJanta
+      })
+   }
+
+   }
+
+   const f1 = [
       {
          id: '1',
          titulo: 'Café da Manhã',
-         alimentos: global.Alimentos.alimentosCafe,
+         alimentos: Alimentos.alimentosCafe,
+         kcal: calorias.cafe
       },
       {
          id: '2',
          titulo: 'Lanche da Manhã',
-         alimentos: global.Alimentos.alimentosLancheM,
+         alimentos: Alimentos.alimentosLancheM,
+         kcal: calorias.lancheM
       },
       {
          id: '3',
          titulo: 'Almoço',
-         alimentos: global.Alimentos.alimentosAlmoco,
+         alimentos: Alimentos.alimentosAlmoco,
+         kcal: calorias.almoco
       },
       {
          id: '4',
          titulo: 'Lanche da Tarde',
-         alimentos: global.Alimentos.alimentosLancheT,
+         alimentos: Alimentos.alimentosLancheT,
+         kcal: calorias.lancheT
       },
       {
          id: '5',
          titulo: 'Janta',
-         alimentos: global.Alimentos.alimentosJanta,
+         alimentos: Alimentos.alimentosJanta,
+         kcal: calorias.janta
       },
    ];
 
+
+   useFocusEffect(
+      React.useCallback(() => {
+         loadAlimentos(global.user.meta);
+
+         // Do something when the screen is focused
+         return () => {
+            // Do something when the screen is unfocused
+            // Useful for cleanup functions
+         };
+      }, [])
+   );
+
+
+
    function CalcularCaloria(item) {
       var caloriaTotal = 0;
+
       console.log("Ué: ", item.length)
       for (var x = 0; x < item.length; x++) {
          console.log("Ué: ", caloriaTotal)
@@ -56,21 +171,6 @@ export default function Dieta({ navigation }) {
       }
       return caloriaTotal
    }
-
-
-
-   const f2Dados = [1, 2, 1, 2];
-
-   const slDados = [
-      {
-         id: '1',
-         titulo: 'Café da Manhã',
-         data: ['Maca', 'Maca', 'Maca'],
-      },
-   ];
-   const Item = ({ titulo }) => (
-      <Text style={styles.textoIndiceRefeicoes}>{titulo}</Text>
-   )
 
    const Teste = () => (
       <Container style={styles.container}>
@@ -94,14 +194,14 @@ export default function Dieta({ navigation }) {
 
 
          <FlatList
-            data={flDados}
+            data={f1}
             style={styles.listarIndiceRefeicoes}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => (
                <View style={styles.containerRefeicoes}>
                   <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
                      <Text style={styles.textoIndiceRefeicoes}>{item.titulo}</Text>
-                     <Text note>{CalcularCaloria(item.alimentos)} kcal</Text>
+                     <Text note>{item.kcal} kcal</Text>
                   </View>
 
                   <FlatList

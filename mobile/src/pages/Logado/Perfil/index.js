@@ -26,14 +26,35 @@ const HappyFace = <EntypoIcon name="emoji-happy" size={iconSize} color={colors.g
 const PokerFace = <EntypoIcon name="emoji-neutral" size={iconSize} color={colors.orange} />;
 const SadFace = <EntypoIcon name="emoji-sad" size={iconSize} color={colors.red} />;
 
+import { useFocusEffect } from '@react-navigation/native';
+
 export default function SeuPerfil({ navigation }) {
 
    const [peso, setPeso] = useState(global.user.peso);
+   const [altura, setAltura] = useState(global.user.altura);
    const [meta, setMeta] = useState(global.user.meta);
    const [name, setName] = useState(global.user.name + ' ' + global.user.surname);
 
-   const CalculaIMC = () => {
-      const imc = parseFloat(global.user.peso) / Math.pow(global.user.altura * 0.01, 2);
+   function AtualizarDados(){
+      setPeso(global.user.peso);
+      setMeta(global.user.meta);
+      setAltura(global.user.altura);
+      setName(global.user.name + ' ' + global.user.surname);
+   }
+
+   useFocusEffect(
+      React.useCallback(() => {
+         AtualizarDados();
+         // Do something when the screen is focused
+         return () => {
+            // Do something when the screen is unfocused
+            // Useful for cleanup functions
+         };
+      }, [])
+   );
+
+   const CalculaIMC = (peso, altura) => {
+      const imc = parseFloat(peso) / Math.pow(altura * 0.01, 2);
       // const imc = 40;
       var retornaIMC;
       var retornaIcone;
@@ -147,7 +168,7 @@ export default function SeuPerfil({ navigation }) {
 
 								</View> */}
                         {/* <CalculaIMC /> */}
-                        {CalculaIMC()}
+                        {CalculaIMC(peso, altura)}
 
                      </View>
 

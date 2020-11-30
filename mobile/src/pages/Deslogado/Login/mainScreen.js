@@ -185,7 +185,7 @@ export default function MainScreen({ navigation }) {
       //Have a try and catch block for catching errors.
       try {
          //Assign the promise unresolved first then get the data using the json method.
-         const pokemonApiCall = await fetch('http://' + global.endereco + '/dieta/get/id/5fc2b7e35a42cb0017950b78');
+         const pokemonApiCall = await fetch('http://' + global.endereco + '/dieta/get/nome/Emagrecer');
          const pokemon = await pokemonApiCall.json();
          setAlimentos(pokemon);
          global.Alimentos = pokemon;

@@ -43,7 +43,7 @@ export default function Exercicio({ navigation }) {
          loadTreinos();
          // Do something when the screen is focused
          return () => {
-            alert("desfocou");
+
             // Do something when the screen is unfocused
             // Useful for cleanup functions
          };
