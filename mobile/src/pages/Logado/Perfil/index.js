@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { View, Image, Text, TouchableOpacity, ScrollView, Modal, StyleSheet } from 'react-native';
 import { Avatar } from 'react-native-elements';
 
@@ -25,6 +25,10 @@ const PokerFace = <EntypoIcon name="emoji-neutral" size={iconSize} color={colors
 const SadFace = <EntypoIcon name="emoji-sad" size={iconSize} color={colors.red} />;
 
 export default function SeuPerfil({ navigation }) {
+
+   const [peso, setPeso] = useState(global.user.peso);
+   const [meta, setMeta] = useState(global.user.meta);
+   const [name, setName] = useState(global.user.name + ' ' + global.user.surname);
 
    const CalculaIMC = () => {
       const imc = parseFloat(global.user.peso) / Math.pow(global.user.altura * 0.01, 2);
@@ -93,7 +97,7 @@ export default function SeuPerfil({ navigation }) {
                      avatarStyle={styles.fotoPerfil}
                   />
                   <Text style={styles.textWhite}>
-                     {global.user.name + ' ' + global.user.surname}
+                     {name}
                   </Text>
 
                </View>
@@ -122,13 +126,13 @@ export default function SeuPerfil({ navigation }) {
 
                      }}>
                         <Text style={styles.icon}>{IconeBalanca}</Text>
-                        <Text style={styles.textInfo}>Seu Peso: {global.user.peso} Kg</Text>
+                        <Text style={styles.textInfo}>Seu Peso: {peso} Kg</Text>
 
                      </View>
 
                      <View style={styles.camposInfos}>
                         <Text style={styles.icon}>{IconAlvo}</Text>
-                        <Text style={styles.textInfo}>Seu objetivo: {global.user.meta}</Text>
+                        <Text style={styles.textInfo}>Seu objetivo: {meta}</Text>
 
                      </View>
 
