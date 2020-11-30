@@ -13,6 +13,9 @@ import material from '../../../../native-base-theme/variables/material'
 import styles from './styles';
 import GymIcon from '../../../assets/GymIcon.js'
 
+import { useFocusEffect } from '@react-navigation/native';
+import { Alert } from 'react-native';
+
 
 export default function Exercicio({ navigation }) {
    const [dados, setDados] = useState([]);
@@ -31,55 +34,74 @@ export default function Exercicio({ navigation }) {
       }
    }
 
-   useEffect(() => {
-      loadTreinos();
-   }, []);
+   // useEffect(() => {
+   //    loadTreinos();
+   // }, []);
+
+   useFocusEffect(
+      React.useCallback(() => {
+         loadTreinos();
+         // Do something when the screen is focused
+         return () => {
+            alert("desfocou");
+            // Do something when the screen is unfocused
+            // Useful for cleanup functions
+         };
+      }, [])
+   );
+
+   const Teste = () => (
+      <Container style={styles.container}>
+         <GymIcon fill={material.brandInfo} />
+
+         <Text style={styles.textoCabecalho}>Treinos</Text>
+
+         {/* <Icon type="MaterialCommunityIcons" name="weight-lifter" style={{marginVertical: 15, color: "#ffe42e", fontSize: 75}} /> */}
+
+         <View style={styles.faixa}>
+            <Text note style={styles.textoFaixa}>
+               Escolha um dos treinos abaixo para alcançar seu objetivo
+               </Text>
+         </View>
+
+         <FlatList
+            data={dados}
+            style={styles.listarTreinos}
+            keyExtractor={item => item._id}
+            showsVerticalScrollIndicator={false}
+            renderItem={({ item }) => (
+               <View>
+                  { item.meta === global.user.meta ?
+                     <TouchableOpacity style={styles.containerShadow} onPress={() =>
+                        navigation.navigate('Exercicios', { treino: item._id, nomeTreino: item.tipo_treino })
+                     }>
+
+
+                        <Image source={{ uri: item.imagem }} style={{ marginLeft: "-13%", marginVertical: -10, width: 100, height: 100, borderRadius: 50, backgroundColor: "#fafafa" }} />
+
+                        <View style={{ marginLeft: 20, width: 225 }} >
+                           <Text style={{ marginBottom: 10, fontSize: 20, fontWeight: "700" }}>Treino {item.tipo_treino}</Text>
+                           <Text note>{item.desc_treino}</Text>
+                           <Text style={{ color: material.brandInfo, marginTop: 5, textAlign: 'right' }}>{item.exercicios.length} exercícios no total <Icon style={{ color: material.brandInfo, fontSize: 15 }} name="weight-lifter" type="MaterialCommunityIcons"></Icon></Text>
+                        </View>
+
+                     </TouchableOpacity>
+                     : null}
+               </View>
+            )}
+         />
+
+      </Container>
+   )
 
    return (
 
       <StyleProvider style={getTheme(material)}>
-         <Container style={styles.container}>
 
-            <GymIcon fill={material.brandInfo} />
-
-            <Text style={styles.textoCabecalho}>Treinos</Text>
-
-            {/* <Icon type="MaterialCommunityIcons" name="weight-lifter" style={{marginVertical: 15, color: "#ffe42e", fontSize: 75}} /> */}
-
-            <View style={styles.faixa}>
-               <Text note style={styles.textoFaixa}>
-                  Escolha um dos treinos abaixo para alcançar seu objetivo
-            </Text>
-            </View>
-
-            <FlatList
-               data={dados}
-               style={styles.listarTreinos}
-               keyExtractor={item => item._id}
-               showsVerticalScrollIndicator={false}
-               renderItem={({ item }) => (
-                  <View>
-                     { item.meta === global.user.meta ?
-                        <TouchableOpacity style={styles.containerShadow} onPress={() =>
-                           navigation.navigate('Exercicios', { treino: item._id, nomeTreino: item.tipo_treino })
-                        }>
+         {Teste()}
+         {/* {useFocusEffect()} */}
 
 
-                           <Image source={{ uri: item.imagem }} style={{ marginLeft: "-13%", marginVertical: -10, width: 100, height: 100, borderRadius: 50, backgroundColor: "#fafafa" }} />
-
-                           <View style={{ marginLeft: 20, width: 225 }} >
-                              <Text style={{ marginBottom: 10, fontSize: 20, fontWeight: "700" }}>Treino {item.tipo_treino}</Text>
-                              <Text note>{item.desc_treino}</Text>
-                              <Text style={{ color: material.brandInfo, marginTop: 5, textAlign: 'right' }}>{item.exercicios.length} exercícios no total <Icon style={{ color: material.brandInfo, fontSize: 15 }} name="weight-lifter" type="MaterialCommunityIcons"></Icon></Text>
-                           </View>
-
-                        </TouchableOpacity>
-                        : null}
-                  </View>
-               )}
-            />
-
-         </Container>
 
       </StyleProvider>
 
