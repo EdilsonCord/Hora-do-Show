@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import { View, Image, Text, TouchableOpacity, ScrollView, Modal, StyleSheet } from 'react-native';
-=======
-import React, { Component, useEffect } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { View, Image, Text, TouchableOpacity, ScrollView, Modal, StyleSheet, Alert } from 'react-native';
->>>>>>> 33d97050400743f7c1f7f2a1726f3ad271d6c7d9
 import { Avatar } from 'react-native-elements';
 
 import {
