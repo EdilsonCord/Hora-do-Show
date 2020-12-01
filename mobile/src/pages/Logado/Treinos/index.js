@@ -19,6 +19,7 @@ import { Alert } from 'react-native';
 
 export default function Exercicio({ navigation }) {
    const [dados, setDados] = useState([]);
+   const [meta, setMeta] = useState(global.user.meta);
 
    //Define your componentDidMount lifecycle hook that will retrieve data.
    //Also have the async keyword to indicate that it is asynchronous.
@@ -41,6 +42,7 @@ export default function Exercicio({ navigation }) {
    useFocusEffect(
       React.useCallback(() => {
          loadTreinos();
+         setMeta(global.user.meta);
          // Do something when the screen is focused
          return () => {
 
@@ -55,6 +57,7 @@ export default function Exercicio({ navigation }) {
          <GymIcon fill={material.brandInfo} />
 
          <Text style={styles.textoCabecalho}>Treinos</Text>
+         <Text style={styles.textoDescricao}>{meta}</Text>
 
          {/* <Icon type="MaterialCommunityIcons" name="weight-lifter" style={{marginVertical: 15, color: "#ffe42e", fontSize: 75}} /> */}
 

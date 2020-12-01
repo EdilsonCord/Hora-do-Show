@@ -33,12 +33,14 @@ export default function SeuPerfil({ navigation }) {
    const [peso, setPeso] = useState(global.user.peso);
    const [altura, setAltura] = useState(global.user.altura);
    const [meta, setMeta] = useState(global.user.meta);
+   const [sexo, setSexo] = useState(global.user.sexo);
    const [name, setName] = useState(global.user.name + ' ' + global.user.surname);
 
-   function AtualizarDados(){
+   function AtualizarDados() {
       setPeso(global.user.peso);
       setMeta(global.user.meta);
       setAltura(global.user.altura);
+      setSexo(global.user.sexo);
       setName(global.user.name + ' ' + global.user.surname);
    }
 
