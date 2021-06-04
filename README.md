@@ -4,7 +4,7 @@
 
 Nosso projeto serve para auxiliar pessoas que **desejam** ter um vida mais saudável com recomendações de exercícios e dietas personalizadas, a partir do **objetivo** a ser alcançado, informado pelo usuário.
 
-![Link para demonstração do projeto](https://youtu.be/eyV9E9FeQvk)
+[Link para demonstração do projeto](https://youtu.be/eyV9E9FeQvk)
 
 ---
 
