@@ -1,4 +1,14 @@
-# Instalação
+# Hora do Show - Um aplicativo para cativar seu treino
+
+![Logo Hora do Show - Designed by @ggermanodesign](https://i.imgur.com/ystKdeu.png)
+
+Nosso projeto serve para auxiliar pessoas que **desejam** ter um vida mais saudável com recomendações de exercícios e dietas personalizadas, a partir do **objetivo** a ser alcançado, informado pelo usuário.
+
+![Link para demonstração do projeto](https://youtu.be/eyV9E9FeQvk)
+
+---
+
+## Instalação
 
 1. Abra o terminal do seu computador. Se estiver no Windows, pode ser o Prompt de Comando ou PowerShell. Caso use o WSL no Windows, use o Windows Terminal, usando o Ubuntu ou qualquer distribuição suportada pelo WSL.
 
@@ -23,7 +33,8 @@ npm install
 ```bash
 npm start
 ```
-ou
+> ou
+  
 ```bash
 npx react-native run-android
 ```
