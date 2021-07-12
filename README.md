@@ -25,17 +25,22 @@ Nosso projeto serve para auxiliar pessoas que **desejam** ter um vida mais saud�
 git clone https://github.com/EdilsonCord/Hora-do-Show.git
 ```
 
-5. Entre na pasta rodando pelo terminal:
+5. Entre na pasta originada pelo passo anterior através do comando:
 ```bash
 cd Hora-do-Show
 ```
 
-6. Depois de fazer a clonagem, deve-se fazer a instalação do "node_modules", através do comando:
+6. Acesse a pasta mobile:
+```bash
+cd mobile
+```
+
+7. Depois de fazer a clonagem, deve-se fazer a instalação do "node_modules", através do comando:
 ```bash
 npm install 
 ```
 
-7. Para executar, basta escrever
+8. Para executar, basta escrever
 ```bash
 npm start
 ```
