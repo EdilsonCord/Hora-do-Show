@@ -14,7 +14,7 @@ Nosso projeto serve para auxiliar pessoas que **desejam** ter um vida mais saud�
 
 ## Instalação 💻
 
-1. Faça questão de ter instalado em sua máquina o [Android Studio](https://developer.android.com/studio/) e todas as dependências necessárias para rodar projetos com React Native. Caso tenha alguma dúvida, [confira como configurar corretamente o seu ambiente](https://reactnative.dev/docs/environment-setup).
+1. Conferir se o [Android Studio](https://developer.android.com/studio/), o gerenciador de pacotes [Yarn](https://yarnpkg.com/) e todas as dependências necessárias para rodar projetos com React Native estão instaladas na máquina. Caso tenha alguma dúvida, [confira como configurar corretamente o seu ambiente](https://reactnative.dev/docs/environment-setup).
 
 2. Abra o terminal do seu computador. Se estiver no Windows, pode ser o Prompt de Comando ou PowerShell. Caso use o WSL no Windows, use o Windows Terminal, usando o Ubuntu ou qualquer distribuição suportada pelo WSL.
 
@@ -37,17 +37,16 @@ cd mobile
 
 7. Depois de fazer a clonagem, deve-se fazer a instalação do "node_modules", através do comando:
 ```bash
-npm install 
+yarn install 
 ```
 
 8. Para executar, basta escrever
 ```bash
-npm start
+npx react-native run-android
 ```
 > ou
-  
 ```bash
-npx react-native run-android
+yarn start
 ```
 
 ## Para contribuir 
