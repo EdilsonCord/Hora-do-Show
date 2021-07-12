@@ -14,26 +14,28 @@ Nosso projeto serve para auxiliar pessoas que **desejam** ter um vida mais saud�
 
 ## Instalação 💻
 
-1. Abra o terminal do seu computador. Se estiver no Windows, pode ser o Prompt de Comando ou PowerShell. Caso use o WSL no Windows, use o Windows Terminal, usando o Ubuntu ou qualquer distribuição suportada pelo WSL.
+1. Faça questão de ter instalado em sua máquina o [Android Studio](https://developer.android.com/studio/) e todas as dependências necessárias para rodar projetos com React Native. Caso tenha alguma dúvida, [confira como configurar corretamente o seu ambiente](https://reactnative.dev/docs/environment-setup).
 
-2. Altere o diretório de trabalho atual para o local em que deseja ter o código do módulo salvo no seu computador.
+2. Abra o terminal do seu computador. Se estiver no Windows, pode ser o Prompt de Comando ou PowerShell. Caso use o WSL no Windows, use o Windows Terminal, usando o Ubuntu ou qualquer distribuição suportada pelo WSL.
 
-3. Faça um clone desse repositório rodando:
+3. Altere o diretório de trabalho atual para o local em que deseja ter o código do módulo salvo no seu computador.
+
+4. Faça um clone desse repositório rodando:
 ```bash
 git clone https://github.com/EdilsonCord/Hora-do-Show.git
 ```
 
-4. Entre na pasta rodando pelo terminal:
+5. Entre na pasta rodando pelo terminal:
 ```bash
 cd Hora-do-Show
 ```
 
-5. Depois de fazer a clonagem, deve-se fazer a instalação do "node_modules", através do comando:
+6. Depois de fazer a clonagem, deve-se fazer a instalação do "node_modules", através do comando:
 ```bash
 npm install 
 ```
 
-6. Para executar, basta escrever
+7. Para executar, basta escrever
 ```bash
 npm start
 ```
